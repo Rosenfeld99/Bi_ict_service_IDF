@@ -12,12 +12,18 @@ const useDataStore = () => {
         setShowToast(true)
         setToast({ title: title, message: message, type: type, time: time });
     }
+
+    const getBregadeSingle = (bregadeId) => {
+        return data.find((item) => item?.brigade_id == bregadeId)
+    }
+
     return {
         user, setUser,
         usersList, setUsersList,
         data, setData,
         toast, setToast, showToast, setShowToast,
-        handelToast
+        handelToast,
+        getBregadeSingle
     }
 }
 

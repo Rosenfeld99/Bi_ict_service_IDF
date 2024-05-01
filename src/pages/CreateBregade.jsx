@@ -5,9 +5,13 @@ import useDataStore from '../hooks/useDataStore'
 import HeaderCreateData from '../utils/HeaderCreateData'
 import { FaPen, FaTrash } from 'react-icons/fa'
 import { generateID } from '../utils/func'
+import { useSearchParams } from 'react-router-dom'
 
 const CreateBregade = () => {
-  const { data } = useDataStore()
+  const { data, getBregadeSingle } = useDataStore()
+  const [params] = useSearchParams()
+  console.log(params.get('q'));
+
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   // console.log(data[0]);
@@ -75,6 +79,17 @@ const CreateBregade = () => {
     workSpace: "alpha",
     comments: "no comments",
   })
+
+  useEffect(() => {
+    if (params.get('q')) {
+      const singleBregade = getBregadeSingle(params.get('q'))
+      setFormBregade(singleBregade)
+      setFormBattalion(singleBregade?.battalion[0])
+      setBregadeBattalion(singleBregade?.battalion || [])
+      setCurrentBattailion(singleBregade?.battalion && singleBregade?.battalion[0] || {})
+      console.log(" singleBregade : ", singleBregade);
+    }
+  }, [params.get('q')])
 
   // find currnet battalion by click 
   const handleSelectBattalion = (id) => {
@@ -236,7 +251,6 @@ const CreateBregade = () => {
             totalTypePercent: "",
             comments: "",
             mean_id: generateID()
-            // we need to add uniq id for mean element --> and add more in data file (data.js) 
           },
           {
             meansName: "",
@@ -258,6 +272,7 @@ const CreateBregade = () => {
         totalSumBattalion: "",
         comments: "",
       },)
+      // setCurrentBattailion(formBattalion[0])
       // TODO get the index in array and update the state if currentBattalion to array in index -1
 
     }
@@ -270,7 +285,7 @@ const CreateBregade = () => {
       <Topbar title={'הוספת חטיבה'} toggelExcle={false} showTheme={true} />
 
       {/* header content */}
-      <HeaderCreateData btnAdd={'הוסף גדוד'} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} />
+      <HeaderCreateData btnAdd={'הוסף גדוד'} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} />
 
       <div className=" flex gap-5">
         {/* accordion */}
@@ -306,7 +321,7 @@ const CreateBregade = () => {
         <div className="flex flex-col gap-3 w-full">
           <div className="overflow-x-auto w-full bg-accent_bg dark:bg-dark_accent h-fit rounded-lg border-secoundary border-[1px] dark:border-primary">
             <div className="p-3 flex items-center justify-between">
-              <input placeholder='הכנס שם גדוד..' value={formBattalion.battalionName} onChange={(e) => handleInputsBregadeChange(e.target.value, "battalionName")} autoFocus className=' outline-none placeholder:text-neutral font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-lg py-1 w-fit text-xl flex-row-reverse' />
+              <input placeholder='הכנס שם גדוד..' value={formBattalion?.battalionName} onChange={(e) => handleInputsBregadeChange(e.target.value, "battalionName")} autoFocus className=' outline-none placeholder:text-neutral font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-lg py-1 w-fit text-xl flex-row-reverse' />
               <div className=" flex items-center gap-3">
                 <div onClick={() => handleDeleteBattalion(formBattalion?.battalion_id)} className="tooltip tooltip-right" data-tip="מחיקת גדוד">
                   <button className="flex items-center gap-3 p-1 px-2 bg-accent_bg text-red-500"> <FaTrash /></button>

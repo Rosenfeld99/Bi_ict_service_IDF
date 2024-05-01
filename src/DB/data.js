@@ -3,17 +3,17 @@ import { generateID } from "../utils/func";
 export const dataDB = [
   {
     brigadeName: "alpha 1",
-    brigade_id: "cdsjiocjsdioc",
+    brigade_id: generateID(),
     battalion: [
       {
         battalionName: "eli_1",
-        battalion_id: "djciosjciods",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "item 1",
             meansType: {
               nameType: "number",
-              type_id: "mdlkjcijerdifsoc",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -27,7 +27,7 @@ export const dataDB = [
             meansName: "item 1",
             meansType: {
               nameType: "string",
-              type_id: "jdcisjocijsdi",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -41,7 +41,7 @@ export const dataDB = [
             meansName: "item 1",
             meansType: {
               nameType: "obg",
-              type_id: "sdjiocjsdicjisd",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -55,7 +55,7 @@ export const dataDB = [
             meansName: "mosheCC",
             meansType: {
               nameType: "item 2",
-              type_id: "kkopkopopk",
+              type_id: generateID(),
               amount: "10",
               properICT: "10",
               properAmm: "10",
@@ -69,7 +69,7 @@ export const dataDB = [
             meansName: "gal",
             meansType: {
               nameType: "malnan",
-              type_id: "djsiojciosdjc",
+              type_id: generateID(),
               amount: "4",
               properICT: "4",
               properAmm: "4",
@@ -87,13 +87,13 @@ export const dataDB = [
       },
       {
         battalionName: "eli_2",
-        battalion_id: "idjsciosdjciosd",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "eli",
             meansType: {
               nameType: "number",
-              type_id: "disjciosdjcios",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -107,7 +107,7 @@ export const dataDB = [
             meansName: "eli",
             meansType: {
               nameType: "string",
-              type_id: "dxmkslcwjeoij",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -121,7 +121,7 @@ export const dataDB = [
             meansName: "eli",
             meansType: {
               nameType: "obg",
-              type_id: "jfdlkskcoekdopw",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -135,7 +135,7 @@ export const dataDB = [
             meansName: "mosheCC",
             meansType: {
               nameType: "yahav",
-              type_id: "deodkwornfiurh",
+              type_id: generateID(),
               amount: "10",
               properICT: "10",
               properAmm: "10",
@@ -149,7 +149,7 @@ export const dataDB = [
             meansName: "gal",
             meansType: {
               nameType: "malnan",
-              type_id: "ncdushciuerhiuc",
+              type_id: generateID(),
               amount: "4",
               properICT: "4",
               properAmm: "4",
@@ -167,13 +167,13 @@ export const dataDB = [
       },
       {
         battalionName: "eli_3",
-        battalion_id: "jeoijfierojfioer",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "avi 2",
             meansType: {
               nameType: "number",
-              type_id: "mdsijeiojdewiodjw",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -187,7 +187,7 @@ export const dataDB = [
             meansName: "avi 2",
             meansType: {
               nameType: "string",
-              type_id: "jsiodsjciodjsc",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -201,7 +201,7 @@ export const dataDB = [
             meansName: "avi 2",
             meansType: {
               nameType: "obg",
-              type_id: "zxcvbnm,nbvc",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -215,7 +215,7 @@ export const dataDB = [
             meansName: "mosheCC",
             meansType: {
               nameType: "yahav",
-              type_id: "sdiojciosdjcoisdjc",
+              type_id: generateID(),
               amount: "10",
               properICT: "10",
               properAmm: "10",
@@ -229,7 +229,7 @@ export const dataDB = [
             meansName: "gal",
             meansType: {
               nameType: "malnan",
-              type_id: "jfeidcsjiocjsdio",
+              type_id: generateID(),
               amount: "4",
               properICT: "4",
               properAmm: "4",
@@ -276,11 +276,11 @@ export const dataDB = [
   },
   {
     brigadeName: "alpha",
-    brigade_id: "asdfghhjjkll",
+    brigade_id: generateID(),
     battalion: [
       {
         battalionName: "moshe_1",
-        battalion_id: "gfdhfgjfvjdnvjk",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "nehoray",
@@ -360,13 +360,13 @@ export const dataDB = [
       },
       {
         battalionName: "moshe_2",
-        battalion_id: "gfdhfgjiwqswoix",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "nehoray",
             meansType: {
               nameType: "number",
-              type_id: "jvhnrttgfjfu",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -380,7 +380,7 @@ export const dataDB = [
             meansName: "nehoray",
             meansType: {
               nameType: "string",
-              type_id: "reiyrereuruieo",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -394,7 +394,7 @@ export const dataDB = [
             meansName: "nehoray",
             meansType: {
               nameType: "obg",
-              type_id: "zxcvbnm,nbvc",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -408,7 +408,7 @@ export const dataDB = [
             meansName: "mosheCC",
             meansType: {
               nameType: "yahav",
-              type_id: "dhfgyhygjujyf",
+              type_id: generateID(),
               amount: "10",
               properICT: "10",
               properAmm: "10",
@@ -422,7 +422,7 @@ export const dataDB = [
             meansName: "gal",
             meansType: {
               nameType: "malnan",
-              type_id: "ertyhjknbvc",
+              type_id: generateID(),
               amount: "4",
               properICT: "4",
               properAmm: "4",
@@ -440,13 +440,13 @@ export const dataDB = [
       },
       {
         battalionName: "moshe_3",
-        battalion_id: "gfdhfgjhsauixmsxk",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "nehoray",
             meansType: {
               nameType: "number",
-              type_id: "jvhnrttgfjfu",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -460,7 +460,7 @@ export const dataDB = [
             meansName: "nehoray",
             meansType: {
               nameType: "string",
-              type_id: "reiyrereuruieo",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -474,7 +474,7 @@ export const dataDB = [
             meansName: "nehoray",
             meansType: {
               nameType: "obg",
-              type_id: "zxcvbnm,nbvc",
+              type_id: generateID(),
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -488,7 +488,7 @@ export const dataDB = [
             meansName: "mosheCC",
             meansType: {
               nameType: "yahav",
-              type_id: "dhfgyhygjujyf",
+              type_id: generateID(),
               amount: "10",
               properICT: "10",
               properAmm: "10",
@@ -502,7 +502,7 @@ export const dataDB = [
             meansName: "gal",
             meansType: {
               nameType: "malnan",
-              type_id: "ertyhjknbvc",
+              type_id: generateID(),
               amount: "4",
               properICT: "4",
               properAmm: "4",
@@ -549,11 +549,11 @@ export const dataDB = [
   },
   {
     brigadeName: "bravo 1",
-    brigade_id: "jdisdjioid",
+    brigade_id: generateID(),
     battalion: [
       {
         battalionName: "charlie_1",
-        battalion_id: "djioidsjoij",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "item 1",
@@ -604,7 +604,7 @@ export const dataDB = [
       },
       {
         battalionName: "charlie_2",
-        battalion_id: "xzcjiowjeio",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "item 4",
@@ -653,11 +653,11 @@ export const dataDB = [
   },
   {
     brigadeName: "charlie 2",
-    brigade_id: "efghijkl",
+    brigade_id: generateID(),
     battalion: [
       {
         battalionName: "delta_1",
-        battalion_id: "mnopqrst",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "item 6",
@@ -694,7 +694,7 @@ export const dataDB = [
       },
       {
         battalionName: "delta_2",
-        battalion_id: "klmnopqr",
+        battalion_id: generateID(),
         means: [
           {
             meansName: "item 8",
@@ -750,7 +750,7 @@ export const userDB = {
     "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
   Title: "סמל",
   WorkEmail: "s86234@army.idf.il",
-  userId: "s8624",
+  userId: generateID(),
   userName: "moshe",
   access: "admin",
 };
@@ -763,7 +763,7 @@ export const usersListDB = [
       "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
     Title: "סמל",
     WorkEmail: "s86234@army.idf.il",
-    userId: "s8624",
+    userId: generateID(),
     userName: "moshe",
     access: "editor",
   },
@@ -774,7 +774,7 @@ export const usersListDB = [
       "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
     Title: "סמל",
     WorkEmail: "s86234@army.idf.il",
-    userId: "s8624",
+    userId: generateID(),
     userName: "eli",
     access: "admin",
   },
@@ -785,7 +785,7 @@ export const usersListDB = [
       "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
     Title: "סמל",
     WorkEmail: "s86234@army.idf.il",
-    userId: "s8624",
+    userId: generateID(),
     userName: "nehoray",
     access: "user",
   },

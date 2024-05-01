@@ -58,6 +58,7 @@ const Data = () => {
                   {/* add btn */}
                   <div className=" flex items-center justify-center py-5">
                     <button className='bg-secoundary text-accent w-fit dark:bg-dark_secoundary dark:text-primary py-2 px-5 rounded-xl'>הוסף גדוד</button>
+                    <div className="" onClick={() => navigate(`/data/update/bregade?q=${item?.brigade_id}`)}>edit</div>
                   </div>
                 </div>
               </div>))}
