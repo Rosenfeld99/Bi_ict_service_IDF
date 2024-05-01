@@ -1,5 +1,5 @@
 import React from 'react'
-import Topbar from '../components/topbat/Topbar'
+import Topbar from '../components/topbar/Topbar'
 import useDataStore from '../hooks/useDataStore'
 import { Link } from 'react-router-dom'
 

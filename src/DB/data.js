@@ -1,3 +1,5 @@
+import { generateID } from "../utils/func";
+
 export const dataDB = [
   {
     brigadeName: "alpha 1",
@@ -282,9 +284,9 @@ export const dataDB = [
         means: [
           {
             meansName: "nehoray",
+            type_id: generateID(),
             meansType: {
               nameType: "number",
-              type_id: "jvhnrttgfjfu",
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -296,9 +298,9 @@ export const dataDB = [
           },
           {
             meansName: "nehoray",
+            type_id: generateID(),
             meansType: {
               nameType: "string",
-              type_id: "reiyrereuruieo",
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -310,9 +312,9 @@ export const dataDB = [
           },
           {
             meansName: "nehoray",
+            type_id: generateID(),
             meansType: {
               nameType: "obg",
-              type_id: "zxcvbnm,nbvc",
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -324,9 +326,9 @@ export const dataDB = [
           },
           {
             meansName: "mosheCC",
+            type_id: generateID(),
             meansType: {
               nameType: "yahav",
-              type_id: "dhfgyhygjujyf",
               amount: "10",
               properICT: "10",
               properAmm: "10",
@@ -338,9 +340,9 @@ export const dataDB = [
           },
           {
             meansName: "gal",
+            type_id: generateID(),
             meansType: {
               nameType: "malnan",
-              type_id: "ertyhjknbvc",
               amount: "4",
               properICT: "4",
               properAmm: "4",
@@ -555,9 +557,9 @@ export const dataDB = [
         means: [
           {
             meansName: "item 1",
+            type_id: generateID(),
             meansType: {
               nameType: "number",
-              type_id: "dskljcsdjcoiew",
               amount: "3",
               properICT: "3",
               properAmm: "3",
@@ -569,9 +571,9 @@ export const dataDB = [
           },
           {
             meansName: "item 2",
+            type_id: generateID(),
             meansType: {
               nameType: "string",
-              type_id: "jdisjciojweof",
               amount: "2",
               properICT: "2",
               properAmm: "2",
@@ -583,9 +585,9 @@ export const dataDB = [
           },
           {
             meansName: "item 3",
+            type_id: generateID(),
             meansType: {
               nameType: "obg",
-              type_id: "dsfiojwjeow",
               amount: "1",
               properICT: "1",
               properAmm: "1",
@@ -606,9 +608,9 @@ export const dataDB = [
         means: [
           {
             meansName: "item 4",
+            type_id: generateID(),
             meansType: {
               nameType: "number",
-              type_id: "dksjciojweiof",
               amount: "4",
               properICT: "4",
               properAmm: "4",
@@ -620,9 +622,9 @@ export const dataDB = [
           },
           {
             meansName: "item 5",
+            type_id: generateID(),
             meansType: {
               nameType: "string",
-              type_id: "dskjiowjeiof",
               amount: "5",
               properICT: "5",
               properAmm: "5",
@@ -659,9 +661,9 @@ export const dataDB = [
         means: [
           {
             meansName: "item 6",
+            type_id: generateID(),
             meansType: {
               nameType: "number",
-              type_id: "uvwxyzab",
               amount: "2",
               properICT: "2",
               properAmm: "2",
@@ -673,9 +675,9 @@ export const dataDB = [
           },
           {
             meansName: "item 7",
+            type_id: generateID(),
             meansType: {
               nameType: "string",
-              type_id: "cdefghij",
               amount: "3",
               properICT: "3",
               properAmm: "3",
@@ -696,9 +698,9 @@ export const dataDB = [
         means: [
           {
             meansName: "item 8",
+            type_id: generateID(),
             meansType: {
               nameType: "number",
-              type_id: "stuvwxyz",
               amount: "4",
               properICT: "4",
               properAmm: "4",
@@ -710,9 +712,9 @@ export const dataDB = [
           },
           {
             meansName: "item 9",
+            type_id: generateID(),
             meansType: {
               nameType: "string",
-              type_id: "ijklmnop",
               amount: "5",
               properICT: "5",
               properAmm: "5",

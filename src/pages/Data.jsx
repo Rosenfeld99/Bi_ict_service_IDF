@@ -1,15 +1,18 @@
 import { useState } from 'react'
-import Topbar from '../components/topbat/Topbar'
+import Topbar from '../components/topbar/Topbar'
 import useDataStore from '../hooks/useDataStore'
 
 import HeaderContent from '../utils/HeaderContent'
+import { useNavigate } from 'react-router-dom'
 
 const Data = () => {
   const { data } = useDataStore()
   // console.log(data);
   const [currentBattailion, setCurrentBattailion] = useState(data[0].battalion[0])
-  // console.log(currentBattailion);
+  console.log(currentBattailion);
   const [dataRender, setDataRender] = useState(data || []);
+
+  const navigate = useNavigate()
 
   // find currnet battalion by click 
   const handleSelectBattalion = (id) => {
@@ -33,7 +36,7 @@ const Data = () => {
       <Topbar title={'נתונים'} toggelExcle={true} showTheme={true} />
 
       {/* header content */}
-      <HeaderContent btnAdd={'הוסף חטיבה'} numOfTitle={39} placeholderTitle={'חפש שם חטיבה'} title={'חטיבות'} handleSearch={handleSearch}/>
+      <HeaderContent btnAdd={'הוסף חטיבה'} onClickBtn={() => navigate('/data/create/bregade')} numOfTitle={39} placeholderTitle={'חפש שם חטיבה'} title={'חטיבות'} handleSearch={handleSearch} />
 
       <div className=" flex gap-5">
         {/* accordion */}

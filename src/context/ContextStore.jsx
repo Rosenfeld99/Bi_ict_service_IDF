@@ -6,11 +6,15 @@ export const ContextStoreProvider = ({ children }) => {
     const [usersList, setUsersList] = useState(usersListDB)
     const [user, setUser] = useState(userDB)
     const [data, setData] = useState(dataDB)
+    const [showToast, setShowToast] = useState(false)
+    const [toast, setToast] = useState({ title: "", message: "", type: "", time: 0 });
 
     const contextValue = {
         user, setUser,
         usersList, setUsersList,
         data, setData,
+        showToast, setShowToast,
+        toast, setToast,
     }
 
     return (

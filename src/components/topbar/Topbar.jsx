@@ -7,7 +7,7 @@ import useTheme from '../../hooks/useTheme'
 const Topbar = ({ title, showTheme, toggelExcle, }) => {
   const { user } = useDataStore()
   const [theme, toggleTheme] = useTheme();
-  console.log("theme ", theme);
+  // console.log("theme ", theme);
   return (
     <div >
       <div className="flex items-center justify-between">

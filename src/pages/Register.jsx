@@ -1,5 +1,5 @@
 import React from 'react'
-import Topbar from '../components/topbat/Topbar'
+import Topbar from '../components/topbar/Topbar'
 
 const Register = () => {
     return (

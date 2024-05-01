@@ -8,6 +8,8 @@ import Help from '../pages/Help'
 import Error404 from '../pages/Error404'
 import useDataStore from '../hooks/useDataStore'
 import Register from '../pages/Register'
+import CreateBregade from '../pages/CreateBregade'
+import DashBattalion from '../pages/DashBattalion'
 
 const AppRoutes = () => {
     const { user } = useDataStore();
@@ -22,9 +24,11 @@ const AppRoutes = () => {
                 {user &&
                     <>
                         <Route path="/" element={<Home />} />
+                        <Route path="/:id" element={<DashBattalion />} />
                         {user.access != "user" && <>
                             <Route path="/users" element={<Users />} />
                             <Route path="/data" element={<Data />} />
+                            <Route path="/data/create/bregade" element={<CreateBregade />} />
                         </>}
 
                     </>
