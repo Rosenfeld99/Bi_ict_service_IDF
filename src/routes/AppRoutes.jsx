@@ -10,6 +10,7 @@ import useDataStore from '../hooks/useDataStore'
 import Register from '../pages/Register'
 import CreateBregade from '../pages/CreateBregade'
 import DashBattalion from '../pages/DashBattalion'
+import EditBregade from '../pages/EditBregade'
 
 const AppRoutes = () => {
     const { user } = useDataStore();
@@ -29,7 +30,7 @@ const AppRoutes = () => {
                             <Route path="/users" element={<Users />} />
                             <Route path="/data" element={<Data />} />
                             <Route path="/data/create/bregade" element={<CreateBregade />} />
-                            <Route path="/data/update/bregade/" element={<CreateBregade />} />
+                            <Route path="/data/update/bregade/" element={<EditBregade />} />
                         </>}
 
                     </>

@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Topbar from '../components/topbar/Topbar'
 import useDataStore from '../hooks/useDataStore'
 
 import HeaderCreateData from '../utils/HeaderCreateData'
 import { FaPen } from 'react-icons/fa'
 import { generateID } from '../utils/func'
+import { useSearchParams } from 'react-router-dom'
 import TableGrid from '../components/table/TableGrid'
 
-const CreateBregade = () => {
+const EditBregade = () => {
   const { data, getBregadeSingle } = useDataStore()
+  const [params] = useSearchParams()
+  console.log(params.get('q'));
 
   // console.log(data[0]);
   const [formBattalion, setFormBattalion] = useState(
@@ -74,6 +77,17 @@ const CreateBregade = () => {
     comments: "no comments",
   })
 
+  useEffect(() => {
+    if (params.get('q')) {
+      console.log(getBregadeSingle(params.get('q')));
+      const singleBregade = getBregadeSingle(params.get('q'))
+      setFormBregade(singleBregade)
+      setFormBattalion(singleBregade?.battalion && singleBregade?.battalion[0] || [])
+      setBregadeBattalion(singleBregade?.battalion || [])
+      setCurrentBattailion(singleBregade?.battalion && singleBregade?.battalion[0] || {})
+      console.log(" singleBregade : ", singleBregade);
+    }
+  }, [params.get('q')])
 
   // find currnet battalion by click 
   const handleSelectBattalion = (id) => {
@@ -81,23 +95,21 @@ const CreateBregade = () => {
     setCurrentBattailion(res?.battalion?.find(item => item?.battalion_id == id))
   }
 
-
   const handleInputBregadeNameChange = (inputVal) => {
     setFormBregade({ ...formBregade, brigadeName: inputVal })
     console.log(formBregade.brigadeName);
   }
 
+  console.log(currentBattailion);
 
-  // console.log(currentBattailion);
 
-
-  // console.log(formBattalion?.battalionName);
+  // console.log(formBregade.brigadeName);
   return (
     <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5'>
       <Topbar title={'הוספת חטיבה'} toggelExcle={false} showTheme={true} />
 
       {/* header content */}
-      <HeaderCreateData btnAdd={'שמירה וסיום'} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} />
+      <HeaderCreateData btnAdd={'הוסף גדוד'} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} />
 
       <div className=" flex gap-5">
         {/* accordion */}
@@ -133,12 +145,12 @@ const CreateBregade = () => {
         <TableGrid setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
       </div>
 
-      {/* btn action
+      {/* btn action */}
       <button className=" bg-green-600 text-primary dark:bg-dark_secoundary dark:text-primary py-2 text-sm px-5 rounded-3xl absolute bottom-4 left-3">
         שמירה וסיום
-      </button> */}
+      </button>
     </div >
   )
 }
 
-export default CreateBregade
+export default EditBregade

@@ -57,8 +57,8 @@ const Data = () => {
                   ))}
                   {/* add btn */}
                   <div className=" flex items-center justify-center py-5">
-                    <button className='bg-secoundary text-accent w-fit dark:bg-dark_secoundary dark:text-primary py-2 px-5 rounded-xl'>הוסף גדוד</button>
-                    <div className="" onClick={() => navigate(`/data/update/bregade?q=${item?.brigade_id}`)}>edit</div>
+                    <button onClick={() => navigate(`/data/update/bregade?q=${item?.brigade_id}`)} className='bg-secoundary text-accent w-fit dark:bg-dark_secoundary dark:text-primary py-2 px-5 rounded-xl'>עריכת חטיבה</button>
+                    {/* <div className="" >edit</div> */}
                   </div>
                 </div>
               </div>))}
@@ -96,11 +96,11 @@ const Data = () => {
                 <tr key={index}>
                   <th className={custumStyleBodyFirst}>{index + 1}</th>
                   <td className={custumStyleBody}>{bat?.meansName}</td>
-                  <td className={custumStyleBody}>{bat?.meansType.nameType}</td>
-                  <td className={custumStyleBody}>{bat?.meansType.amount}</td>
-                  <td className={custumStyleBody}>{bat?.meansType.properICT}</td>
-                  <td className={custumStyleBody}>{bat?.meansType.properAmm}</td>
-                  <td className={custumStyleBody}>{bat?.meansType.procent}</td>
+                  <td className={custumStyleBody}>{bat?.nameType}</td>
+                  <td className={custumStyleBody}>{bat?.amount}</td>
+                  <td className={custumStyleBody}>{bat?.properICT}</td>
+                  <td className={custumStyleBody}>{bat?.properAmm}</td>
+                  <td className={custumStyleBody}>{bat?.procent}</td>
                   <td className={custumStyleBody}>{currentBattailion?.comments}</td>
                 </tr>
               ))}
