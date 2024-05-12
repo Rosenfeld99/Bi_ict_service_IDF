@@ -25,7 +25,8 @@ export default function CardItemBattalion({ item }) {
                 <div className="h-44 overflow-auto p-3">
                     {item.means.map((bat) => (
                         <div key={bat.type_id}>
-                            <ProgressBar color={"progress-info"} perValue={bat.procent} title={bat.meansName + (bat.nameType && "-(" + bat.nameType + ")")} percent={((bat.procent / bat.totalTypePercent) * 100)} />
+                            {console.log(bat)}
+                            <ProgressBar color={"progress-info"} perValue={bat.procent} title={bat.meansName + (bat.nameType && "-(" + bat.nameType + ")")} maxValue={bat.totalTypePercent} />
                         </div>
                     ))}
                 </div>
