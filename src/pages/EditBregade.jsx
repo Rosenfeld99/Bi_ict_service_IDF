@@ -56,7 +56,7 @@ const EditBregade = () => {
   )
   const [currentBattailion, setCurrentBattailion] = useState(formBattalion)
   const [bregadeBattalion, setBregadeBattalion] = useState([])
-  // console.log(bregadeBattalion);
+  console.log(currentBattailion);
 
   const [formBregade, setFormBregade] = useState({
     brigadeName: "",
@@ -76,6 +76,8 @@ const EditBregade = () => {
     workSpace: "alpha",
     comments: "no comments",
   })
+  const [sunOfTotalPercent, setSunOfTotalPercent] = useState(currentBattailion?.totalSumBattalion || 0)
+
 
   useEffect(() => {
     if (params.get('q')) {
@@ -86,6 +88,7 @@ const EditBregade = () => {
       setBregadeBattalion(singleBregade?.battalion || [])
       setCurrentBattailion(singleBregade?.battalion && singleBregade?.battalion[0] || {})
       console.log(" singleBregade : ", singleBregade);
+      setSunOfTotalPercent(singleBregade?.battalion[0]?.totalSumBattalion)
     }
   }, [params.get('q')])
 
@@ -93,6 +96,7 @@ const EditBregade = () => {
   const handleSelectBattalion = (id) => {
     const res = data?.find((item) => item.battalion.find((bt) => bt.battalion_id === id));
     setCurrentBattailion(res?.battalion?.find(item => item?.battalion_id == id))
+
   }
 
   const handleInputBregadeNameChange = (inputVal) => {
@@ -173,6 +177,7 @@ const EditBregade = () => {
               <div key={item?.battalion_id} onClick={() => {
                 setCurrentBattailion(item)
                 setFormBattalion(item)
+                setSunOfTotalPercent(item?.totalSumBattalion)
               }} className="collapse collapse-arrow join-item bg-accent_bg dark:bg-dark_accent">
                 {/* {item?.battalion_id == currentBattailion?.battalion_id && <div className=" absolute left-10 top-5 text-lg text-secoundary ">
                   <FaPen />
@@ -191,7 +196,7 @@ const EditBregade = () => {
 
         </div>}
         {/* vew item content */}
-        <TableGrid setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
+        <TableGrid setSunOfTotalPercent={setSunOfTotalPercent} sunOfTotalPercent={sunOfTotalPercent} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
       </div>
 
       {/* btn action */}
