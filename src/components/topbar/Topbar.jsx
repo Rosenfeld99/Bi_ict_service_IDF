@@ -3,8 +3,9 @@ import { FaRegFileExcel, FaUser } from 'react-icons/fa'
 import { MdLightMode, MdModeNight } from 'react-icons/md'
 import useDataStore from '../../hooks/useDataStore'
 import useTheme from '../../hooks/useTheme'
+import ModalSider from '../modalSider/ModalSider'
 
-const Topbar = ({ title, showTheme, toggelExcle, }) => {
+const Topbar = ({ title, showTheme, toggelExcle,ManageSystem }) => {
   const { user } = useDataStore()
   const [theme, toggleTheme] = useTheme();
   // console.log("theme ", theme);
@@ -24,6 +25,8 @@ const Topbar = ({ title, showTheme, toggelExcle, }) => {
               <MdLightMode />
             }
           </div>}
+
+          {ManageSystem && <ModalSider />}
 
           {/* excle icon download */}
           {toggelExcle && <div className=" border-2 text-xl cursor-pointer border-secoundary rounded-full p-1 text-secoundary dark:text-dark_accent dark:border-dark_accent">

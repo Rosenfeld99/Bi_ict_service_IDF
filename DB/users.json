@@ -1,0 +1,34 @@
+{
+  "usersListDB": [
+    {
+      "FirstName": "moshe",
+      "PicturURL": "null",
+      "ProferredName": "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
+      "Title": "סמל",
+      "WorkEmail": "s86234@army.idf.il",
+      "userId": "placeholder_ID_1",
+      "userName": "moshe",
+      "access": "editor"
+    },
+    {
+      "FirstName": "eli",
+      "PicturURL": "null",
+      "ProferredName": "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
+      "Title": "סמל",
+      "WorkEmail": "s86234@army.idf.il",
+      "userId": "placeholder_ID_2",
+      "userName": "eli",
+      "access": "admin"
+    },
+    {
+      "FirstName": "nehoray",
+      "PicturURL": "null",
+      "ProferredName": "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
+      "Title": "סמל",
+      "WorkEmail": "s86234@army.idf.il",
+      "userId": "placeholder_ID_3",
+      "userName": "nehoray",
+      "access": "user"
+    }
+  ]
+}

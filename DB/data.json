@@ -1,0 +1,214 @@
+{
+  "dataDB": [
+    {
+      "brigadeName": "alpha 1",
+      "brigade_id": "placeholder_ID_1",
+      "battalion": [
+        {
+          "battalionName": "eli_1",
+          "battalion_id": "placeholder_ID_2",
+          "means": [
+            {
+              "meansName": "item 1",
+              "nameType": "number",
+              "type_id": "placeholder_ID_3",
+              "amount": "1",
+              "properICT": "1",
+              "properAmm": "1",
+              "procent": "12",
+              "comments": "no comments",
+              "totalTypePercent": "24"
+            },
+            {
+              "meansName": "item 1",
+              "nameType": "string",
+              "type_id": "placeholder_ID_4",
+              "amount": "1",
+              "properICT": "1",
+              "properAmm": "1",
+              "procent": "8",
+              "comments": "no comments",
+              "totalTypePercent": "24"
+            },
+            {
+              "meansName": "item 1",
+              "nameType": "obg",
+              "type_id": "placeholder_ID_5",
+              "amount": "1",
+              "properICT": "1",
+              "properAmm": "1",
+              "procent": "4",
+              "comments": "no comments",
+              "totalTypePercent": "24"
+            },
+            {
+              "meansName": "mosheCC",
+              "nameType": "item 2",
+              "type_id": "placeholder_ID_6",
+              "amount": "10",
+              "properICT": "10",
+              "properAmm": "10",
+              "procent": "4",
+              "comments": "no comments",
+              "totalTypePercent": "4"
+            },
+            {
+              "meansName": "gal",
+              "nameType": "malnan",
+              "type_id": "placeholder_ID_7",
+              "amount": "4",
+              "properICT": "4",
+              "properAmm": "4",
+              "procent": "4",
+              "comments": "no comments",
+              "totalTypePercent": "4"
+            }
+          ],
+          "percentOfUnit": "50",
+          "totalSumBattalion": "50",
+          "comments": "no comments"
+        },
+        {
+          "battalionName": "eli_2",
+          "battalion_id": "placeholder_ID_8",
+          "means": [
+            {
+              "meansName": "eli",
+              "nameType": "number",
+              "type_id": "placeholder_ID_9",
+              "amount": "1",
+              "properICT": "1",
+              "properAmm": "1",
+              "procent": "12",
+              "comments": "no comments",
+              "totalTypePercent": "24"
+            },
+            {
+              "meansName": "eli",
+              "nameType": "string",
+              "type_id": "placeholder_ID_10",
+              "amount": "1",
+              "properICT": "1",
+              "properAmm": "1",
+              "procent": "8",
+              "comments": "no comments",
+              "totalTypePercent": "24"
+            },
+            {
+              "meansName": "eli",
+              "nameType": "obg",
+              "type_id": "placeholder_ID_11",
+              "amount": "1",
+              "properICT": "1",
+              "properAmm": "1",
+              "procent": "4",
+              "comments": "no comments",
+              "totalTypePercent": "24"
+            },
+            {
+              "meansName": "mosheCC",
+              "nameType": "yahav",
+              "type_id": "placeholder_ID_12",
+              "amount": "10",
+              "properICT": "10",
+              "properAmm": "10",
+              "procent": "4",
+              "comments": "no comments",
+              "totalTypePercent": "4"
+            },
+            {
+              "meansName": "gal",
+              "nameType": "malnan",
+              "type_id": "placeholder_ID_13",
+              "amount": "4",
+              "properICT": "4",
+              "properAmm": "4",
+              "procent": "4",
+              "comments": "no comments",
+              "totalTypePercent": "4"
+            }
+          ],
+          "percentOfUnit": "10",
+          "totalSumBattalion": "10",
+          "comments": "no comments"
+        },
+        {
+          "battalionName": "eli_3",
+          "battalion_id": "placeholder_ID_14",
+          "means": [
+            {
+              "meansName": "avi 2",
+              "nameType": "number",
+              "type_id": "placeholder_ID_15",
+              "amount": "1",
+              "properICT": "1",
+              "properAmm": "1",
+              "procent": "12",
+              "comments": "no comments",
+              "totalTypePercent": "24"
+            },
+            {
+              "meansName": "avi 2",
+              "nameType": "string",
+              "type_id": "placeholder_ID_16",
+              "amount": "1",
+              "properICT": "1",
+              "properAmm": "1",
+              "procent": "8",
+              "comments": "no comments",
+              "totalTypePercent": "24"
+            },
+            {
+              "meansName": "avi 2",
+              "nameType": "obg",
+              "type_id": "placeholder_ID_17",
+              "amount": "1",
+              "properICT": "1",
+              "properAmm": "1",
+              "procent": "4",
+              "comments": "no comments",
+              "totalTypePercent": "24"
+            },
+            {
+              "meansName": "mosheCC",
+              "nameType": "yahav",
+              "type_id": "placeholder_ID_18",
+              "amount": "10",
+              "properICT": "10",
+              "properAmm": "10",
+              "procent": "4",
+              "comments": "no comments",
+              "totalTypePercent": "4"
+            },
+            {
+              "meansName": "gal",
+              "nameType": "malnan",
+              "type_id": "placeholder_ID_19",
+              "amount": "4",
+              "properICT": "4",
+              "properAmm": "4",
+              "procent": "4",
+              "comments": "no comments",
+              "totalTypePercent": "4"
+            }
+          ],
+          "percentOfUnit": "40",
+          "totalSumBattalion": "40",
+          "comments": "no comments"
+        }
+      ],
+      "lastUpdateTime": "14-04-2024",
+      "lastUpdater": "momo",
+      "totalSumQualification": "40",
+      "totalViewQualification": [
+        { "meansName": "a", "meansType": "24" },
+        { "meansName": "b", "meansType": "10" },
+        { "meansName": "c", "meansType": "4" },
+        { "meansName": "d", "meansType": "4" },
+        { "meansName": "e", "meansType": "4" }
+      ],
+      "workSpace": "alpha",
+      "comments": "no comments"
+    }
+  ]
+}

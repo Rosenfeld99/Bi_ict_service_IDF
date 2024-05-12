@@ -9,7 +9,7 @@ const Data = () => {
   const { data } = useDataStore()
   // console.log(data);
   const [currentBattailion, setCurrentBattailion] = useState(data[0].battalion[0])
-  console.log(currentBattailion);
+  // console.log(currentBattailion);
   const [dataRender, setDataRender] = useState(data || []);
 
   const navigate = useNavigate()
@@ -26,6 +26,7 @@ const Data = () => {
     setDataRender(res || [])
   }
 
+  // console.log(data);
 
   const custumStyleTitle = ' text-center'
   const custumStyleBody = ' text-center border-t-[1px] border-r-[1px] border-secoundary dark:border-primary'
@@ -36,7 +37,7 @@ const Data = () => {
       <Topbar title={'נתונים'} toggelExcle={true} showTheme={true} />
 
       {/* header content */}
-      <HeaderContent btnAdd={'הוסף חטיבה'} onClickBtn={() => navigate('/data/create/bregade')} numOfTitle={39} placeholderTitle={'חפש שם חטיבה'} title={'חטיבות'} handleSearch={handleSearch} />
+      <HeaderContent btnAdd={'הוסף חטיבה'} onClickBtn={() => navigate('/data/create/bregade')} numOfTitle={data?.length} placeholderTitle={'חפש שם חטיבה'} title={'חטיבות'} handleSearch={handleSearch} />
 
       <div className=" flex gap-5">
         {/* accordion */}

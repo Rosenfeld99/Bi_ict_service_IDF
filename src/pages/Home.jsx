@@ -11,7 +11,7 @@ const Home = () => {
   console.log(data);
   return (
     <div className='bg-primary dark:bg-dark_primary dark:shadow-xl dark:shadow-[#fcfcfca8] flex-1 rounded-r-3xl p-5'>
-      <Topbar title={'דשבורד'} toggelExcle={true} showTheme={true} />
+      <Topbar ManageSystem={true} title={'דשבורד'} toggelExcle={true} showTheme={true} />
 
       <div className=" text-xl text-secoundary font-semibold pt-16" onClick={() => handelToast("some tittle", "msg", "Error", 10)}>כשירות קיברנטית - פיקוד ההכשרות והאימונים</div>
       {/* Progress Pei */}
