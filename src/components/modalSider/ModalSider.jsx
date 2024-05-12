@@ -82,7 +82,7 @@ const ModalSider = () => {
   return (
     <React.Fragment>
       <button onClick={() => setOpen(true)}>
-        {<icons.Settings className=' text-secoundary dark:text-dark_accent text-2xl w-full h-full flex items-center justify-center'/>}
+        {<icons.Settings className=' text-secoundary dark:text-dark_accent text-2xl w-full h-full flex items-center justify-center' />}
       </button>
       {open && <div
         onClick={handleClickOutsideModal}
@@ -91,7 +91,7 @@ const ModalSider = () => {
         {/* content */}
 
         <div ref={modalRef} className="w-fit bg-secoundary min-h-screen absolute top-0 left-0 z-50 flex-row-reverse flex ">
-          <button onClick={() => setOpen(false)} className=" absolute top-0 right-0 w-8 h-8 flex items-center justify-center bg-accent rounded-full shadow-[#0000003c] shadow-md">
+          <button onClick={() => setOpen(false)} className=" absolute top-0 right-0 w-8 h-8 flex items-center justify-center bg-accent rounded-l-xl  rounded-t-none shadow-[#0000003c] shadow-md">
             <icons.Close className=' w-full h-full p-1' />
           </button>
 

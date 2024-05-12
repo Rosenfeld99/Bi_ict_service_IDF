@@ -6,9 +6,9 @@ const CardItem = ({ item }) => {
     console.log(item);
     return (
         <Link to={`/${item.brigade_id}`}>
-            <div className=" border p-3 rounded-lg flex flex-col gap-1 bg-primary">
-                <div className=" flex items-center gap-4">
-                    <div className=" font-semibold text-center">{item?.brigadeName}</div>
+            <div className="border p-3 rounded-lg flex flex-col gap-1 bg-primary">
+                <div className="flex items-center">
+                    <div className=" font-semibold text-center px-1">{item?.brigadeName}</div>
                     <ProgressPei perValue={item?.totalSumQualification} color={"text-[#48CFAE]"} size={"7vw"} widthPei={"0.5vw"} sizeOfText={'text-lg'} />
                 </div>
                 {/* progress bar */}

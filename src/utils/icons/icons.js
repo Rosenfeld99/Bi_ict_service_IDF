@@ -2,7 +2,7 @@ import { CiEdit, CiSearch, CiTrash } from "react-icons/ci";
 import { FaBuilding, FaCriticalRole, FaRegFileExcel, FaUser } from "react-icons/fa";
 import { FaGears, FaIdCard } from "react-icons/fa6";
 import { GoDatabase, GoNumber } from "react-icons/go";
-import { IoMdClose } from "react-icons/io";
+import { IoMdArrowRoundBack, IoMdClose } from "react-icons/io";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { MdLightMode, MdModeNight } from "react-icons/md";
 import { TbMilitaryRank, TbUsers } from "react-icons/tb";
@@ -29,6 +29,7 @@ const icons = {
     Gears: FaGears,
     Reset: GrPowerReset,
     Settings: IoSettings,
+    Back: IoMdArrowRoundBack,
 };
 
 export default icons;
