@@ -1,26 +1,42 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { generateID } from '../../utils/func';
 import { FaTrash } from 'react-icons/fa';
 import useDataStore from '../../hooks/useDataStore';
+import Toast from '../../utils/tostify/Toast';
 
-const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute, formBattalion, setFormBattalion, bregadeBattalion, setBregadeBattalion, currentBattailion, setCurrentBattailion }) => {
+
+const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, formBregade, setCheckChanges, setAwaitRoute, formBattalion, setFormBattalion, bregadeBattalion, setBregadeBattalion, currentBattailion, setCurrentBattailion }) => {
   const custumStyleTitle = ' text-center'
   const custumStyleBody = ' text-center border-t-[1px] border-r-[1px] border-secoundary dark:border-primary'
   const custumStyleBodyFirst = ' text-center border-t-[1px] border-secoundary dark:border-primary'
   const custumStyleInput = ' w-full h-full text-center outline-none bg-accent_bg dark:bg-dark_accent'
 
+  const { handelToast, toast, setShowToast, showToast } = useDataStore()
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [validateMeansList, setValidateMeansList] = useState(false);
+  const [indicatorErrors, setIndicatorErrors] = useState({ index: null, batIndex: null, itemGrid: false });
   const { systemStract, setSystemStract } = useDataStore()
-  const [sunOfTotalPercent, setSunOfTotalPercent] = useState(formBattalion?.totalSumBattalion || 0)
-
-
-  console.log(formBattalion?.totalSumBattalion);
 
   const handleAddBattalion = () => {
     console.log("Add battalion run!");
     // validate of form new battalion
-    if (formBattalion?.battalionName && formBattalion?.battalion_id && formBattalion?.percentOfUnit) {
+    if (formBattalion?.battalionName == "") {
+      handelToast("שגיאה", "לא הוגדר שם גדוד", "Error", 10)
+      setIndicatorErrors({ index: null, batIndex: null, itemGrid: "battalionName" })
+      setTimeout(() => {
+        setIndicatorErrors({ ...indicatorErrors, itemGrid: null })
+      }, 10000);
+      return false
+    }
+    else if (formBattalion?.percentOfUnit == "") {
+      handelToast("שגיאה", "נדרש להגדיר אחוזים של גדוד", "Error", 10)
+      setIndicatorErrors({ index: null, batIndex: null, itemGrid: "percentOfUnit" })
+      setTimeout(() => {
+        setIndicatorErrors({ ...indicatorErrors, itemGrid: null })
+      }, 10000);
+      return false
+    }
+    else if (formBattalion?.battalion_id) {
       console.log("some logs");
       // TODO :  validation for meansName and procent the only yhis properties is requard
       setCheckChanges && setCheckChanges(true)
@@ -72,6 +88,7 @@ const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute
         comments: "",
       },)
       setCurrentBattailion(formBattalion)
+      setIndicatorErrors({ index: null, batIndex: null, itemGrid: false })
     }
     // call func save the bregate 
   }
@@ -103,6 +120,8 @@ const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute
             return mean;
           })
         }));
+        setIndicatorErrors({ index: null, batIndex: null, itemGrid: false })
+
         // console.log("meansName");
         break
       case "nameType":
@@ -165,7 +184,7 @@ const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute
         }));
         let sum = 0;
         for (let i = 0; i < formBattalion?.means?.length; i++) {
-          sum += parseInt(formBattalion?.means[i]?.procent);
+          sum += formBattalion?.means[i]?.procent
           console.log(formBattalion?.means[i]?.procent);
         }
         console.log("procent sum : ", sum);
@@ -218,21 +237,39 @@ const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute
       const element = formBattalion?.means[i];
       if (element?.meansName == "") {
         setValidateMeansList(false)
+        handelToast("some tittle", "msg", "Error", 10)
         return alert("error : meansName")
       } else {
         const currMeanStract = systemStract?.find((m) => m.meanName == element?.meansName);
 
         if (currMeanStract?.amount && element?.amount == "") {
           setValidateMeansList(false)
-          return alert("error : amount")
+          setIndicatorErrors({ index: null, batIndex: null, itemGrid: "amount" })
+          handelToast("שגיאה", "נדרש להוסיף כמות", "Error", 10)
+          setTimeout(() => {
+            setIndicatorErrors({ ...indicatorErrors, itemGrid: null })
+          }, 10000);
+          return false
         }
         else if (currMeanStract?.ict && element?.properICT == "") {
           setValidateMeansList(false)
-          return alert("error : ict")
+          setIndicatorErrors({ index: null, batIndex: null, itemGrid: "ict" })
+          handelToast("שגיאה", "נדרש להוסיף כמות", "Error", 10)
+          setTimeout(() => {
+            setIndicatorErrors({ ...indicatorErrors, itemGrid: null })
+          }, 10000);
+          handelToast("שגיאה", "נדרש להוסיף תקינות תקשובית", "Error", 10)
+          return false
         }
         else if (currMeanStract?.arm && element?.properAmm == "") {
           setValidateMeansList(false)
-          return alert("error : amm")
+          setIndicatorErrors({ index: null, batIndex: null, itemGrid: "arm" })
+          handelToast("שגיאה", "נדרש להוסיף כמות", "Error", 10)
+          setTimeout(() => {
+            setIndicatorErrors({ ...indicatorErrors, itemGrid: null })
+          }, 10000);
+          handelToast("שגיאה", "נדרש להוסיף תקינות חימושית", "Error", 10)
+          return false
         }
       }
     }
@@ -242,7 +279,7 @@ const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute
       let sum = 0;
       for (let i = 0; i < filterdMeans.length; i++) {
         const element = filterdMeans[i];
-        sum += parseInt(element?.procent)
+        sum += parseFloat(element?.procent)
         // TODO : chack all percent if is small from totlal pricent
       }
       console.log(sum);
@@ -292,6 +329,8 @@ const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute
       totalSumBattalion: "",
       comments: "",
     })
+    setSunOfTotalPercent(0)
+    setIndicatorErrors({ index: null, batIndex: null, itemGrid: false })
   }
 
   const handleDeleteBattalion = (btId) => {
@@ -390,12 +429,12 @@ const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute
   const handleProcentMeansChange = (index, val, idToUpdate) => {
     console.log(idToUpdate);
     if (!formBattalion?.percentOfUnit) {
-      alert("הגדר אחוזים ברמת החטיבה")
+      handelToast("שגיאה", "הגדר אחוזים ברמת החטיבה", "Error", 10)
       return false
     }
-    if (parseInt(val) > parseInt(formBattalion?.percentOfUnit)) {
+    if (parseFloat(val) > parseFloat(formBattalion?.percentOfUnit)) {
 
-      alert("האחוזים הפרטנים לא יכולים להיות גדולים מהאחוזים הכללים")
+      handelToast("שגיאה", "האחוזים הפרטנים לא יכולים להיות גדולים מהאחוזים הכללים", "Error", 10)
       // setSunOfTotalPercent(sunOfTotalPercent - val)
       return false
     }
@@ -404,44 +443,67 @@ const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute
       alert("נדרש מספר חיובי")
       return false
     }
-    let sum = parseInt(val);
+    let sum = parseFloat(val);
     for (let i = 0; i < formBattalion?.means?.length; i++) {
       if (formBattalion?.means[i]?.procent) {
         if (index === i) {
           let old = [...formBattalion?.means]
           old[i].procent = 0;
         }
-        sum += parseInt(formBattalion?.means[i]?.procent)
-        console.log(parseInt(formBattalion?.means[i]?.procent));
+        sum += parseFloat(formBattalion?.means[i]?.procent)
+        console.log(parseFloat(formBattalion?.means[i]?.procent));
       }
     }
     if (sum <= formBattalion?.totalSumBattalion) {
       setSunOfTotalPercent(sum)
     }
     console.log(formBattalion?.means, sum);
-    if (sum > parseInt(formBattalion?.percentOfUnit)) {
+    if (sum > parseFloat(formBattalion?.percentOfUnit)) {
       alert("האחוזים הפרטנים לא יכולים להיות גדולים מהאחוזים הכללים")
       setSunOfTotalPercent(sunOfTotalPercent - val)
       return false
     }
-    handleInputsBregadeChange(parseInt(val), "procent", idToUpdate)
+    console.log(parseFloat(val));
+    handleInputsBregadeChange(parseFloat(val), "procent", idToUpdate)
+    return true
+  }
+
+  const elementError = (itemName, bat, index) => {
+    return <p className={`${indicatorErrors.itemGrid == itemName && bat == "" && isRequire(index, itemName) && " bg-error loading loading-ring w-5 absolute right-[40%] top-1"}`} />
   }
 
   return (
     <div className="flex flex-col gap-3 w-full">
+      {/* shows errors */}
+      {/* Toast */}
+      {showToast && (
+        <Toast
+          setShow={setShowToast}
+          show={showToast}
+          title={toast.title}
+          message={toast.message}
+          time={toast.time}
+          type={toast.type}
+        />
+      )}
       <div className="overflow-x-auto w-full bg-accent_bg dark:bg-dark_accent h-fit rounded-lg border-secoundary border-[1px] dark:border-primary">
         <div className="p-3 flex items-center justify-between">
-          <input type='text' placeholder='הכנס שם גדוד..' value={formBattalion?.battalionName} onChange={(e) => handleInputsBregadeChange(e.target.value, "battalionName")} className=' outline-none placeholder:text-neutral font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-lg py-1 w-fit text-xl flex-row-reverse' />
-          <div className="border flex  bg-accent dark:bg-dark_accent_bg rounded-lg">
+          <div className=" relative">
+            <p className={`${indicatorErrors.itemGrid == "battalionName" && formBattalion?.battalionName == "" && " bg-error loading loading-ring w-5 absolute left-12 top-2"}`} />
+            <input type='text' placeholder='הכנס שם גדוד..' value={formBattalion?.battalionName} onChange={(e) => handleInputsBregadeChange(e.target.value, "battalionName")} className=' outline-none placeholder:text-neutral font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-lg py-1 w-fit text-xl flex-row-reverse' />
+          </div>
+          <div className="border flex  bg-accent dark:bg-dark_accent_bg rounded-lg relative">
             <div className="flex justify-center items-center font-semibold text-2xl mx-2">
-              % {formBattalion?.totalSumBattalion}
+              % {typeof sunOfTotalPercent === 'number' ? (sunOfTotalPercent % 1 === 0 ? sunOfTotalPercent.toFixed(0) : sunOfTotalPercent.toFixed(1)) : sunOfTotalPercent}
             </div>
+
             <div className="flex justify-center items-center font-semibold text-2xl mx-1">%</div>
-            <input type='number' placeholder='...' value={formBattalion?.percentOfUnit}
+            <input step={"any"} type='number' placeholder='...' value={formBattalion?.percentOfUnit}
               onChange={(e) => handleInputsBregadeChange(e.target.value, "percentOfUnit")}
               className='outline-none bg-transparent rounded-lg  w-[9vh] placeholder:text-neutral font-bold
                dark:text-dark_secoundary text-neutral px-3 py-1 text-xl'
             />
+            <p className={`${indicatorErrors.itemGrid == "percentOfUnit" && formBattalion?.percentOfUnit == "" && " bg-error loading loading-ring w-5 absolute left-12 top-2"}`} />
           </div>          <div className=" flex items-center gap-3">
             <div onClick={() => handleDeleteBattalion(formBattalion?.battalion_id)} className="tooltip tooltip-right" data-tip="מחיקת גדוד">
               <button className="flex items-center gap-3 p-1 px-2 bg-accent_bg text-red-500"> <FaTrash /></button>
@@ -484,11 +546,12 @@ const TableGrid = ({ setFormBregade, formBregade, setCheckChanges, setAwaitRoute
 
                 <td className={custumStyleBody}> <select onChange={(e) => { handleInputsBregadeChange(e.target.value, "meansName", bat?.type_id) }} className="bg-transparent outline-none" ><option disabled selected>{bat?.meansName ? bat?.meansName : "בחר אמצעים"}</option>{systemStract?.map((listOption, indexListOption) => (<option onClick={() => console.log("somet")} key={indexListOption} defaultValue={listOption?.meanName}>{listOption?.meanName}</option>))}</select> </td>
                 <td className={custumStyleBody}>{selectOfTypeMeans(index)}</td>
-                <td className={`${custumStyleBody} ${!isRequire(index, "amount") && "cursor-not-allowed bg-[#ddd] opacity-50"}`}><input type='number' disabled={!isRequire(index, "amount")} onChange={(e) => handleInputsBregadeChange(e.target.value, "amount", bat?.type_id)} className={`${custumStyleInput} ${!isRequire(index, "amount") && "cursor-not-allowed bg-[#ddd] opacity-50"}`} defaultValue={bat?.amount} /></td>
-                <td className={`${custumStyleBody} ${!isRequire(index, "ict") && "cursor-not-allowed bg-[#ddd] opacity-50"}`}><input type='number' disabled={!isRequire(index, "ict")} max={bat?.amount} onChange={(e) => { parseInt(e.target.value) > parseInt(bat?.amount) ? e.target.value = "" : handleInputsBregadeChange(e.target.value, "properICT", bat?.type_id) }} className={`${custumStyleInput} ${!isRequire(index, "ict") && "cursor-not-allowed bg-[#ddd] opacity-50"}`} defaultValue={bat?.properICT} /></td>
-                <td className={`${custumStyleBody} ${!isRequire(index, "arm") && "cursor-not-allowed bg-[#ddd] opacity-50"}`}><input type='number' disabled={!isRequire(index, "arm")} max={bat?.amount} onChange={(e) => { parseInt(e.target.value) > parseInt(bat?.amount) ? e.target.value = "" : handleInputsBregadeChange(e.target.value, "properAmm", bat?.type_id) }} className={`${custumStyleInput} ${!isRequire(index, "arm") && "cursor-not-allowed bg-[#ddd] opacity-50"}`} defaultValue={bat?.properAmm} /></td>
+                <td className={`${custumStyleBody} ${!isRequire(index, "amount") && "cursor-not-allowed bg-[#ddd] opacity-50"} relative`}><input type='number' disabled={!isRequire(index, "amount")} onChange={(e) => handleInputsBregadeChange(e.target.value, "amount", bat?.type_id)} className={`${custumStyleInput} ${!isRequire(index, "amount") && "cursor-not-allowed bg-[#ddd] opacity-50"} `} defaultValue={bat?.amount} />{elementError("amount", bat?.amount, index)}</td>
+                <td className={`${custumStyleBody} ${!isRequire(index, "ict") && "cursor-not-allowed bg-[#ddd] opacity-50"} relative`}><input type='number' disabled={!isRequire(index, "ict")} max={bat?.amount} onChange={(e) => { parseFloat(e.target.value) > parseFloat(bat?.amount) ? e.target.value = "" : handleInputsBregadeChange(e.target.value, "properICT", bat?.type_id) }} className={`${custumStyleInput} ${!isRequire(index, "ict") && "cursor-not-allowed bg-[#ddd] opacity-50"}`} defaultValue={bat?.properICT} />{elementError("ict", bat?.properICT, index)}</td>
+                <td className={`${custumStyleBody} ${!isRequire(index, "arm") && "cursor-not-allowed bg-[#ddd] opacity-50"} relative`}><input type='number' disabled={!isRequire(index, "arm")} max={bat?.amount} onChange={(e) => { parseFloat(e.target.value) > parseFloat(bat?.amount) ? e.target.value = "" : handleInputsBregadeChange(e.target.value, "properAmm", bat?.type_id) }} className={`${custumStyleInput} ${!isRequire(index, "arm") && "cursor-not-allowed bg-[#ddd] opacity-50"}`} defaultValue={bat?.properAmm} />{elementError("arm", bat?.properAmm, index)}</td>
                 <td className={custumStyleBody}><input type='number' onChange={(e) => {
-                  !handleProcentMeansChange(index, e.target.value, bat?.type_id) && (e.target.value = bat?.procent)
+                  !handleProcentMeansChange(index, e.target.value, bat?.type_id) ? (e.target.value = "") :
+                    handleProcentMeansChange(index, e.target.value, bat?.type_id)
                 }} className={custumStyleInput} defaultValue={bat?.procent} /></td>
                 <td className={custumStyleBody}><input type='text' onChange={(e) => handleInputsBregadeChange(e.target.value, "meansComments", bat?.type_id)} className={custumStyleInput} defaultValue={bat?.comments} /></td>
                 {hoveredIndex === index && (
