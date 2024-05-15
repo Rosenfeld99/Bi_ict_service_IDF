@@ -3,7 +3,7 @@ import { generateID } from '../../utils/func';
 import { FaTrash } from 'react-icons/fa';
 import useDataStore from '../../hooks/useDataStore';
 import Toast from '../../utils/tostify/Toast';
-
+import icons from '../../utils/icons/icons';
 
 const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, formBregade, setCheckChanges, setAwaitRoute, formBattalion, setFormBattalion, bregadeBattalion, setBregadeBattalion, currentBattailion, setCurrentBattailion }) => {
   const custumStyleTitle = ' text-center'
@@ -239,6 +239,7 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
           sum += formBattalion?.means[i]?.procent
           console.log(formBattalion?.means[i]?.procent);
         }
+        setSunOfTotalPercent(parseFloat(sum) + inputVal)
         console.log("procent sum : ", sum);
         break
       case "meansComments":
@@ -544,17 +545,23 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
             <p className={`${indicatorErrors.itemGrid == "battalionName" && formBattalion?.battalionName == "" && " bg-error loading loading-ring w-5 absolute left-12 top-2"}`} />
             <input type='text' placeholder='הכנס שם גדוד..' value={formBattalion?.battalionName} onChange={(e) => handleInputsBregadeChange(e.target.value, "battalionName")} className=' outline-none placeholder:text-neutral font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-lg py-1 w-fit text-xl flex-row-reverse' />
           </div>
-          <div className="border flex  bg-accent dark:bg-dark_accent_bg rounded-lg relative">
-            <div className="flex justify-center items-center font-semibold text-2xl mx-2">
-              % {typeof sunOfTotalPercent === 'number' ? (sunOfTotalPercent % 1 === 0 ? sunOfTotalPercent.toFixed(0) : sunOfTotalPercent.toFixed(1)) : sunOfTotalPercent}
+          <div className=" top-0 left-0 tooltip tooltip-right" data-tip="אחוזים בתפוסה">
+            <div className="flex justify-center items-center font-bold relative text-xl bg-accent dark:bg-dark_accent_bg rounded-lg px-7 py-1">
+              {<icons.Percentage className='text-sm absolute top-0 right-[4px]' />} {typeof sunOfTotalPercent === 'number' ? (sunOfTotalPercent % 1 === 0 ? sunOfTotalPercent.toFixed(0) : sunOfTotalPercent.toFixed(1)) : sunOfTotalPercent}
+            </div>
+          </div>
+          <div className="border flex  bg-accent dark:bg-dark_accent_bg rounded-lg relative px-2">
+
+            <div className=" tooltip tooltip-right" data-tip="הגדרת אחוזים של גדוד">
+              <div className="flex justify-center items-center font-semibold text-2xl absolute right-[-15px] px-2">{<icons.Percentage className='text-sm absolute top-0 right-[10px]' />}</div>
+              <input step={"any"} type='number' placeholder='0' value={formBattalion?.percentOfUnit}
+                onChange={(e) => handleInputsBregadeChange(e.target.value, "percentOfUnit")}
+                className='outline-none bg-transparent rounded-lg  w-[9vh] placeholder:text-neutral font-bold
+               dark:text-dark_secoundary text-neutral px-3 py-1 text-xl'
+              />
             </div>
 
-            <div className="flex justify-center items-center font-semibold text-2xl mx-1">%</div>
-            <input step={"any"} type='number' placeholder='...' value={formBattalion?.percentOfUnit}
-              onChange={(e) => handleInputsBregadeChange(e.target.value, "percentOfUnit")}
-              className='outline-none bg-transparent rounded-lg  w-[9vh] placeholder:text-neutral font-bold
-               dark:text-dark_secoundary text-neutral px-3 py-1 text-xl'
-            />
+
             <p className={`${indicatorErrors.itemGrid == "percentOfUnit" && formBattalion?.percentOfUnit == "" && " bg-error loading loading-ring w-5 absolute left-12 top-2"}`} />
           </div>          <div className=" flex items-center gap-3">
             <div onClick={() => handleDeleteBattalion(formBattalion?.battalion_id)} className="tooltip tooltip-right" data-tip="מחיקת גדוד">
