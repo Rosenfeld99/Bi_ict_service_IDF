@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { IoMdClose } from 'react-icons/io'
+import ModalSider from '../components/modalSider/ModalSider'
+import { ContextStore } from '../context/ContextStore'
+import AddUser from '../pages/AddUser'
 
 const HeaderContent = ({ btnAdd, title, numOfTitle, placeholderTitle, handleSearch, onClickBtn }) => {
     const [input, setInput] = useState("")
+    const { open, setOpen } = useContext(ContextStore);
+
+    const modalBtn = <button onClick={() => { onClickBtn, setOpen(true) }} className=" bg-secoundary text-primary dark:bg-dark_secoundary dark:text-primary py-2 px-5 rounded-3xl">{btnAdd}</button>
 
     return (
         <div>
@@ -26,9 +32,20 @@ const HeaderContent = ({ btnAdd, title, numOfTitle, placeholderTitle, handleSear
                                     <IoMdClose className='cursor-pointer' onClick={() => setInput("")} />}
                             </div>
                         </div>
-                        <button onClick={onClickBtn} className=" bg-secoundary text-primary dark:bg-dark_secoundary dark:text-primary py-2 px-5 rounded-3xl">
-                            {btnAdd}
-                        </button>
+
+                        {btnAdd == "הוסף חטיבה"
+                            ? (
+                                <button onClick={onClickBtn} className=" bg-secoundary text-primary dark:bg-dark_secoundary dark:text-primary py-2 px-5 rounded-3xl">
+                                    {btnAdd}
+                                </button>
+                            ) : (
+                                <ModalSider modalBtn={modalBtn}>
+                                    <>
+                                        <AddUser />
+                                    </>
+                                </ModalSider>
+                            )
+                        }
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ import { FaGears, FaIdCard } from "react-icons/fa6";
 import { GoDatabase, GoNumber } from "react-icons/go";
 import { IoMdArrowRoundBack, IoMdClose } from "react-icons/io";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { MdLightMode, MdModeNight } from "react-icons/md";
+import { MdLightMode, MdModeNight, MdOutlineSecurity } from "react-icons/md";
 import { TbMilitaryRank, TbUsers } from "react-icons/tb";
 import { GrPowerReset } from "react-icons/gr";
 import { IoSettings } from "react-icons/io5";
@@ -30,6 +30,7 @@ const icons = {
     Reset: GrPowerReset,
     Settings: IoSettings,
     Back: IoMdArrowRoundBack,
+    Security: MdOutlineSecurity,
 };
 
 export default icons;
