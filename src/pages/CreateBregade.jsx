@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Topbar from '../components/topbar/Topbar'
 import useDataStore from '../hooks/useDataStore'
 import HeaderCreateData from '../utils/HeaderCreateData'
-import { FaPen } from 'react-icons/fa'
 import { generateID } from '../utils/func'
 import TableGrid from '../components/table/TableGrid'
 import { useNavigate } from 'react-router-dom'
@@ -114,13 +113,13 @@ const CreateBregade = () => {
       for (let i = 0; i < allBattalion?.length; i++) {
         const element = allBattalion[i];
         for (let j = 0; j < element?.means?.length; j++) {
-          newArrayMeans?.push({ meansName: element?.means[j]?.meansName, totalTypePercent: element?.means[j]?.totalTypePercent });
+          newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.totalTypePercent });
         }
       }
 
-      totalViewQualification = Object.values(newArrayMeans.reduce((acc, { meansName, totalTypePercent }) => {
-        acc[meansName] = acc[meansName] || { meansName, totalTypePercent: 0 };
-        acc[meansName].totalTypePercent += parseInt(totalTypePercent);
+      totalViewQualification = Object.values(newArrayMeans.reduce((acc, { meansName, procent }) => {
+        acc[meansName] = acc[meansName] || { meansName, procent: 0 };
+        acc[meansName].procent += parseInt(procent);
         return acc;
       }, {}));
 
@@ -137,7 +136,7 @@ const CreateBregade = () => {
 
 
 
-  console.log("data : ", data);
+  // console.log("data : ", data);
 
   const handleResetBregade = () => {
     setFormBregade({

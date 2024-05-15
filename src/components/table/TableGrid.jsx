@@ -18,7 +18,7 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
   const { systemStract, setSystemStract } = useDataStore()
 
   const handleAddBattalion = () => {
-    console.log("Add battalion run!");
+    console.log("Add battalion run!", formBattalion.means[0]?.meansName);
     // validate of form new battalion
     if (formBattalion?.battalionName == "") {
       handelToast("שגיאה", "לא הוגדר שם גדוד", "Error", 10)
@@ -36,7 +36,59 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
       }, 10000);
       return false
     }
+    else if (!formBattalion.means[0]?.meansName || !formBattalion.means[0]?.procent) {
+      const listMeans = [...formBattalion.means]
+      let flagValivateMeans = false;
+      for (let i = 0; i < listMeans?.length; i++) {
+        if (listMeans[i]?.meanName != "" && listMeans[i]?.procent != "") {
+          flagValivateMeans = true
+        }
+      }
+      if (!flagValivateMeans) {
+
+        handelToast("שגיאה", "נדרש להגדיר אמצעים", "Error", 10)
+        setIndicatorErrors({ index: null, batIndex: null, itemGrid: "battalionName" })
+        setTimeout(() => {
+          setIndicatorErrors({ ...indicatorErrors, itemGrid: null })
+        }, 10000);
+        return false
+      }
+    }
     else if (formBattalion?.battalion_id) {
+      const listMeans = [...formBattalion.means]
+      for (let i = 0; i < listMeans?.length; i++) {
+        const currMeanStract = systemStract?.find((m) => m.meanName == listMeans[i]?.meansName);
+        console.log("currMeanStract : ", currMeanStract);
+        if (currMeanStract?.amount && listMeans[i]?.amount == "") {
+          setValidateMeansList(false)
+          setIndicatorErrors({ index: null, batIndex: null, itemGrid: "amount" })
+          handelToast("שגיאה", "נדרש להוסיף כמות", "Error", 10)
+          setTimeout(() => {
+            setIndicatorErrors({ ...indicatorErrors, itemGrid: null })
+          }, 10000);
+          return false
+        }
+        else if (currMeanStract?.ict && listMeans[i]?.properICT == "") {
+          setValidateMeansList(false)
+          setIndicatorErrors({ index: null, batIndex: null, itemGrid: "ict" })
+          handelToast("שגיאה", "נדרש להוסיף כמות", "Error", 10)
+          setTimeout(() => {
+            setIndicatorErrors({ ...indicatorErrors, itemGrid: null })
+          }, 10000);
+          handelToast("שגיאה", "נדרש להוסיף תקינות תקשובית", "Error", 10)
+          return false
+        }
+        else if (currMeanStract?.arm && listMeans[i]?.properAmm == "") {
+          setValidateMeansList(false)
+          setIndicatorErrors({ index: null, batIndex: null, itemGrid: "arm" })
+          handelToast("שגיאה", "נדרש להוסיף כמות", "Error", 10)
+          setTimeout(() => {
+            setIndicatorErrors({ ...indicatorErrors, itemGrid: null })
+          }, 10000);
+          handelToast("שגיאה", "נדרש להוסיף תקינות חימושית", "Error", 10)
+          return false
+        }
+      }
       console.log("some logs");
       // TODO :  validation for meansName and procent the only yhis properties is requard
       setCheckChanges && setCheckChanges(true)

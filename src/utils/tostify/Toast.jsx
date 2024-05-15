@@ -84,7 +84,7 @@ export default function Toast({ time, title, message, type, show, setShow }) {
                                         <FaXmark />
                                     </div>
                                 </div>
-                                <div style={{ padding: "0 5px 5px 0" }}>
+                                <div style={{ padding: "0 5px 5px 0", lineHeight: '17px' }}>
                                     {message}
                                 </div>
                             </div>
