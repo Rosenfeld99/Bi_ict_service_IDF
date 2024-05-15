@@ -13,6 +13,9 @@ export const ContextStoreProvider = ({ children }) => {
     const [showToast, setShowToast] = useState(false)
     const [toast, setToast] = useState({ title: "", message: "", type: "", time: 0 });
 
+    // modal
+    const [open, setOpen] = useState(false)
+
     const contextValue = {
         user, setUser,
         usersList, setUsersList,
@@ -20,7 +23,8 @@ export const ContextStoreProvider = ({ children }) => {
         showToast, setShowToast,
         toast, setToast,
         awaitRoute, setAwaitRoute,
-        systemStract, setSystemStract
+        systemStract, setSystemStract,
+        open, setOpen,
     }
 
     return (

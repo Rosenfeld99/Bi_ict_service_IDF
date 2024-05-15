@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { FaRegFileExcel, FaUser } from 'react-icons/fa'
 import { MdLightMode, MdModeNight } from 'react-icons/md'
 import useDataStore from '../../hooks/useDataStore'
 import useTheme from '../../hooks/useTheme'
 import ModalSider from '../modalSider/ModalSider'
+import SystemStract from '../../pages/SystemStract'
+import icons from '../../utils/icons/icons'
+import { ContextStore } from '../../context/ContextStore'
 
-const Topbar = ({ title, showTheme, toggelExcle,ManageSystem }) => {
-  const { user } = useDataStore()
+
+const Topbar = ({ title, showTheme, toggelExcle, ManageSystem }) => {
+  const { user, open, setOpen } = useContext(ContextStore);;
+
   const [theme, toggleTheme] = useTheme();
   // console.log("theme ", theme);
+
+  const modalBtn = <button onClick={() => setOpen(true)}>{<icons.Settings className=' text-secoundary dark:text-dark_accent text-2xl w-full h-full flex items-center justify-center' />}</button>
   return (
     <div >
       <div className="flex items-center justify-between">
@@ -26,7 +33,11 @@ const Topbar = ({ title, showTheme, toggelExcle,ManageSystem }) => {
             }
           </div>}
 
-          {ManageSystem && <ModalSider />}
+          {ManageSystem &&
+            <ModalSider modalBtn={modalBtn}>
+              <SystemStract />
+            </ModalSider>
+          }
 
           {/* excle icon download */}
           {toggelExcle && <div className=" border-2 text-xl cursor-pointer border-secoundary rounded-full p-1 text-secoundary dark:text-dark_accent dark:border-dark_accent">
