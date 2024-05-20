@@ -37,7 +37,7 @@ const Users = () => {
 
   return (
     <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5'>
-      <Topbar title={'משתמשים'} toggelExcle={false} showTheme={true} />
+      <Topbar ManageSystem={true} title={'משתמשים'} toggelExcle={false} showTheme={true} />
       {/* header content */}
       <HeaderContent btnAdd={'הוסף משתמש'} numOfTitle={usersList.length} placeholderTitle={'חפש שם משתמש'} title={'משתמשים'} handleSearch={handleSearch} />
       {/* list of all users */}

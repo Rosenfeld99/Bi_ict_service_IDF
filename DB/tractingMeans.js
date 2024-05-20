@@ -12,6 +12,9 @@ export const systemMeans = [
     ict: true,
     arm: true,
     id: generateID(),
+    qualificationsColorCenter: 50,
+    qualificationsColorHigh: 80,
+    qualificationsColorLow: 0,
   },
   {
     meanName: "סלולר צבאי",
@@ -20,6 +23,9 @@ export const systemMeans = [
     ict: true,
     arm: false,
     id: generateID(),
+    qualificationsColorCenter: 50,
+    qualificationsColorHigh: 90,
+    qualificationsColorLow: 0,
   },
   {
     meanName: "כלי פיקוד",
@@ -33,6 +39,9 @@ export const systemMeans = [
     ict: true,
     arm: true,
     id: generateID(),
+    qualificationsColorCenter: 50,
+    qualificationsColorHigh: 70,
+    qualificationsColorLow: 0,
   },
   {
     meanName: "ערכות שוב נידות",
@@ -41,6 +50,9 @@ export const systemMeans = [
     ict: true,
     arm: false,
     id: generateID(),
+    qualificationsColorCenter: 50,
+    qualificationsColorHigh: 88,
+    qualificationsColorLow: 0,
   },
   {
     meanName: "אטל 2000",
@@ -49,5 +61,8 @@ export const systemMeans = [
     ict: true,
     arm: false,
     id: generateID(),
+    qualificationsColorCenter: 50,
+    qualificationsColorHigh: 99,
+    qualificationsColorLow: 0,
   },
 ];

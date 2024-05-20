@@ -16,6 +16,9 @@ export default function SystemStract() {
         ict: false,
         arm: false,
         id: generateID(),
+        qualificationsColorHigh: 80,
+        qualificationsColorCenter: 50,
+        qualificationsColorLow: 0
     },)
 
     const handleAddNewLine = () => {
@@ -135,9 +138,9 @@ export default function SystemStract() {
                                 <span className="size-7 flex justify-center items-center font-semibold flex-shrink-0 bg-white border border-gray-200 text-gray-800 rounded-full">
                                     3
                                 </span>
-                                {/* <div className=' border-r-[3px] mr-3 mt-2 w-3  h-full' /> */}
+                                <div className=' border-r-[3px] mr-3 mt-2 w-3  h-full' />
                             </div>
-                            <div className="flex flex-col gap-1 w-full">
+                            <div className="flex flex-col gap-1 w-full pb-10">
                                 <div className="bg-primary px-3 py-1.5 text-sm font-medium text-gray-800 dark:text-white shadow-[#0000003c] shadow-md">סמן מה מה נדרש</div>
                                 <div className=" flex items-center gap-3">
                                     <input onChange={(e) => setFormInputs({ ...formInputs, amount: e.target.checked })} type='checkbox' checked={formInputs.amount} className=" bg-primary px-3 py-1.5 text-sm font-medium text-gray-800 dark:text-white" />
@@ -150,6 +153,42 @@ export default function SystemStract() {
                                 <div className=" flex items-center gap-3">
                                     <input onChange={(e) => setFormInputs({ ...formInputs, arm: e.target.checked })} type='checkbox' checked={formInputs.arm} className=" bg-primary px-3 py-1.5 text-sm font-medium text-gray-800 dark:text-white" />
                                     <div className=" text-primary">תקינות חימושית</div>
+                                </div>
+
+                            </div>
+                        </li>
+                        {/* כמות של אמצעים */}
+                        <li className=' flex gap-3'>
+                            <div className=" flex flex-col">
+                                <span className="size-7 flex justify-center items-center font-semibold flex-shrink-0 bg-white border border-gray-200 text-gray-800 rounded-full">
+                                    4
+                                </span>
+                                {/* <div className=' border-r-[3px] mr-3 mt-2 w-3  h-full' /> */}
+                            </div>
+                            <div className="flex flex-col gap-1 w-full">
+                                <div className="tooltip tooltip-top text-start" data-tip="הגדרת כשירות צבעים עד 100%">
+                                    <div className="bg-primary px-3 py-1.5 text-sm font-medium text-gray-800 dark:text-white shadow-[#0000003c] shadow-md">הגדר צבעי כשירות</div>
+                                </div>
+                                <div className=" flex items-center gap-3">
+                                    <div className=" relative">
+                                        {<icons.Percentage className='absolute left-0 bg-success h-full text-white w-5' />}
+                                        <input defaultValue={formInputs.qualificationsColorHigh} onChange={(e) => setFormInputs({ ...formInputs, qualificationsColorHigh: parseInt(e.target.value) })} type='number' min={formInputs.qualificationsColorCenter || 1} max={100} checked={formInputs.amount} className=" bg-primary px-3 py-1.5 outline-none text-sm font-medium text-gray-800 shadow-[#0000003c] shadow-md dark:text-white border-l-8 border-success w-20" />
+                                    </div>
+                                    <div className=" text-primary">כשירות גבוהה</div>
+                                </div>
+                                <div className=" flex items-center gap-3">
+                                    <div className="relative">
+                                        {<icons.Percentage className='absolute left-0 bg-warning h-full text-white w-5' />}
+                                        <input defaultValue={formInputs.qualificationsColorCenter} onChange={(e) => setFormInputs({ ...formInputs, qualificationsColorCenter: parseInt(e.target.value) })} min={formInputs.qualificationsColorLow || 1} max={formInputs.qualificationsColorHigh - 1} type='number' checked={formInputs.ict} className=" bg-primary px-3 py-1.5 outline-none text-sm font-medium text-gray-800 shadow-[#0000003c] shadow-md dark:text-white border-l-8 border-warning w-20" />
+                                    </div>
+                                    <div className=" text-primary">כשירות בינונית</div>
+                                </div>
+                                <div className=" flex items-center gap-3">
+                                    <div className="relative">
+                                        {<icons.Percentage className='absolute left-0 bg-error h-full text-white w-5' />}
+                                        <input defaultValue={formInputs.qualificationsColorLow} onChange={(e) => setFormInputs({ ...formInputs, qualificationsColorLow: parseInt(e.target.value) })} type='number' min={1} max={formInputs.qualificationsColorCenter - 1} checked={formInputs.arm} className=" bg-primary px-3 py-1.5 outline-none text-sm font-medium text-gray-800 shadow-[#0000003c] shadow-md dark:text-white border-l-8 border-error w-20" />
+                                    </div>
+                                    <div className=" text-primary">כשירות נמוכה</div>
                                 </div>
 
                             </div>
