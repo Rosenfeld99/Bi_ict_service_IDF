@@ -26,7 +26,7 @@ const AppRoutes = () => {
                 {user &&
                     <>
                         <Route path="/" element={<Home />} />
-                        <Route path="/:id" element={<DashBattalion />} />
+                        <Route path="/dashboard/:id" element={<DashBattalion />} />
                         {user.access != "user" && <>
                             <Route path="/users" element={<Users />} />
                             {/* <Route path="/addUser" element={<AddUser />} /> */}

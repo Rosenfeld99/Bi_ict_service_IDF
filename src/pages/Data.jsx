@@ -34,7 +34,7 @@ const Data = () => {
 
   return (
     <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5'>
-      <Topbar title={'נתונים'} toggelExcle={true} showTheme={true} />
+      <Topbar ManageSystem={true} title={'נתונים'} toggelExcle={true} showTheme={true} />
 
       {/* header content */}
       <HeaderContent btnAdd={'הוסף חטיבה'} onClickBtn={() => navigate('/data/create/bregade')} numOfTitle={data?.length} placeholderTitle={'חפש שם חטיבה'} title={'חטיבות'} handleSearch={handleSearch} />

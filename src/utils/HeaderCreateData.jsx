@@ -12,7 +12,7 @@ const HeaderCreateData = ({ btnAdd, delBtn,isVlaidation, placeholderTitle, handl
             <div className=" relative text-neutral dark:text-dark_neutral bg-accent_bg dark:bg-dark_accent"><input value={input} autoFocus onChange={(e) => {
                 // setInput(e.target.value)
                 handleSearch(e.target.value)
-            }} className='bg-accent_bg dark:bg-dark_accent placeholder:text-neutral placeholder:font-semibold dark:placeholder:text-primary w-[18.7vw] min-w-[100px] py-4 px-5 outline-none' type="text" placeholder={placeholderTitle} />
+            }} className='bg-accent dark:bg-dark_accent placeholder:text-neutral placeholder:font-semibold dark:placeholder:text-primary w-[18.7vw] min-w-[100px] py-4 px-5 outline-none' type="text" placeholder={placeholderTitle} />
             </div>
             {/* search and button add  */}
             <div className=" flex items-center gap-4">

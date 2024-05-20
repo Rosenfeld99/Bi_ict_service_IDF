@@ -546,7 +546,7 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
             <input type='text' placeholder='הכנס שם גדוד..' value={formBattalion?.battalionName} onChange={(e) => handleInputsBregadeChange(e.target.value, "battalionName")} className=' outline-none placeholder:text-neutral font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-lg py-1 w-fit text-xl flex-row-reverse' />
           </div>
           <div className=" top-0 left-0 tooltip tooltip-right" data-tip="אחוזים בתפוסה">
-            <div className="flex justify-center items-center font-bold relative text-xl bg-accent dark:bg-dark_accent_bg rounded-lg px-7 py-1">
+            <div className="flex justify-center items-center font-bold relative text-xl border-2 border-secoundary dark:bg-dark_accent_bg rounded-lg px-7 py-1">
               {<icons.Percentage className='text-sm absolute top-0 right-[4px]' />} {typeof sunOfTotalPercent === 'number' ? (sunOfTotalPercent % 1 === 0 ? sunOfTotalPercent.toFixed(0) : sunOfTotalPercent.toFixed(1)) : sunOfTotalPercent}
             </div>
           </div>

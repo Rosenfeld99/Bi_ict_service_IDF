@@ -175,7 +175,6 @@ const CreateBregade = () => {
           },
           {
             meansName: "",
-
             nameType: "",
             type_id: generateID(),
             amount: "",
@@ -200,7 +199,7 @@ const CreateBregade = () => {
   // console.log(formBattalion?.battalionName);
   return (
     <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5'>
-      <Topbar title={'הוספת חטיבה'} toggelExcle={false} showTheme={true} />
+      <Topbar ManageSystem={true} title={'הוספת חטיבה'} toggelExcle={false} showTheme={true} />
 
       {/* header content */}
       <HeaderCreateData delBtn={'איפוס '} onClickBtnDel={handleResetBregade} isVlaidation={formBregade?.brigadeName == "" || formBregade?.battalion?.length == 0} btnAdd={'שמירה וסיום'} onClickBtnAdd={() => { handleClickSaveAndDone({}, true) }} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} />
