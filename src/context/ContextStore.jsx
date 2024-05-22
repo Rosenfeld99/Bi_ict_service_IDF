@@ -7,7 +7,7 @@ export const ContextStore = createContext()
 export const ContextStoreProvider = ({ children }) => {
     const [usersList, setUsersList] = useState(usersListDB)
     const [user, setUser] = useState(userDB)
-    const [data, setData] = useState(dataDB)
+    const [data, setData] = useState(localStorage.getItem("BI_DATA") ? JSON.parse(localStorage.getItem("BI_DATA")) : dataDB || [])
     const [systemStract, setSystemStract] = useState(systemMeans)
     const [awaitRoute, setAwaitRoute] = useState(false)
     const [showToast, setShowToast] = useState(false)

@@ -2,7 +2,7 @@ import React from 'react'
 import ProgressBar from '../../utils/ProgressBar'
 import ProgressPei from '../../utils/ProgressPei'
 export default function CardItemBattalion({ item }) {
-    console.log(item);
+    // console.log(item);
     const customStyleBgColors = 'text-secoundary dark:text-dark_secoundary bg-accent_bg dark:bg-dark_accent'
     const customStyleBgColorsText = 'text-secoundary dark:text-dark_accent'
     const customStyleBgCommentsHeader = 'bg-accent_bg dark:bg-dark_accent_bg text-secoundary dark:text-dark_secoundary'
@@ -25,7 +25,7 @@ export default function CardItemBattalion({ item }) {
                 <div className="h-44 overflow-auto p-3">
                     {item.means.map((bat) => (
                         <div key={bat.type_id}>
-                            {console.log(bat)}
+                            {/* {console.log(bat)} */}
                             <ProgressBar color={"progress-info"} perValue={bat.procent} title={bat.meansName + (bat.nameType && "-(" + bat.nameType + ")")} maxValue={bat.totalTypePercent} />
                         </div>
                     ))}

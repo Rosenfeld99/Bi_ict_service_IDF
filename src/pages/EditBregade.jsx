@@ -9,7 +9,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import TableGrid from '../components/table/TableGrid'
 
 const EditBregade = () => {
-  const { data, getBregadeSingle, user, apiMethods, setData, setAwaitRoute } = useDataStore()
+  const { data, getBregadeSingle, user, apiMethods, setData, setAwaitRoute, halndleLocalStorage } = useDataStore()
   const [params] = useSearchParams()
   const navigateion = useNavigate()
   const [checkChanges, setCheckChanges] = useState(false)
@@ -121,11 +121,24 @@ const EditBregade = () => {
         }
       }
       // console.log(newArrayMeans);
+      // const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent }) => {
+      //   acc[meansName] = acc[meansName] || { meansName, procent: 0 };
+      //   (acc[meansName].procent += parseFloat(procent).toFixed(1));
+      //   return acc;
+      // }, {}));
       const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent }) => {
-        acc[meansName] = acc[meansName] || { meansName, procent: 0 };
-        acc[meansName].procent += parseInt(procent);
+        if (!acc[meansName]) {
+          acc[meansName] = { meansName, procent: 0 };
+        }
+        acc[meansName].procent += parseFloat(procent);
         return acc;
       }, {}));
+
+      // Convert the procent values to fixed decimal places if needed
+      reducedData.forEach(item => {
+        item.procent = parseFloat(item.procent.toFixed(1));
+      });
+
 
       // Sum up all the percentages of the unit means
       let sumOfTotalPercent = 0;
@@ -137,7 +150,8 @@ const EditBregade = () => {
       // console.log(reducedData);
       let allData = [...data];
       for (let i = 0; i < allData?.length; i++) {
-        if (allData[i]?.brigade_id == formBregade?.brigade_id) {
+        if (allData[i]?.brigade_id === formBregade?.brigade_id) {
+          console.log(formBregade);
           allData[i] = formBregade
           allData[i].totalSumQualification = sumOfTotalPercent.toString();
           allData[i].totalViewQualification = reducedData
@@ -146,6 +160,7 @@ const EditBregade = () => {
       }
       setData(allData)
       setAwaitRoute(false)
+      halndleLocalStorage(JSON.stringify(allData))
       console.log("data : ", allData);
     }
     // if !isClac do clac and cut
@@ -156,11 +171,12 @@ const EditBregade = () => {
   const handleDleteBregade = () => {
     const filteredData = data?.filter((item) => item?.brigade_id != formBregade?.brigade_id)
     setData(filteredData)
+    halndleLocalStorage(JSON.stringify(filteredData))
     navigateion(-1)
   }
 
 
-  console.log(formBregade);
+  console.log(formBattalion);
   return (
     <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5'>
       <Topbar ManageSystem={true} title={'הוספת חטיבה'} toggelExcle={false} showTheme={true} />
