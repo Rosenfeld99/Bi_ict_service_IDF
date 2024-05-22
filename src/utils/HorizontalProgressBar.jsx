@@ -4,9 +4,10 @@ import useDataStore from '../hooks/useDataStore'
 export default function HorizontalProgressBar({ title, perValue, colorBar }) {
     const { systemStract } = useDataStore()
 
-    useEffect(() => {
-        findAndViewColorBySystemStract()
-    }, [])
+    // useEffect(() => {
+    //     findAndViewColorBySystemStract()
+    //     findAndViewColorLightBySystemStract()
+    // }, [])
 
     const findAndViewColorBySystemStract = () => {
         console.log(systemStract);
@@ -23,19 +24,20 @@ export default function HorizontalProgressBar({ title, perValue, colorBar }) {
             return "bg-[#000]"
         }
     }
-    const findAndViewColorLightBySystemStract = () => {
+    const findAndViewColorLightBySystemStract = (isText) => {
         console.log(systemStract);
         const singleItem = systemStract?.find(item => item?.meanName == title)
+        console.log(singleItem);
         if (perValue < singleItem?.qualificationsColorCenter) {
-            return "[#ffcdca]"
+            return  isText ? "text-[#ffcdca]" : "bg-[#ffcdca]"
         } else if (perValue >= singleItem?.qualificationsColorHigh) {
-            return "[#c3e7d6]"
+            return "bg-[#c3e7d6]"
         }
         else if (perValue < singleItem?.qualificationsColorHigh && perValue > singleItem?.qualificationsColorLow) {
-            return "[#fce9b5]"
+            return  isText ? "text-[#fce9b5]" : "bg-[#fce9b5]"
         }
         else {
-            return "[#0000004a]"
+            return  isText ? "text-[#0000004a]" : "bg-[#0000004a]"
         }
     }
     
@@ -45,10 +47,10 @@ export default function HorizontalProgressBar({ title, perValue, colorBar }) {
                 <div className=" text-xl font-semibold p-3 rounded-full shadow-lg">{perValue && perValue + "%"}</div>
                 <div className="text-md font-semibold text-center">{title && title}</div>
             </div>
-            <div className={`flex relative flex-col flex-nowrap justify-end w-10 h-[10vw] ${"bg-"+findAndViewColorLightBySystemStract()} rounded-xl overflow-hidden dark:bg-neutral-700`} role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                <div className={` absolute bottom-0 right-0 mx-auto w-full pb-4 text-xl flex items-center ${"text-"+findAndViewColorLightBySystemStract()} justify-center`}>
-                    <BsBarChartFill className=' absolute mb-4 z-20'/>
-                    <BsBarChartFill className=' absolute mb-4 text-black z-10' />
+            <div className={`flex relative flex-col flex-nowrap justify-end w-10 h-[10vw] ${findAndViewColorLightBySystemStract(false)} rounded-xl overflow-hidden dark:bg-neutral-700`} role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                <div className={` absolute bottom-0 right-0 mx-auto w-full pb-4 text-xl flex items-center ${findAndViewColorLightBySystemStract(true)} justify-center`}>
+                    <BsBarChartFill className=' absolute mb-4 z-20 drop-shadow-lg drop-shadow-black'/>
+                    {/* <BsBarChartFill className=' absolute mb-4 text-black z-10' /> */}
                 </div>
                 <div className={`rounded-sm overflow-hidden ${findAndViewColorBySystemStract()}`} style={{ height: perValue && perValue?.toString() + "%" }}>
                 </div>

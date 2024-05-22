@@ -22,6 +22,10 @@ const useDataStore = () => {
         return data.find((item) => item?.brigade_id == bregadeId)
     }
 
+    const halndleLocalStorage = (newData) => {
+        localStorage.setItem("BI_DATA", newData)
+    }
+
     const apiMethods = async (url, bodyData, method) => {
         console.log(JSON.stringify(bodyData));
         console.log(url);
@@ -81,7 +85,8 @@ const useDataStore = () => {
         getBregadeSingle,
         apiMethods,
         awaitRoute, setAwaitRoute,
-        systemStract, setSystemStract
+        systemStract, setSystemStract,
+        halndleLocalStorage
     }
 }
 

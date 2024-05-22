@@ -7,7 +7,7 @@ import TableGrid from '../components/table/TableGrid'
 import { useNavigate } from 'react-router-dom'
 
 const CreateBregade = () => {
-  const { data, getBregadeSingle, user, setData, apiMethods, setAwaitRoute } = useDataStore()
+  const { data, getBregadeSingle, user, setData, apiMethods, setAwaitRoute, halndleLocalStorage } = useDataStore()
   const navigateion = useNavigate()
   // console.log(data[0]);
   const [formBattalion, setFormBattalion] = useState(
@@ -102,6 +102,7 @@ const CreateBregade = () => {
           let currMean = cuurBat?.means[j]
           if (currMean?.procent && currMean?.amount && currMean?.properICT) {
             currMean.totalTypePercent = currMean?.procent / currMean?.amount * currMean?.properICT;
+            console.log("currMean?.procent / currMean?.amount * currMean?.properICT ", currMean?.procent / currMean?.amount * currMean?.properICT);
           } else {
             currMean.totalTypePercent = currMean?.procent;
           }
@@ -128,6 +129,7 @@ const CreateBregade = () => {
       const updateData = [...data]
       updateData.push(newB)
       setData(updateData)
+      halndleLocalStorage(JSON.stringify(updateData))
       setAwaitRoute(false)
       navigateion("/")
     }

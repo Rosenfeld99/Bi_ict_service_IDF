@@ -11,7 +11,7 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
   const custumStyleBodyFirst = ' text-center border-t-[1px] border-secoundary dark:border-primary'
   const custumStyleInput = ' w-full h-full text-center outline-none bg-accent_bg dark:bg-dark_accent'
 
-  const { handelToast, toast, setShowToast, showToast } = useDataStore()
+  const { handelToast, toast, setShowToast, showToast, halndleLocalStorage } = useDataStore()
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [validateMeansList, setValidateMeansList] = useState(false);
   const [indicatorErrors, setIndicatorErrors] = useState({ index: null, batIndex: null, itemGrid: false });
@@ -103,6 +103,7 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
       setBregadeBattalion(listBattalion)
       setFormBregade({ ...formBregade, battalion: listBattalion })
       console.log("listBattalion : ", listBattalion);
+      // halndleLocalStorage(JSON.stringify(formBregade))
       setFormBattalion({
         battalionName: "",
         battalion_id: generateID(),
@@ -198,7 +199,7 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
             return mean;
           })
         }));
-        // console.log("amount");
+        console.log("amount");
         break
       case "properICT":
         setFormBattalion(prevState => ({
@@ -344,6 +345,7 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
       }
       // call func save the bregate 
       setBregadeBattalion(allBattalion)
+      setFormBregade({ ...formBregade, battalion: allBattalion })
     }
     setCurrentBattailion({})
     setFormBattalion({
@@ -428,6 +430,7 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
       },)
       // TODO get the index in array and update the state if currentBattalion to array in index -1
       // call func save the bregate 
+      setCheckChanges(true)
     }
   }
 
