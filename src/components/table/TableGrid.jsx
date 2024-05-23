@@ -5,17 +5,16 @@ import useDataStore from '../../hooks/useDataStore';
 import Toast from '../../utils/tostify/Toast';
 import icons from '../../utils/icons/icons';
 
-const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, formBregade, setCheckChanges, setAwaitRoute, formBattalion, setFormBattalion, bregadeBattalion, setBregadeBattalion, currentBattailion, setCurrentBattailion }) => {
+const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, formBregade, setCheckChanges, setAwaitRoute, formBattalion, setFormBattalion, bregadeBattalion, setBregadeBattalion, currentBattailion, setCurrentBattailion }) => {
   const custumStyleTitle = ' text-center'
   const custumStyleBody = ' text-center border-t-[1px] border-r-[1px] border-secoundary dark:border-primary'
   const custumStyleBodyFirst = ' text-center border-t-[1px] border-secoundary dark:border-primary'
   const custumStyleInput = ' w-full h-full text-center outline-none bg-accent_bg dark:bg-dark_accent'
 
-  const { handelToast, toast, setShowToast, showToast, halndleLocalStorage } = useDataStore()
+  const { systemStract, setSystemStract, handelToast, toast, setShowToast, showToast, data, halndleLocalStorage } = useDataStore()
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [validateMeansList, setValidateMeansList] = useState(false);
   const [indicatorErrors, setIndicatorErrors] = useState({ index: null, batIndex: null, itemGrid: false });
-  const { systemStract, setSystemStract } = useDataStore()
 
   const handleAddBattalion = () => {
     console.log("Add battalion run!", formBattalion.means[0]?.meansName);
@@ -347,6 +346,7 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
       setBregadeBattalion(allBattalion)
       setFormBregade({ ...formBregade, battalion: allBattalion })
     }
+    handleClickSaveAndDone({}, true)
     setCurrentBattailion({})
     setFormBattalion({
       battalionName: "",
@@ -390,47 +390,58 @@ const TableGrid = ({ sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, fo
 
   const handleDeleteBattalion = (btId) => {
     if (btId) {
-      let filteredBt = [...bregadeBattalion]
-      filteredBt = filteredBt?.filter((item) => item?.battalion_id != btId)
-      setBregadeBattalion(filteredBt)
-      setFormBattalion({
-        battalionName: "",
-        battalion_id: generateID(),
-        means: [
-          {
-            meansName: "",
+      if (confirm("למחוק את גדוד " + currentBattailion?.battalionName)) {
+        let filteredBt = [...bregadeBattalion]
+        filteredBt = filteredBt?.filter((item) => item?.battalion_id != btId)
+        setBregadeBattalion(filteredBt)
+        setFormBattalion({
+          battalionName: "",
+          battalion_id: generateID(),
+          means: [
+            {
+              meansName: "",
 
-            nameType: "",
-            type_id: generateID(),
-            amount: "",
-            properICT: "",
-            properAmm: "",
-            procent: "",
-            comments: "",
-            totalTypePercent: "",
-            comments: "",
-          },
-          {
-            meansName: "",
+              nameType: "",
+              type_id: generateID(),
+              amount: "",
+              properICT: "",
+              properAmm: "",
+              procent: "",
+              comments: "",
+              totalTypePercent: "",
+              comments: "",
+            },
+            {
+              meansName: "",
 
-            nameType: "",
-            type_id: generateID(),
-            amount: "",
-            properICT: "",
-            properAmm: "",
-            procent: "",
-            comments: "",
-            totalTypePercent: "",
-            comments: "",
+              nameType: "",
+              type_id: generateID(),
+              amount: "",
+              properICT: "",
+              properAmm: "",
+              procent: "",
+              comments: "",
+              totalTypePercent: "",
+              comments: "",
+            }
+          ],
+          percentOfUnit: "",
+          totalSumBattalion: "",
+          comments: "",
+        },)
+        // TODO get the index in array and update the state if currentBattalion to array in index -1
+        // call func save the bregate 
+        setCheckChanges(true)
+        let updateData = [...data]
+        for (let i = 0; i < updateData.length; i++) {
+          if (updateData[i]?.brigade_id == formBregade?.brigade_id) {
+            updateData[i].battalion = filteredBt
           }
-        ],
-        percentOfUnit: "",
-        totalSumBattalion: "",
-        comments: "",
-      },)
-      // TODO get the index in array and update the state if currentBattalion to array in index -1
-      // call func save the bregate 
-      setCheckChanges(true)
+        }
+        console.log(updateData);
+        halndleLocalStorage(JSON.stringify(updateData))
+        handleClickSaveAndDone({}, true)
+      }
     }
   }
 

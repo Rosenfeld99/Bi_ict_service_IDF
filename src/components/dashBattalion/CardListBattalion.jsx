@@ -13,7 +13,7 @@ export default function CardListBattalion({ item }) {
             <div className="flex justify-end font-semibold">
                 <div className=" mx-4 flex items-center p-2">
                     {item?.totalSumQualification
-                        ? item?.totalSumQualification
+                        ? Number(item?.totalSumQualification).toFixed(1)
                         : <span className="loading loading-ring loading-md"></span>}
                     /100
                 </div>
@@ -23,11 +23,11 @@ export default function CardListBattalion({ item }) {
             </div>
             <div className="flex justify-center xl:justify-start items-center gap-3 md:gap-5 xl:gap-10 2xl:gap-14 overflow-auto custom-scrollbar py-2 w-[78vw] lg:w-[81vw] xl:w-[84vw]  2xl:w-[88vw] ">
                 <div className="bg-primary p-3 px-5 lg:px-8 w-fit rounded-lg">
-                    <ProgressPei perValue={item?.totalSumQualification} color={"text-[#48CFAE]"} size={"10vw"} widthPei={"0.7vw"} sizeOfText={'text-lg'} />
+                    <ProgressPei perValue={Number(item?.totalSumQualification).toFixed(1)} color={"text-[#48CFAE]"} size={"10vw"} widthPei={"0.7vw"} sizeOfText={'text-lg'} />
                 </div>
                 {item?.totalViewQualification?.map((item, index) => (
                     <div key={index} className="">
-                        <HorizontalProgressBar key={index} perValue={item.procent} title={item.meansName} />
+                        <HorizontalProgressBar key={index} inValue={item?.realProcent} perValue={item?.procent} title={item.meansName} />
                     </div>
                 ))}
             </div>

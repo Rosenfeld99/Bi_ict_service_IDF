@@ -117,26 +117,36 @@ const EditBregade = () => {
       for (let i = 0; i < formBregade?.battalion?.length; i++) {
         const element = formBregade?.battalion[i];
         for (let j = 0; j < element?.means?.length; j++) {
-          newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent });
+          let createRealProcent = element?.means[j]?.procent || 0;
+          if (element?.means[j]?.properAmm != "" && element?.means[j]?.amount != "") {
+            createRealProcent = element?.means[j]?.procent * element?.means[j]?.properAmm / element?.means[j]?.amount
+            newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent });
+            // console.log("create obj : ", { meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent });
+          }
+          else {
+            if (element?.means[j]?.properICT != "" && element?.means[j]?.amount != "") {
+              createRealProcent = element?.means[j]?.procent * element?.means[j]?.properICT / element?.means[j]?.amount
+              newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent });
+            }
+          }
         }
       }
-      // console.log(newArrayMeans);
-      // const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent }) => {
-      //   acc[meansName] = acc[meansName] || { meansName, procent: 0 };
-      //   (acc[meansName].procent += parseFloat(procent).toFixed(1));
-      //   return acc;
-      // }, {}));
-      const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent }) => {
+
+      console.log("newArrayMeans : ", newArrayMeans);
+      const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent, realProcent }) => {
         if (!acc[meansName]) {
-          acc[meansName] = { meansName, procent: 0 };
+          acc[meansName] = { meansName, procent: 0, realProcent: 0 };
         }
         acc[meansName].procent += parseFloat(procent);
+        acc[meansName].realProcent += parseFloat(realProcent);
         return acc;
       }, {}));
+      console.log("reducedData : ", reducedData);
 
       // Convert the procent values to fixed decimal places if needed
       reducedData.forEach(item => {
         item.procent = parseFloat(item.procent.toFixed(1));
+        item.realProcent = parseFloat(item.realProcent.toFixed(1));
       });
 
 
@@ -148,6 +158,7 @@ const EditBregade = () => {
       }
 
       // console.log(reducedData);
+
       let allData = [...data];
       for (let i = 0; i < allData?.length; i++) {
         if (allData[i]?.brigade_id === formBregade?.brigade_id) {
@@ -155,7 +166,26 @@ const EditBregade = () => {
           allData[i] = formBregade
           allData[i].totalSumQualification = sumOfTotalPercent.toString();
           allData[i].totalViewQualification = reducedData
+          let updateBatt = allData[i].battalion
           console.log("in case");
+          for (let j = 0; j < updateBatt?.length; j++) {
+            let element = updateBatt[j]?.means;
+            console.log(element);
+            for (let t = 0; t < element.length; t++) {
+              // 
+              element[t].totalTypePercent = element[t]?.procent || 0;
+              if (element?.[t]?.properAmm != "" && element?.[t]?.amount != "") {
+                element[t].totalTypePercent = element?.[t]?.procent * element?.[t]?.properAmm / element?.[t]?.amount
+              }
+              else {
+                if (element?.[t]?.properICT != "" && element?.[t]?.amount != "") {
+                  element[t].totalTypePercent = element?.[t]?.procent * element?.[t]?.properICT / element?.[t]?.amount
+                }
+              }
+            }
+
+          }
+          allData[i].battalion = updateBatt
         }
       }
       setData(allData)
@@ -169,10 +199,12 @@ const EditBregade = () => {
   // console.log(currentBattailion);
 
   const handleDleteBregade = () => {
-    const filteredData = data?.filter((item) => item?.brigade_id != formBregade?.brigade_id)
-    setData(filteredData)
-    halndleLocalStorage(JSON.stringify(filteredData))
-    navigateion(-1)
+    if (confirm("למחוק את חטיבה?")) {
+      const filteredData = data?.filter((item) => item?.brigade_id != formBregade?.brigade_id)
+      setData(filteredData)
+      halndleLocalStorage(JSON.stringify(filteredData))
+      navigateion(-1)
+    }
   }
 
 
@@ -194,11 +226,7 @@ const EditBregade = () => {
                 setCurrentBattailion(item)
                 setFormBattalion(item)
                 setSunOfTotalPercent(item?.totalSumBattalion)
-              }} className="collapse collapse-arrow join-item bg-accent_bg dark:bg-dark_accent">
-                {/* {item?.battalion_id == currentBattailion?.battalion_id && <div className=" absolute left-10 top-5 text-lg text-secoundary ">
-                  <FaPen />
-                </div>} */}
-                <input type="radio" name="my-accordion-4" className='outline-none' defaultChecked />
+              }} className=" join-item bg-accent_bg dark:bg-dark_accent">
                 <div className="collapse-title text-xl font-medium text-secoundary dark:text-dark_secoundary ">
                   <div className={`text-neutral dark:text-dark_neutral ${currentBattailion?.battalion_id == item?.battalion_id && "bg-accent dark:bg-dark_accent_bg px-3 rounded-xl py-2 w-fit"}`}>
                     {item?.battalionName}
@@ -212,7 +240,7 @@ const EditBregade = () => {
 
         </div>}
         {/* vew item content */}
-        <TableGrid setSunOfTotalPercent={setSunOfTotalPercent} sunOfTotalPercent={sunOfTotalPercent} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
+        <TableGrid handleClickSaveAndDone={handleClickSaveAndDone} setSunOfTotalPercent={setSunOfTotalPercent} sunOfTotalPercent={sunOfTotalPercent} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
       </div>
 
       {/* btn action */}
