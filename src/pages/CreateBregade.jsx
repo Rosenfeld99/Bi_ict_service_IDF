@@ -101,8 +101,18 @@ const CreateBregade = () => {
         for (let j = 0; j < cuurBat?.means?.length; j++) {
           let currMean = cuurBat?.means[j]
           if (currMean?.procent && currMean?.amount && currMean?.properICT) {
+            let createRealProcent = currMean?.procent || 0;
+            if (currMean?.properAmm != "" && currMean?.amount != "") {
+              currMean.totalTypePercent = currMean?.procent * currMean?.properAmm / currMean?.amount
+            }
+            else {
+              if (currMean?.properICT != "" && currMean?.amount != "") {
+                createRealProcent = currMean?.procent * currMean?.properICT / currMean?.amount
+              }
+            }
+
             currMean.totalTypePercent = currMean?.procent / currMean?.amount * currMean?.properICT;
-            console.log("currMean?.procent / currMean?.amount * currMean?.properICT ", currMean?.procent / currMean?.amount * currMean?.properICT);
+            // console.log("currMean?.procent / currMean?.amount * currMean?.properICT ", currMean?.procent / currMean?.amount * currMean?.properICT);
           } else {
             currMean.totalTypePercent = currMean?.procent;
           }
@@ -215,11 +225,11 @@ const CreateBregade = () => {
               <div key={item?.battalion_id} onClick={() => {
                 setCurrentBattailion(item)
                 setFormBattalion(item)
-              }} className="collapse collapse-arrow join-item bg-accent_bg dark:bg-dark_accent">
+              }} className=" join-item bg-accent_bg dark:bg-dark_accent">
                 {/* {item?.battalion_id == currentBattailion?.battalion_id && <div className=" absolute left-10 top-5 text-lg text-secoundary ">
                   <FaPen />
                 </div>} */}
-                <input type="radio" name="my-accordion-4" className='outline-none' defaultChecked />
+                {/* <input type="radio" name="my-accordion-4" className='outline-none' defaultChecked /> */}
                 <div className="collapse-title text-xl font-medium text-secoundary dark:text-dark_secoundary ">
                   <div className={`text-neutral dark:text-dark_neutral ${currentBattailion?.battalion_id == item?.battalion_id && "bg-accent dark:bg-dark_accent_bg px-3 rounded-xl py-2 w-fit"}`}>
                     {item?.battalionName}
@@ -233,7 +243,7 @@ const CreateBregade = () => {
 
         </div>}
         {/* vew item content */}
-        <TableGrid setSunOfTotalPercent={setSunOfTotalPercent} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} sunOfTotalPercent={sunOfTotalPercent} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
+        <TableGrid handleClickSaveAndDone={handleClickSaveAndDone} setSunOfTotalPercent={setSunOfTotalPercent} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} sunOfTotalPercent={sunOfTotalPercent} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
       </div>
 
       {/* btn action
