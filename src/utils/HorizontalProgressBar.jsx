@@ -27,7 +27,7 @@ export default function HorizontalProgressBar({ title, inValue, perValue, colorB
         if (perValue < singleItem?.qualificationsColorCenter) {
             return isText ? "text-[#ffcdca]" : "bg-[#ffcdca]"
         } else if (perValue >= singleItem?.qualificationsColorHigh) {
-            return "bg-[#c3e7d6]"
+            return isText ? "text-[#c3e7d6]" : "bg-[#c3e7d6]"
         }
         else if (perValue < singleItem?.qualificationsColorHigh && perValue > singleItem?.qualificationsColorLow) {
             return isText ? "text-[#fce9b5]" : "bg-[#fce9b5]"
