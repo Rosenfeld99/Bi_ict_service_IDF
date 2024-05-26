@@ -65,7 +65,7 @@ const EditBregade = () => {
       bregadeBattalion,
     lastUpdateTime: "14-04-2024",
     lastUpdater: "new battaleion",
-    totalSumQualification: "40",
+    totalSumQualification: 0,
     totalViewQualification: [
       {
         meansName: "a",
@@ -155,17 +155,18 @@ const EditBregade = () => {
       let sumOfTotalPercent = 0;
       for (let index = 0; index < reducedData.length; index++) {
         const element = reducedData[index];
-        sumOfTotalPercent += element.procent;
+        sumOfTotalPercent += element.realProcent;
+        console.log(element);
       }
 
-      // console.log(reducedData);
+      console.log(sumOfTotalPercent);
 
       let allData = [...data];
       for (let i = 0; i < allData?.length; i++) {
         if (allData[i]?.brigade_id === formBregade?.brigade_id) {
           console.log(formBregade);
           allData[i] = formBregade
-          allData[i].totalSumQualification = sumOfTotalPercent.toString();
+          allData[i].totalSumQualification = sumOfTotalPercent?.toFixed(1)
           allData[i].totalViewQualification = reducedData
           let updateBatt = allData[i].battalion
           console.log("in case");
@@ -202,6 +203,7 @@ const EditBregade = () => {
   const handleDleteBregade = () => {
     if (confirm("למחוק את חטיבה?")) {
       const filteredData = data?.filter((item) => item?.brigade_id != formBregade?.brigade_id)
+      console.log(filteredData);
       setData(filteredData)
       halndleLocalStorage(JSON.stringify(filteredData))
       navigateion(-1)
