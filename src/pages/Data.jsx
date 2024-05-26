@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 const Data = () => {
   const { data } = useDataStore()
   // console.log(data);
-  const [currentBattailion, setCurrentBattailion] = useState(data[0].battalion[0])
+  const [currentBattailion, setCurrentBattailion] = useState(data[0]?.battalion[0])
   // console.log(currentBattailion);
   const [dataRender, setDataRender] = useState(data || []);
 
@@ -73,7 +73,7 @@ const Data = () => {
           <div className="px-5 py-4 flex items-center justify-between">
             <p className=' font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-xl py-1 w-fit text-xl flex-row-reverse'> {currentBattailion?.percentOfUnit}/{currentBattailion?.totalSumBattalion} -{currentBattailion?.battalionName}</p>
             <div className=" text-xs">
-              עודכן לאחרונה {data[0].lastUpdateTime}
+              עודכן לאחרונה {data[0]?.lastUpdateTime}
             </div>
           </div>
 

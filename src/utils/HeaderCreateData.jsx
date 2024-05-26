@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { IoMdClose } from 'react-icons/io'
 
-const HeaderCreateData = ({ btnAdd, delBtn,isVlaidation, placeholderTitle, handleSearch, onClickBtnAdd, input,onClickBtnDel }) => {
+const HeaderCreateData = ({ btnAdd, delBtn, isVlaidation, placeholderTitle, handleSearch, onClickBtnAdd, input, onClickBtnDel }) => {
     // const [input, setInput] = useState("")
 
     return (
@@ -16,7 +16,7 @@ const HeaderCreateData = ({ btnAdd, delBtn,isVlaidation, placeholderTitle, handl
             </div>
             {/* search and button add  */}
             <div className=" flex items-center gap-4">
-                {delBtn && <button onClick={onClickBtnDel} className={`${isVlaidation && " opacity-50 cursor-not-allowed"} bg-error text-primary dark:bg-dark_secoundary dark:text-primary py-2 px-5 rounded-3xl`}>
+                {delBtn && <button onClick={onClickBtnDel} className={` bg-error text-primary dark:bg-dark_secoundary dark:text-primary py-2 px-5 rounded-3xl`}>
                     {delBtn}
                 </button>}
                 {btnAdd && <button onClick={onClickBtnAdd} disabled={isVlaidation} className={`${isVlaidation && " opacity-50 cursor-not-allowed"} bg-success text-primary dark:bg-dark_secoundary dark:text-primary py-2 px-5 rounded-3xl`}>

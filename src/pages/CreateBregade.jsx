@@ -58,7 +58,7 @@ const CreateBregade = () => {
       bregadeBattalion,
     lastUpdateTime: "14-04-2024",
     lastUpdater: "new battaleion",
-    totalSumQualification: "40",
+    totalSumQualification: 0,
     totalViewQualification: [
       { meansName: "x", meansType: "20" },
     ],
@@ -158,7 +158,7 @@ const CreateBregade = () => {
         bregadeBattalion,
       lastUpdateTime: "14-04-2024",
       lastUpdater: "new battaleion",
-      totalSumQualification: "40",
+      totalSumQualification: 0,
       totalViewQualification: [
         { meansName: "x", meansType: "20" },
       ],
