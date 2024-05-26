@@ -120,25 +120,26 @@ const EditBregade = () => {
           let createRealProcent = element?.means[j]?.procent || 0;
           if (element?.means[j]?.properAmm != "" && element?.means[j]?.amount != "") {
             createRealProcent = element?.means[j]?.procent * element?.means[j]?.properAmm / element?.means[j]?.amount
-            newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent });
+            newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent, amount: element?.means[j].amount });
             // console.log("create obj : ", { meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent });
           }
           else {
             if (element?.means[j]?.properICT != "" && element?.means[j]?.amount != "") {
               createRealProcent = element?.means[j]?.procent * element?.means[j]?.properICT / element?.means[j]?.amount
-              newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent });
+              newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent, amount: element?.means[j].amount });
             }
           }
         }
       }
 
       console.log("newArrayMeans : ", newArrayMeans);
-      const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent, realProcent }) => {
+      const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent, realProcent, amount }) => {
         if (!acc[meansName]) {
-          acc[meansName] = { meansName, procent: 0, realProcent: 0 };
+          acc[meansName] = { meansName, procent: 0, realProcent: 0, amount: 0 };
         }
         acc[meansName].procent += parseFloat(procent);
         acc[meansName].realProcent += parseFloat(realProcent);
+        acc[meansName].amount += Number(amount);
         return acc;
       }, {}));
       console.log("reducedData : ", reducedData);
