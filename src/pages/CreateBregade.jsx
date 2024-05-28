@@ -66,7 +66,6 @@ const CreateBregade = () => {
     comments: "no comments",
   })
 
-  const [sunOfTotalPercent, setSunOfTotalPercent] = useState(currentBattailion?.totalSumBattalion || 0)
   const [checkChanges, setCheckChanges] = useState(false)
 
 
@@ -243,7 +242,7 @@ const CreateBregade = () => {
 
         </div>}
         {/* vew item content */}
-        <TableGrid handleClickSaveAndDone={handleClickSaveAndDone} setSunOfTotalPercent={setSunOfTotalPercent} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} sunOfTotalPercent={sunOfTotalPercent} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
+        <TableGrid handleClickSaveAndDone={handleClickSaveAndDone} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
       </div>
 
       {/* btn action
