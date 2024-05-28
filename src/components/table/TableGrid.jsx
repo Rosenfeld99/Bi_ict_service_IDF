@@ -5,7 +5,7 @@ import useDataStore from '../../hooks/useDataStore';
 import Toast from '../../utils/tostify/Toast';
 import icons from '../../utils/icons/icons';
 
-const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPercent, setFormBregade, formBregade, setCheckChanges, setAwaitRoute, formBattalion, setFormBattalion, bregadeBattalion, setBregadeBattalion, currentBattailion, setCurrentBattailion }) => {
+const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setCheckChanges, setAwaitRoute, formBattalion, setFormBattalion, bregadeBattalion, setBregadeBattalion, currentBattailion, setCurrentBattailion }) => {
   const custumStyleTitle = ' text-center'
   const custumStyleBody = ' text-center border-t-[1px] border-r-[1px] border-secoundary dark:border-primary'
   const custumStyleBodyFirst = ' text-center border-t-[1px] border-secoundary dark:border-primary'
@@ -52,6 +52,9 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
         }, 10000);
         return false
       }
+    }
+    else if (validateHandleSaveInSumProcent() != parseFloat(formBattalion?.percentOfUnit)) {
+      return handelToast("שגיאה", "סך אחוזים פרטניים שונה מאחוזי הגדוד", "Error", 10)
     }
     else if (formBattalion?.battalion_id) {
       const listMeans = [...formBattalion.means]
@@ -239,7 +242,6 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
           sum += formBattalion?.means[i]?.procent
           console.log(formBattalion?.means[i]?.procent);
         }
-        setSunOfTotalPercent(parseFloat(sum) + inputVal)
         console.log("procent sum : ", sum);
         break
       case "meansComments":
@@ -292,7 +294,8 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
         setValidateMeansList(false)
         handelToast("some tittle", "msg", "Error", 10)
         return alert("error : meansName")
-      } else {
+      }
+      else {
         const currMeanStract = systemStract?.find((m) => m.meanName == element?.meansName);
 
         if (currMeanStract?.amount && element?.amount == "") {
@@ -325,6 +328,9 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
           return false
         }
       }
+    }
+    if (validateHandleSaveInSumProcent() != parseFloat(formBattalion?.percentOfUnit)) {
+      return handelToast("שגיאה", "סך אחוזים פרטניים שונה מאחוזי הגדוד", "Error", 10)
     }
     if (currItem?.battalion_id && currItem?.battalionName && currItem?.percentOfUnit) {
       let allBattalion = [...bregadeBattalion]
@@ -384,7 +390,6 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
       totalSumBattalion: "",
       comments: "",
     })
-    setSunOfTotalPercent(0)
     setIndicatorErrors({ index: null, batIndex: null, itemGrid: false })
   }
 
@@ -502,7 +507,6 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
     if (parseFloat(val) > parseFloat(formBattalion?.percentOfUnit)) {
 
       handelToast("שגיאה", "האחוזים הפרטנים לא יכולים להיות גדולים מהאחוזים הכללים", "Error", 10)
-      // setSunOfTotalPercent(sunOfTotalPercent - val)
       return false
     }
     if (val < 0) {
@@ -521,13 +525,9 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
         console.log(parseFloat(formBattalion?.means[i]?.procent));
       }
     }
-    if (sum <= formBattalion?.totalSumBattalion) {
-      setSunOfTotalPercent(sum)
-    }
     console.log(formBattalion?.means, sum);
     if (sum > parseFloat(formBattalion?.percentOfUnit)) {
       alert("האחוזים הפרטנים לא יכולים להיות גדולים מהאחוזים הכללים")
-      setSunOfTotalPercent(sunOfTotalPercent - val)
       return false
     }
     console.log(parseFloat(val));
@@ -537,6 +537,17 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
 
   const elementError = (itemName, bat, index) => {
     return <p className={`${indicatorErrors.itemGrid == itemName && bat == "" && isRequire(index, itemName) && " bg-error loading loading-ring w-5 absolute right-[40%] top-1"}`} />
+  }
+
+  const validateHandleSaveInSumProcent = () => {
+    let sum = 0;
+    for (let i = 0; i < formBattalion?.means?.length; i++) {
+      if (formBattalion?.means[i]?.procent) {
+        sum += parseFloat(formBattalion?.means[i]?.procent)
+      }
+    }
+    // console.log("sum : ", sum);
+    return sum;
   }
 
   return (
@@ -561,7 +572,7 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
           </div>
           <div className=" top-0 left-0 tooltip tooltip-right" data-tip="אחוזים בתפוסה">
             <div className="flex justify-center items-center font-bold relative text-xl border-2 border-secoundary dark:bg-dark_accent_bg rounded-lg px-7 py-1">
-              {<icons.Percentage className='text-sm absolute top-0 right-[4px]' />} {typeof sunOfTotalPercent === 'number' ? (sunOfTotalPercent % 1 === 0 ? sunOfTotalPercent.toFixed(0) : sunOfTotalPercent.toFixed(1)) : sunOfTotalPercent}
+              {<icons.Percentage className='text-sm absolute top-0 right-[4px]' />} {typeof validateHandleSaveInSumProcent() === 'number' ? (validateHandleSaveInSumProcent() % 1 === 0 ? validateHandleSaveInSumProcent().toFixed(0) : validateHandleSaveInSumProcent().toFixed(1)) : validateHandleSaveInSumProcent()}
             </div>
           </div>
           <div className="border flex  bg-accent dark:bg-dark_accent_bg rounded-lg relative px-2">
@@ -613,8 +624,6 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 <th className={custumStyleBodyFirst}>{index + 1}</th>
-                {/* <td className={custumStyleBody}><input type='text' onChange={(e) => handleInputsBregadeChange(e.target.value, "meansName", bat?.type_id)} className={custumStyleInput} defaultValue={bat?.meansName} /></td> */}
-                {/* <td className={custumStyleBody}><input type='text' onChange={(e) => handleInputsBregadeChange(e.target.value, "nameType", bat?.type_id)} className={custumStyleInput} defaultValue={bat?.nameType} /></td> */}
 
 
                 <td className={custumStyleBody}> <select onChange={(e) => { handleInputsBregadeChange(e.target.value, "meansName", bat?.type_id) }} className="bg-transparent outline-none" ><option disabled selected>{bat?.meansName ? bat?.meansName : "בחר אמצעים"}</option>{systemStract?.map((listOption, indexListOption) => (<option onClick={() => console.log("somet")} key={indexListOption} defaultValue={listOption?.meanName}>{listOption?.meanName}</option>))}</select> </td>
@@ -622,10 +631,12 @@ const TableGrid = ({ handleClickSaveAndDone, sunOfTotalPercent, setSunOfTotalPer
                 <td className={`${custumStyleBody} ${!isRequire(index, "amount") && "cursor-not-allowed bg-[#ddd] opacity-50"} relative`}><input type='number' disabled={!isRequire(index, "amount")} onChange={(e) => handleInputsBregadeChange(e.target.value, "amount", bat?.type_id)} className={`${custumStyleInput} ${!isRequire(index, "amount") && "cursor-not-allowed bg-[#ddd] opacity-50"} `} defaultValue={bat?.amount} />{elementError("amount", bat?.amount, index)}</td>
                 <td className={`${custumStyleBody} ${!isRequire(index, "ict") && "cursor-not-allowed bg-[#ddd] opacity-50"} relative`}><input type='number' disabled={!isRequire(index, "ict")} max={bat?.amount} onChange={(e) => { parseFloat(e.target.value) > parseFloat(bat?.amount) ? e.target.value = "" : handleInputsBregadeChange(e.target.value, "properICT", bat?.type_id) }} className={`${custumStyleInput} ${!isRequire(index, "ict") && "cursor-not-allowed bg-[#ddd] opacity-50"}`} defaultValue={bat?.properICT} />{elementError("ict", bat?.properICT, index)}</td>
                 <td className={`${custumStyleBody} ${!isRequire(index, "arm") && "cursor-not-allowed bg-[#ddd] opacity-50"} relative`}><input type='number' disabled={!isRequire(index, "arm")} max={bat?.amount} onChange={(e) => { parseFloat(e.target.value) > parseFloat(bat?.amount) ? e.target.value = "" : handleInputsBregadeChange(e.target.value, "properAmm", bat?.type_id) }} className={`${custumStyleInput} ${!isRequire(index, "arm") && "cursor-not-allowed bg-[#ddd] opacity-50"}`} defaultValue={bat?.properAmm} />{elementError("arm", bat?.properAmm, index)}</td>
-                <td className={custumStyleBody}><input type='number' onChange={(e) => {
-                  !handleProcentMeansChange(index, e.target.value, bat?.type_id) ? (e.target.value = "") :
-                    handleProcentMeansChange(index, e.target.value, bat?.type_id)
-                }} className={custumStyleInput} defaultValue={bat?.procent} /></td>
+                <td className={custumStyleBody}><div className="relative">
+                  <input type='number' onChange={(e) => {
+                    !handleProcentMeansChange(index, e.target.value, bat?.type_id) ? (e.target.value = "") :
+                      handleProcentMeansChange(index, e.target.value, bat?.type_id)
+                  }} className={custumStyleInput} defaultValue={bat?.procent} />{<icons.Percentage className='text-sm absolute top-0 right-0' />}
+                </div></td>
                 <td className={custumStyleBody}><input type='text' onChange={(e) => handleInputsBregadeChange(e.target.value, "meansComments", bat?.type_id)} className={custumStyleInput} defaultValue={bat?.comments} /></td>
                 {hoveredIndex === index && (
                   <div onClick={() => handelDeleteLine(bat?.type_id)} className="absolute top-0 left-0 tooltip tooltip-right" data-tip="מחיקת שורה">

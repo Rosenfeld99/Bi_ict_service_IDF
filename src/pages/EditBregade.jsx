@@ -76,7 +76,6 @@ const EditBregade = () => {
     workSpace: "alpha",
     comments: "no comments",
   })
-  const [sunOfTotalPercent, setSunOfTotalPercent] = useState(currentBattailion?.totalSumBattalion || 0)
 
 
   useEffect(() => {
@@ -88,7 +87,6 @@ const EditBregade = () => {
       setBregadeBattalion(singleBregade?.battalion || [])
       setCurrentBattailion(singleBregade?.battalion && singleBregade?.battalion[0] || {})
       console.log(" singleBregade : ", singleBregade);
-      setSunOfTotalPercent(singleBregade?.battalion[0]?.totalSumBattalion)
     }
   }, [params.get('q')])
 
@@ -228,7 +226,6 @@ const EditBregade = () => {
               <div key={item?.battalion_id} onClick={() => {
                 setCurrentBattailion(item)
                 setFormBattalion(item)
-                setSunOfTotalPercent(item?.totalSumBattalion)
               }} className=" join-item bg-accent_bg dark:bg-dark_accent">
                 <div className="collapse-title text-xl font-medium text-secoundary dark:text-dark_secoundary ">
                   <div className={`text-neutral dark:text-dark_neutral ${currentBattailion?.battalion_id == item?.battalion_id && "bg-accent dark:bg-dark_accent_bg px-3 rounded-xl py-2 w-fit"}`}>
@@ -243,7 +240,7 @@ const EditBregade = () => {
 
         </div>}
         {/* vew item content */}
-        <TableGrid handleClickSaveAndDone={handleClickSaveAndDone} setSunOfTotalPercent={setSunOfTotalPercent} sunOfTotalPercent={sunOfTotalPercent} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
+        <TableGrid handleClickSaveAndDone={handleClickSaveAndDone} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />
       </div>
 
       {/* btn action */}
