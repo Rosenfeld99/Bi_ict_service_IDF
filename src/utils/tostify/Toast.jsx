@@ -98,7 +98,7 @@ export default function Toast({ time, title, message, type, show, setShow }) {
                             transition: "width 1s linear",
                             color: "transparent",
                             fontSize: "8px",
-                        }}>Moshe</div>
+                        }}>MosheCC</div>
                     </div>
                 </div>
             }
