@@ -3,7 +3,7 @@ import ProgressBar from '../../utils/ProgressBar'
 import ProgressPei from '../../utils/ProgressPei'
 import { Link } from 'react-router-dom'
 const CardItem = ({ item }) => {
-    console.log(item);
+    // console.log(item);
     return (
         <Link to={`dashboard/${item.brigade_id}`}>
             <div className="border p-3 rounded-lg flex flex-col gap-1 bg-primary">

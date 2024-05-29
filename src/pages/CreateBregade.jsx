@@ -85,11 +85,8 @@ const CreateBregade = () => {
     // handleClickSaveAndDone({}, true)
   }
 
-  // TODO : save in click the bregate state and also in clikc save and done
-
   const handleClickSaveAndDone = (state, isCalc) => {
     // handle cut data key for dashboard
-    // console.log("run time", formBregade?.battalion?.length);
     if (isCalc && formBregade?.battalion?.length > 0) {
       let newB = { ...formBregade }
       let allBattalion = newB?.battalion
@@ -123,17 +120,36 @@ const CreateBregade = () => {
       for (let i = 0; i < allBattalion?.length; i++) {
         const element = allBattalion[i];
         for (let j = 0; j < element?.means?.length; j++) {
-          newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.totalTypePercent });
+          newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: element?.means[j]?.totalTypePercent, amount: element?.means[j]?.amount });
         }
       }
 
-      totalViewQualification = Object.values(newArrayMeans.reduce((acc, { meansName, procent }) => {
-        acc[meansName] = acc[meansName] || { meansName, procent: 0 };
-        acc[meansName].procent += parseInt(procent);
+      // reduce the array means --> to make shure without duplicate 
+      totalViewQualification = Object.values(newArrayMeans.reduce((acc, { meansName, procent, realProcent, amount }) => {
+        if (!acc[meansName]) {
+          acc[meansName] = { meansName, procent: 0, realProcent: 0, amount: 0 };
+        }
+        acc[meansName].procent += parseFloat(procent);
+        acc[meansName].realProcent += parseFloat(realProcent);
+        acc[meansName].amount += Number(amount);
         return acc;
       }, {}));
 
+      // Sum up all the percentages of the unit means
+      let sumOfTotalPercent = 0;
+      for (let index = 0; index < totalViewQualification.length; index++) {
+        const element = totalViewQualification[index];
+        sumOfTotalPercent += element.realProcent;
+      }
+
+       // Convert the procent values to fixed decimal places if needed
+       totalViewQualification?.forEach(item => {
+        item.procent = parseFloat(item.procent.toFixed(1));
+        item.realProcent = parseFloat(item.realProcent.toFixed(1));
+      });
+
       newB.totalViewQualification = totalViewQualification
+      newB.totalSumQualification = sumOfTotalPercent
 
       const updateData = [...data]
       updateData.push(newB)
