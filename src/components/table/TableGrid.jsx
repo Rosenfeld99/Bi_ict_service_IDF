@@ -351,6 +351,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
       // call func save the bregate 
       setBregadeBattalion(allBattalion)
       setFormBregade({ ...formBregade, battalion: allBattalion })
+      console.log(formBregade);
     }
     handleClickSaveAndDone({}, true)
     setCurrentBattailion({})
@@ -464,7 +465,13 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
     return (
       <React.Fragment>
 
-        {renderOption?.typeOption?.length > 0 ? <select disabled={!renderOption} onChange={(e) => handleInputsBregadeChange(e.target.value, "nameType", currSlect?.type_id)} className={`${!renderOption ? "cursor-not-allowed bg-[#ddd] opacity-50" : "bg-transparent outline-none"}`} ><option className=' bg-secoundary text-black' disabled selected>{currSlect?.nameType ? currSlect?.nameType : "בחר סוג אמצעי"}</option>{renderOption?.typeOption?.map((listOption, indexListOption) => (<option key={listOption?.id} value={listOption?.value}>{listOption?.value}</option>))}</select> :
+        {renderOption?.typeOption?.length > 0 ?
+          <select disabled={!renderOption} onChange={(e) => handleInputsBregadeChange(e.target.value, "nameType", currSlect?.type_id)} className={`${!renderOption ? "cursor-not-allowed bg-[#ddd] opacity-50" : "bg-transparent outline-none"}`} >
+            <option className=' bg-secoundary text-black' disabled selected>{currSlect?.nameType ? currSlect?.nameType : "בחר סוג אמצעי"}</option>
+            {renderOption?.typeOption?.map((listOption, indexListOption) => (
+              <option key={listOption?.id} value={listOption?.value}>{listOption?.value}</option>
+            ))}
+          </select> :
           // <select disabled className={"cursor-not-allowed bg-[#ddd] opacity-50"} ><option className=' bg-secoundary text-black' disabled selected>{currSlect?.nameType ? currSlect?.nameType : "בחר סוג אמצעי"}</option>{renderOption?.typeOption?.map((listOption, indexListOption) => (<option key={listOption?.id} value={listOption?.value}>{listOption?.value}</option>))}</select>
           <div className="cursor-not-allowed bg-[#ddd] opacity-50">אין סוגי אמצעים</div>
         }

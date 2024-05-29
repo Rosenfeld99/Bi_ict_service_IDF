@@ -56,32 +56,16 @@ const EditBregade = () => {
   )
   const [currentBattailion, setCurrentBattailion] = useState(formBattalion)
   const [bregadeBattalion, setBregadeBattalion] = useState([])
-  console.log(currentBattailion);
+  // console.log(currentBattailion);
 
-  const [formBregade, setFormBregade] = useState({
-    brigadeName: "",
-    brigade_id: generateID(),
-    battalion:
-      bregadeBattalion,
-    lastUpdateTime: "14-04-2024",
-    lastUpdater: "new battaleion",
-    totalSumQualification: 0,
-    totalViewQualification: [
-      {
-        meansName: "a",
-        meansType: "24",
-      },
-
-    ],
-    workSpace: "alpha",
-    comments: "no comments",
-  })
+  const [formBregade, setFormBregade] = useState()
 
 
   useEffect(() => {
     if (params.get('q')) {
       // console.log(getBregadeSingle(params.get('q')));
       const singleBregade = getBregadeSingle(params.get('q'))
+      console.log(" singleBregade : ", singleBregade);
       setFormBregade(singleBregade)
       setFormBattalion(singleBregade?.battalion && singleBregade?.battalion[0] || [])
       setBregadeBattalion(singleBregade?.battalion || [])
@@ -91,11 +75,11 @@ const EditBregade = () => {
   }, [params.get('q')])
 
   // find currnet battalion by click 
-  const handleSelectBattalion = (id) => {
-    const res = data?.find((item) => item.battalion.find((bt) => bt.battalion_id === id));
-    setCurrentBattailion(res?.battalion?.find(item => item?.battalion_id == id))
+  // const handleSelectBattalion = (id) => {
+  //   const res = data?.find((item) => item.battalion.find((bt) => bt.battalion_id === id));
+  //   setCurrentBattailion(res?.battalion?.find(item => item?.battalion_id == id))
 
-  }
+  // }
 
   const handleInputBregadeNameChange = (inputVal) => {
     setCheckChanges(true)
@@ -106,11 +90,14 @@ const EditBregade = () => {
     // handleClickSaveAndDone({}, true)
   }
 
-  // TODO : save in click the bregate state and also in clikc save and done
+  // console.log(formBregade);
 
   const handleClickSaveAndDone = (state, isCalc) => {
+
     // handle cut data key for dashboard
     if (isCalc && formBregade?.battalion?.length > 0) {
+      console.log("in case");
+
       const newArrayMeans = [];
       for (let i = 0; i < formBregade?.battalion?.length; i++) {
         const element = formBregade?.battalion[i];
@@ -130,7 +117,7 @@ const EditBregade = () => {
         }
       }
 
-      console.log("newArrayMeans : ", newArrayMeans);
+      // reduce the array means --> to make shure without duplicate
       const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent, realProcent, amount }) => {
         if (!acc[meansName]) {
           acc[meansName] = { meansName, procent: 0, realProcent: 0, amount: 0 };
@@ -140,7 +127,6 @@ const EditBregade = () => {
         acc[meansName].amount += Number(amount);
         return acc;
       }, {}));
-      console.log("reducedData : ", reducedData);
 
       // Convert the procent values to fixed decimal places if needed
       reducedData.forEach(item => {
@@ -154,25 +140,39 @@ const EditBregade = () => {
       for (let index = 0; index < reducedData.length; index++) {
         const element = reducedData[index];
         sumOfTotalPercent += element.realProcent;
-        console.log(element);
+        // console.log(element);
       }
 
-      console.log(sumOfTotalPercent);
+      // console.log(sumOfTotalPercent);
+
+      let element = formBregade?.battalion;
+      // console.log(element);
+      for (let j = 0; j < element.length; j++) {
+        let sumTotalSumBattalion = 0;
+        for (let i = 0; i < element[j]?.means.length; i++) {
+          let curr = element[j]?.means[i]
+          sumTotalSumBattalion += curr?.totalTypePercent
+        }
+        element[j].totalSumBattalion = sumTotalSumBattalion > 0 ? sumTotalSumBattalion?.toFixed(1) : 0;
+      }
+
+      console.log("formBregade : ", formBregade);
 
       let allData = [...data];
       for (let i = 0; i < allData?.length; i++) {
         if (allData[i]?.brigade_id === formBregade?.brigade_id) {
-          console.log(formBregade);
+          // console.log(formBregade);
           allData[i] = formBregade
-          allData[i].totalSumQualification = sumOfTotalPercent?.toFixed(1)
+          allData[i].totalSumQualification = Number(sumOfTotalPercent)?.toFixed(1)
           allData[i].totalViewQualification = reducedData
           let updateBatt = allData[i].battalion
-          console.log("in case");
           for (let j = 0; j < updateBatt?.length; j++) {
+            let sumTotalSumBattalion = 0;
+            // update totalSumBattalion-->
             let element = updateBatt[j]?.means;
-            console.log(element);
+            // console.log(element);
             for (let t = 0; t < element.length; t++) {
-              // 
+              // calc realprocent and update state
               element[t].totalTypePercent = element[t]?.procent || 0;
               if (element?.[t]?.properAmm != "" && element?.[t]?.amount != "") {
                 element[t].totalTypePercent = element?.[t]?.procent * element?.[t]?.properAmm / element?.[t]?.amount
@@ -182,7 +182,9 @@ const EditBregade = () => {
                   element[t].totalTypePercent = element?.[t]?.procent * element?.[t]?.properICT / element?.[t]?.amount
                 }
               }
+              sumTotalSumBattalion += element[t].totalTypePercent
             }
+            updateBatt[j].totalSumBattalion = sumTotalSumBattalion;
 
           }
           allData[i].battalion = updateBatt
@@ -191,7 +193,7 @@ const EditBregade = () => {
       setData(allData)
       setAwaitRoute(false)
       halndleLocalStorage(JSON.stringify(allData))
-      console.log("data : ", allData);
+      // console.log("data : ", allData);
     }
     // if !isClac do clac and cut
   }
@@ -208,12 +210,24 @@ const EditBregade = () => {
     }
   }
 
+  const calcAndGetSumAllBattalionOnBregate = () => {
+    let sum = 0
+    for (let i = 0; i < formBregade?.battalion.length; i++) {
+      const element = formBregade.battalion[i].means;
+      for (let j = 0; j < element.length; j++) {
+        sum += element[j].procent
+      }
+    }
+    // console.log("IN case : ", sum);
+    return sum
+  }
 
-  console.log(formBattalion);
+
+  // console.log(formBattalion);
   return (
     <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5'>
       <Topbar ManageSystem={true} title={'הוספת חטיבה'} toggelExcle={false} showTheme={true} />
-
+      <div className="">{calcAndGetSumAllBattalionOnBregate()?.toFixed(1)}</div>
       {/* header content */}
       <HeaderCreateData isVlaidation={!checkChanges} onClickBtnAdd={() => handleClickSaveAndDone({}, true)} onClickBtnDel={handleDleteBregade} delBtn={'מחיקת חטיבה'} btnAdd={'שמירה וסיום'} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} />
 

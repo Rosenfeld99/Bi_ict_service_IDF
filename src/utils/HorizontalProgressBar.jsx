@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { BsBarChartFill } from 'react-icons/bs'
 import useDataStore from '../hooks/useDataStore'
 export default function HorizontalProgressBar({ title, inValue, perValue, colorBar }) {
     const { systemStract } = useDataStore()
-    console.log(perValue);
+    // console.log(perValue);
 
     const findAndViewColorBySystemStract = () => {
-        console.log(systemStract);
+        // console.log(systemStract);
         const singleItem = systemStract?.find(item => item?.meanName == title)
         if (perValue < singleItem?.qualificationsColorCenter) {
             return "bg-[#ff5449]"
@@ -21,9 +21,9 @@ export default function HorizontalProgressBar({ title, inValue, perValue, colorB
         }
     }
     const findAndViewColorLightBySystemStract = (isText) => {
-        console.log(systemStract);
+        // console.log(systemStract);
         const singleItem = systemStract?.find(item => item?.meanName == title)
-        console.log(singleItem);
+        // console.log(singleItem);
         if (perValue < singleItem?.qualificationsColorCenter) {
             return isText ? "text-[#ffcdca]" : "bg-[#ffcdca]"
         } else if (perValue >= singleItem?.qualificationsColorHigh) {
