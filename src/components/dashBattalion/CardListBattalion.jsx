@@ -7,7 +7,7 @@ import icons from '../../utils/icons/icons'
 
 export default function CardListBattalion({ item }) {
 
-    console.log(item);
+    // console.log(item);
     return (
         <div className='flex-1 flex flex-col gap-5'>
             <div className="flex justify-end font-semibold">

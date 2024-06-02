@@ -4,7 +4,7 @@ import useDataStore from '../hooks/useDataStore'
 
 import HeaderCreateData from '../utils/HeaderCreateData'
 import { FaPen } from 'react-icons/fa'
-import { generateID } from '../utils/func'
+import { fixAndReturnNumber, generateID } from '../utils/func'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import TableGrid from '../components/table/TableGrid'
 
@@ -49,8 +49,8 @@ const EditBregade = () => {
           comments: "",
         }
       ],
-      percentOfUnit: "",
-      totalSumBattalion: "",
+      percentOfUnit: 0,
+      totalSumBattalion: 0,
       comments: "",
     },
   )
@@ -153,7 +153,7 @@ const EditBregade = () => {
           let curr = element[j]?.means[i]
           sumTotalSumBattalion += curr?.totalTypePercent
         }
-        element[j].totalSumBattalion = sumTotalSumBattalion > 0 ? sumTotalSumBattalion?.toFixed(1) : 0;
+        element[j].totalSumBattalion = fixAndReturnNumber(sumTotalSumBattalion > 0 ? Number(sumTotalSumBattalion)?.toFixed(1) : 0);
       }
 
       console.log("formBregade : ", formBregade);
@@ -173,18 +173,18 @@ const EditBregade = () => {
             // console.log(element);
             for (let t = 0; t < element.length; t++) {
               // calc realprocent and update state
-              element[t].totalTypePercent = element[t]?.procent || 0;
+              element[t].totalTypePercent = fixAndReturnNumber(element[t]?.procent) || 0;
               if (element?.[t]?.properAmm != "" && element?.[t]?.amount != "") {
-                element[t].totalTypePercent = element?.[t]?.procent * element?.[t]?.properAmm / element?.[t]?.amount
+                element[t].totalTypePercent = fixAndReturnNumber(element?.[t]?.procent * element?.[t]?.properAmm / element?.[t]?.amount)
               }
               else {
                 if (element?.[t]?.properICT != "" && element?.[t]?.amount != "") {
-                  element[t].totalTypePercent = element?.[t]?.procent * element?.[t]?.properICT / element?.[t]?.amount
+                  element[t].totalTypePercent = fixAndReturnNumber(element?.[t]?.procent * element?.[t]?.properICT / element?.[t]?.amount)
                 }
               }
               sumTotalSumBattalion += element[t].totalTypePercent
             }
-            updateBatt[j].totalSumBattalion = sumTotalSumBattalion;
+            updateBatt[j].totalSumBattalion = fixAndReturnNumber(sumTotalSumBattalion);
 
           }
           allData[i].battalion = updateBatt
