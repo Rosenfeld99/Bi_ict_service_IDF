@@ -8,7 +8,7 @@ const ProgressBar = ({ title, perValue, color, maxValue, batProcent, batAmount }
             <div className=" flex items-center justify-between gap-2">
                 {/* cast type of value to tstring */}
                 {batAmount && batAmount} {/* add to breagde amount sum for all and view*/}
-                <progress className={`progress w-full ${color}`} value={batProcent} max={perValue || "100"}></progress>
+                <progress className={`progress w-full ${color}`} value={perValue} max={batProcent}></progress>
                 <div className="flex items-center justify-end w-36">{perValue}% / {batProcent && batProcent + "%"}</div>
             </div>
         </div>

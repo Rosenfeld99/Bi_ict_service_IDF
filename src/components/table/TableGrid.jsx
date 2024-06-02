@@ -646,7 +646,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
                       handleProcentMeansChange(index, e.target.value, bat?.type_id)
                   }} className={custumStyleInput} defaultValue={bat?.procent} />{<icons.Percentage className='text-sm absolute top-0 right-0' />}
                 </div></td>
-                <td className={custumStyleBody}><input type='text' onChange={(e) => handleInputsBregadeChange(e.target.value, "meansComments", bat?.type_id)} className={custumStyleInput} defaultValue={bat?.comments} /></td>
+                <td className={custumStyleBody}><textarea type='text' onChange={(e) => handleInputsBregadeChange(e.target.value, "meansComments", bat?.type_id)} className={custumStyleInput} defaultValue={bat?.comments} /></td>
                 {hoveredIndex === index && (
                   <div onClick={() => handelDeleteLine(bat?.type_id)} className="absolute top-0 left-0 tooltip tooltip-right" data-tip="מחיקת שורה">
                     <button className="flex items-center gap-3 p-1 px-2 bg-accent_bg text-red-500"> <FaTrash /></button>

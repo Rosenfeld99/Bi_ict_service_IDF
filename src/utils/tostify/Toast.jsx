@@ -19,7 +19,7 @@ export default function Toast({ time, title, message, type, show, setShow }) {
             color: "red",
             icon: <IoCloseCircle size={40} color="red" />,
         },
-        Alert: {
+        Warning: {
             bg: "rgba(255, 247, 229)",
             bgBar: "rgb(255, 240, 204)",
             color: "orange",

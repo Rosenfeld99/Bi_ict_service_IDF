@@ -8,18 +8,28 @@ export default function CardItemBattalion({ item }) {
     const customStyleBgCommentsHeader = 'bg-accent_bg dark:bg-dark_accent_bg text-secoundary dark:text-dark_secoundary'
     const customStyleBgComments = 'bg-accent_bg dark:bg-dark_accent_bg text-secoundary dark:text-dark_secoundary'
 
-    const innerColorProgress = (item) =>{
-        if (((item.totalSumBattalion / item.percentOfUnit) * 100) > 80) {
-            return "progress-info"
-        }else if(((item.totalSumBattalion / item.percentOfUnit) * 100) < 50){
-            return "progress-error"
-        }else{
-            return "progress-warning"
+    const innerColorProgress = (item, isInMeans) => {
+        if (isInMeans) {
+            if (((item.totalTypePercent / item.procent) * 100) > 80) {
+                return "progress-info"
+            } else if (((item.totalTypePercent / item.procent) * 100) < 50) {
+                return "progress-error"
+            } else {
+                return "progress-warning"
+            }
+        } else {
+            if (((item.totalSumBattalion / item.percentOfUnit) * 100) > 80) {
+                return "progress-info"
+            } else if (((item.totalSumBattalion / item.percentOfUnit) * 100) < 50) {
+                return "progress-error"
+            } else {
+                return "progress-warning"
+            }
         }
     }
     return (
         <div className="rounded-lg overflow-hidden flex flex-col shadow-md border">
-            <progress className={`progress w-full rounded-none ${innerColorProgress(item)}`} value={((item.totalSumBattalion / item.percentOfUnit) * 100)} max="100">90</progress>
+            <progress className={`progress w-full rounded-none ${innerColorProgress(item, false)}`} value={((item.totalSumBattalion / item.percentOfUnit) * 100)} max="100">90</progress>
             <div className="pt-2 mb-5 px-3 md:px-5 lg:px-8">
                 <div className=" flex items-center justify-between mb-4 gap-4">
                     <div className=" font-semibold text-center">{item.battalionName}</div>
@@ -36,7 +46,7 @@ export default function CardItemBattalion({ item }) {
                     {item.means.map((bat) => (
                         <div key={bat.type_id}>
                             {/* {console.log(bat)} */}
-                            <ProgressBar batAmount={bat?.amount} batProcent={bat?.procent} color={"progress-info"} perValue={bat.totalTypePercent} title={bat.meansName + (bat.nameType && "-(" + bat.nameType + ")")} maxValue={bat.procent} />
+                            <ProgressBar batAmount={bat?.amount} batProcent={bat?.procent} color={innerColorProgress(bat, true)} perValue={bat.totalTypePercent} title={bat.meansName + (bat.nameType && "-(" + bat.nameType + ")")} maxValue={bat.procent} />
                         </div>
                     ))}
                 </div>
@@ -47,9 +57,11 @@ export default function CardItemBattalion({ item }) {
                             הערות
                         </div>
                         <div className="max-h-20 min-h-20 w-full min-w-16 overflow-y-auto">
-                            <p className="mt-2 mb-2 text-gray-500 dark:text-neutral-400 text-center px-1">
-                                {item.comments === "new comments" ? "-----" : item.comments}
-                            </p>
+                            {item.means?.map((mean, index) => (
+                                <p key={index} className="mt-2 mb-2 text-gray-500 dark:text-neutral-400 text-start px-1">
+                                    {mean.comments === "" ? "-----" : (<><b>{mean.meansName}</b> : {mean.comments}</>)}
+                                </p>
+                            ))}
                         </div>
                     </div>
                 </div>

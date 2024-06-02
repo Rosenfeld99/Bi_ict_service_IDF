@@ -1,48 +1,52 @@
 import React from 'react';
 import * as XLSX from 'xlsx';
+import useDataStore from '../src/hooks/useDataStore';
+import Toast from '../src/utils/tostify/Toast';
 
-const DownloadExcel = () => {
-  // Sample data array with nested array
-  const data = [
-    { name: 'John', age: 30, city: 'New York' },
-    { name: 'Anna', age: 22, city: 'London' },
-    { name: 'Mike', age: 32, city: 'San Francisco' },
-    { 
-      array: [
-        { name: 'John', age: 30, city: 'New York' },
-        { name: 'Anna', age: 22, city: 'London' },
-        { name: 'Mike', age: 32, city: 'San Francisco' }
-      ] 
-    }
-  ];
+const DownloadExcel = ({ iconToDownload }) => {
+  const { data, handelToast, toast, setShowToast, showToast } = useDataStore()
 
-  const handleDownload = () => {
-    // Helper function to flatten the nested array
-    const flattenData = (data) => {
-      const flatData = [];
-      
-      data.forEach(item => {
-        if (Array.isArray(item.array)) {
-          item.array.forEach(nestedItem => {
-            flatData.push(nestedItem);
-          });
-        } else {
-          flatData.push(item);
+  // Sample data for different sheets
+  const handleCreateExcle = () => {
+    let createList = []
+
+    for (let index = 0; index < data.length; index++) {
+      const element = data[index].battalion;
+      let createListSheets = []
+      for (let j = 0; j < element.length; j++) {
+        const currBattalion = element[j];
+
+        createListSheets.push({ "יחידה": currBattalion.battalionName, "אמצעים": "", "סוג אמצעים": "", "כמות": "", "תקינות תקשובית": "", "אחוזים": currBattalion.percentOfUnit, "אחוזים פרטניים": "" })
+        for (let t = 0; t < currBattalion.means.length; t++) {
+          createListSheets.push({ "אמצעים": currBattalion.means[t].meansName, "סוג אמצעים": currBattalion.means[t].meanType, "כמות": currBattalion.means[t].amount, "תקינות תקשובית": currBattalion.means[t].properICT, "תקינות חימושית": currBattalion.means[t].properAmm, "אחוזים פרטניים": currBattalion.means[t].procent, "הערות": currBattalion.means[t].comments })
         }
-      });
-      
-      return flatData;
-    };
+      }
+      createList.push({ sheetsName: data[index].brigadeName, table: createListSheets })
+    }
+    // console.log(createList);
+    if (createList.length == 0 || createList.length == []) {
+      return handelToast("אזהרה", "ניראה שאין נתונים להוריד", "Warning", 10)
+    } else {
+      handleDownload(createList)
+      return handelToast("הצלחה", "הקובץ נוצר בהצלחה", "Success", 10)
+    }
+  }
 
-    // Flatten the data
-    const flattenedData = flattenData(data);
 
-    // Create a new workbook and a worksheet
+
+
+  const handleDownload = (createList) => {
+
+    // Create a new workbook
     const workbook = XLSX.utils.book_new();
-    const worksheet = XLSX.utils.json_to_sheet(flattenedData);
 
-    // Append the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+    for (let index = 0; index < createList.length; index++) {
+
+      // Convert data to worksheets and append to the workbook
+      const worksheet = XLSX.utils.json_to_sheet(createList[index].table);
+      XLSX.utils.book_append_sheet(workbook, worksheet, createList[index].sheetsName);
+
+    }
 
     // Generate a buffer
     const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
@@ -68,10 +72,20 @@ const DownloadExcel = () => {
   };
 
   return (
-    <div>
-      <h1>Download Excel File</h1>
-      <button onClick={handleDownload}>Download</button>
-    </div>
+    <>
+      {/* Toast */}
+      {showToast && (
+        <Toast
+          setShow={setShowToast}
+          show={showToast}
+          title={toast.title}
+          message={toast.message}
+          time={toast.time}
+          type={toast.type}
+        />
+      )}
+      <button onClick={handleCreateExcle}>{iconToDownload}</button>
+    </>
   );
 };
 
