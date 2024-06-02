@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { generateID } from '../../utils/func';
+import { fixAndReturnNumber, generateID } from '../../utils/func';
 import { FaTrash } from 'react-icons/fa';
 import useDataStore from '../../hooks/useDataStore';
 import Toast from '../../utils/tostify/Toast';
@@ -120,7 +120,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
             properAmm: "",
             procent: "",
             comments: "",
-            totalTypePercent: "",
+            totalTypePercent: 0,
             comments: "",
             // we need to add uniq id for mean element --> and add more in data file (data.js) 
           },
@@ -134,11 +134,11 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
             properAmm: "",
             procent: "",
             comments: "",
-            totalTypePercent: "",
+            totalTypePercent: 0,
             comments: "",
           }
         ],
-        percentOfUnit: "",
+        percentOfUnit: 0,
         totalSumBattalion: "",
         comments: "",
       },)
@@ -163,7 +163,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
           alert("מינימום מספר של אחוזים הוא 1%")
           break
         }
-        setFormBattalion({ ...formBattalion, percentOfUnit: inputVal });
+        setFormBattalion({ ...formBattalion, percentOfUnit: fixAndReturnNumber(inputVal) });
         break;
       case "meansName":
         setFormBattalion(prevState => ({
@@ -273,7 +273,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
       properAmm: "",
       procent: "",
       comments: "",
-      totalTypePercent: "",
+      totalTypePercent: 0,
       comments: "",
     })
     setFormBattalion({ ...formBattalion, means: listMeens })
@@ -348,12 +348,13 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
           allBattalion[index] = currItem;
         }
       }
+      console.log(allBattalion);
       // call func save the bregate 
       setBregadeBattalion(allBattalion)
       setFormBregade({ ...formBregade, battalion: allBattalion })
       console.log(formBregade);
     }
-    handleClickSaveAndDone({}, true)
+    // handleClickSaveAndDone({}, true)
     setCurrentBattailion({})
     setFormBattalion({
       battalionName: "",
@@ -369,9 +370,8 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
           properAmm: "",
           procent: "",
           comments: "",
-          totalTypePercent: "",
+          totalTypePercent: 0,
           comments: "",
-          // we need to add uniq id for mean element --> and add more in data file (data.js) 
         },
         {
           meansName: "",
@@ -383,15 +383,17 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
           properAmm: "",
           procent: "",
           comments: "",
-          totalTypePercent: "",
+          totalTypePercent: 0,
           comments: "",
         }
       ],
-      percentOfUnit: "",
+      percentOfUnit: 0,
       totalSumBattalion: "",
       comments: "",
     })
     setIndicatorErrors({ index: null, batIndex: null, itemGrid: false })
+    console.log(formBregade);
+
   }
 
   const handleDeleteBattalion = (btId) => {
@@ -414,7 +416,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
               properAmm: "",
               procent: "",
               comments: "",
-              totalTypePercent: "",
+              totalTypePercent: 0,
               comments: "",
             },
             {
@@ -427,7 +429,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
               properAmm: "",
               procent: "",
               comments: "",
-              totalTypePercent: "",
+              totalTypePercent: 0,
               comments: "",
             }
           ],

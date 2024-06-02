@@ -8,13 +8,13 @@ export default function HorizontalProgressBar({ title, inValue, perValue, colorB
     const findAndViewColorBySystemStract = () => {
         // console.log(systemStract);
         const singleItem = systemStract?.find(item => item?.meanName == title)
-        if (perValue < singleItem?.qualificationsColorCenter) {
-            return "bg-[#ff5449]"
-        } else if (perValue >= singleItem?.qualificationsColorHigh) {
-            return "bg-[#31ab70]"
+        if (perValue && inValue && (inValue / perValue * 100) < singleItem?.qualificationsColorCenter) {
+            return "bg-[#FF5449]"
+        } else if (perValue && inValue && (inValue / perValue * 100) >= singleItem?.qualificationsColorHigh) {
+            return "bg-[#31AB70]"
         }
-        else if (perValue < singleItem?.qualificationsColorHigh && perValue > singleItem?.qualificationsColorLow) {
-            return "bg-[#f4b400]"
+        else if (perValue && inValue && (inValue / perValue * 100) < singleItem?.qualificationsColorHigh && perValue > singleItem?.qualificationsColorLow) {
+            return "bg-[#F4B400]"
         }
         else {
             return "bg-[#000]"
@@ -24,13 +24,13 @@ export default function HorizontalProgressBar({ title, inValue, perValue, colorB
         // console.log(systemStract);
         const singleItem = systemStract?.find(item => item?.meanName == title)
         // console.log(singleItem);
-        if (perValue < singleItem?.qualificationsColorCenter) {
-            return isText ? "text-[#ffcdca]" : "bg-[#ffcdca]"
-        } else if (perValue >= singleItem?.qualificationsColorHigh) {
-            return isText ? "text-[#c3e7d6]" : "bg-[#c3e7d6]"
+        if ((perValue && inValue && (inValue / perValue * 100)) < singleItem?.qualificationsColorCenter) {
+            return isText ? "text-[#FFCDCA]" : "bg-[#FFCDCA]"
+        } else if ((perValue && inValue && (inValue / perValue * 100)) >= singleItem?.qualificationsColorHigh) {
+            return isText ? "text-[#C3E7D6]" : "bg-[#C3E7D6]"
         }
-        else if (perValue < singleItem?.qualificationsColorHigh && perValue > singleItem?.qualificationsColorLow) {
-            return isText ? "text-[#fce9b5]" : "bg-[#fce9b5]"
+        else if ((perValue && inValue && (inValue / perValue * 100)) < singleItem?.qualificationsColorHigh && perValue > singleItem?.qualificationsColorLow) {
+            return isText ? "text-[#FCE9B5]" : "bg-[#FCE9B5]"
         }
         else {
             return isText ? "text-[#0000004a]" : "bg-[#0000004a]"

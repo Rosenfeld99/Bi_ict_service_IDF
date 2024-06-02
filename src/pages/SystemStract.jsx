@@ -172,21 +172,21 @@ export default function SystemStract() {
                                 <div className=" flex items-center gap-3">
                                     <div className=" relative">
                                         {<icons.Percentage className='absolute left-0 bg-success h-full text-white w-5' />}
-                                        <input defaultValue={formInputs.qualificationsColorHigh} onChange={(e) => setFormInputs({ ...formInputs, qualificationsColorHigh: parseInt(e.target.value) })} type='number' min={formInputs.qualificationsColorCenter || 1} max={100} checked={formInputs.amount} className=" bg-primary px-3 py-1.5 outline-none text-sm font-medium text-gray-800 shadow-[#0000003c] shadow-md dark:text-white border-l-8 border-success w-20" />
+                                        <input value={formInputs.qualificationsColorHigh} onChange={(e) => setFormInputs({ ...formInputs, qualificationsColorHigh: parseInt(e.target.value) })} type='number' min={formInputs.qualificationsColorCenter || 1} max={100} checked={formInputs.amount} className=" bg-primary px-3 py-1.5 outline-none text-sm font-medium text-gray-800 shadow-[#0000003c] shadow-md dark:text-white border-l-8 border-success w-20" />
                                     </div>
                                     <div className=" text-primary">כשירות גבוהה</div>
                                 </div>
                                 <div className=" flex items-center gap-3">
                                     <div className="relative">
                                         {<icons.Percentage className='absolute left-0 bg-warning h-full text-white w-5' />}
-                                        <input defaultValue={formInputs.qualificationsColorCenter} onChange={(e) => setFormInputs({ ...formInputs, qualificationsColorCenter: parseInt(e.target.value) })} min={formInputs.qualificationsColorLow || 1} max={formInputs.qualificationsColorHigh - 1} type='number' checked={formInputs.ict} className=" bg-primary px-3 py-1.5 outline-none text-sm font-medium text-gray-800 shadow-[#0000003c] shadow-md dark:text-white border-l-8 border-warning w-20" />
+                                        <input value={formInputs.qualificationsColorCenter} onChange={(e) => setFormInputs({ ...formInputs, qualificationsColorCenter: parseInt(e.target.value) })} min={formInputs.qualificationsColorLow || 1} max={formInputs.qualificationsColorHigh - 1} type='number' checked={formInputs.ict} className=" bg-primary px-3 py-1.5 outline-none text-sm font-medium text-gray-800 shadow-[#0000003c] shadow-md dark:text-white border-l-8 border-warning w-20" />
                                     </div>
                                     <div className=" text-primary">כשירות בינונית</div>
                                 </div>
                                 <div className=" flex items-center gap-3">
                                     <div className="relative">
                                         {<icons.Percentage className='absolute left-0 bg-error h-full text-white w-5' />}
-                                        <input defaultValue={formInputs.qualificationsColorLow} onChange={(e) => setFormInputs({ ...formInputs, qualificationsColorLow: parseInt(e.target.value) })} type='number' min={1} max={formInputs.qualificationsColorCenter - 1} checked={formInputs.arm} className=" bg-primary px-3 py-1.5 outline-none text-sm font-medium text-gray-800 shadow-[#0000003c] shadow-md dark:text-white border-l-8 border-error w-20" />
+                                        <input value={formInputs.qualificationsColorLow} onChange={(e) => setFormInputs({ ...formInputs, qualificationsColorLow: parseInt(e.target.value) })} type='number' min={1} max={formInputs.qualificationsColorCenter - 1} checked={formInputs.arm} className=" bg-primary px-3 py-1.5 outline-none text-sm font-medium text-gray-800 shadow-[#0000003c] shadow-md dark:text-white border-l-8 border-error w-20" />
                                     </div>
                                     <div className=" text-primary">כשירות נמוכה</div>
                                 </div>

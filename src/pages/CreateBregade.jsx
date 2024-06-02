@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Topbar from '../components/topbar/Topbar'
 import useDataStore from '../hooks/useDataStore'
 import HeaderCreateData from '../utils/HeaderCreateData'
-import { generateID } from '../utils/func'
+import { fixAndReturnNumber, generateID } from '../utils/func'
 import TableGrid from '../components/table/TableGrid'
 import { useNavigate } from 'react-router-dom'
 
@@ -25,8 +25,8 @@ const CreateBregade = () => {
           properAmm: "",
           procent: "",
           comments: "",
-          totalTypePercent: "",
-          comments: "",          // we need to add uniq id for mean element --> and add more in data file (data.js) 
+          totalTypePercent: 0,
+          comments: "",
         },
         {
           meansName: "",
@@ -38,15 +38,15 @@ const CreateBregade = () => {
           properAmm: "",
           procent: "",
           comments: "",
-          totalTypePercent: "",
+          totalTypePercent: 0,
           comments: "",
         }
       ],
-      percentOfUnit: "",
-      totalSumBattalion: "",
+      percentOfUnit: 0,
+      totalSumBattalion: 0,
       comments: "",
     },
-  )
+  );
   const [currentBattailion, setCurrentBattailion] = useState(formBattalion)
   const [bregadeBattalion, setBregadeBattalion] = useState([])
   // console.log(bregadeBattalion);
@@ -88,7 +88,7 @@ const CreateBregade = () => {
   const handleClickSaveAndDone = (state, isCalc) => {
     // handle cut data key for dashboard
     if (isCalc && formBregade?.battalion?.length > 0) {
-      let newB = { ...formBregade }
+      let newB = formBregade
       let allBattalion = newB?.battalion
       let totalViewQualification = newB?.totalViewQualification
 
@@ -99,7 +99,7 @@ const CreateBregade = () => {
           if (currMean?.procent && currMean?.amount && currMean?.properICT) {
             let createRealProcent = currMean?.procent || 0;
             if (currMean?.properAmm != "" && currMean?.amount != "") {
-              currMean.totalTypePercent = currMean?.procent * currMean?.properAmm / currMean?.amount
+              currMean.totalTypePercent = fixAndReturnNumber(currMean?.procent * currMean?.properAmm / currMean?.amount)
             }
             else {
               if (currMean?.properICT != "" && currMean?.amount != "") {
@@ -107,10 +107,10 @@ const CreateBregade = () => {
               }
             }
 
-            currMean.totalTypePercent = currMean?.procent / currMean?.amount * currMean?.properICT;
+            currMean.totalTypePercent = fixAndReturnNumber(currMean?.procent / currMean?.amount * currMean?.properICT);
             // console.log("currMean?.procent / currMean?.amount * currMean?.properICT ", currMean?.procent / currMean?.amount * currMean?.properICT);
           } else {
-            currMean.totalTypePercent = currMean?.procent;
+            currMean.totalTypePercent = fixAndReturnNumber(currMean?.procent);
           }
 
         }
@@ -142,8 +142,8 @@ const CreateBregade = () => {
         sumOfTotalPercent += element.realProcent;
       }
 
-       // Convert the procent values to fixed decimal places if needed
-       totalViewQualification?.forEach(item => {
+      // Convert the procent values to fixed decimal places if needed
+      totalViewQualification?.forEach(item => {
         item.procent = parseFloat(item.procent.toFixed(1));
         item.realProcent = parseFloat(item.realProcent.toFixed(1));
       });
@@ -196,7 +196,7 @@ const CreateBregade = () => {
             properAmm: "",
             procent: "",
             comments: "",
-            totalTypePercent: "",
+            totalTypePercent: 0,
             comments: "",
             // we need to add uniq id for mean element --> and add more in data file (data.js) 
           },
@@ -209,12 +209,12 @@ const CreateBregade = () => {
             properAmm: "",
             procent: "",
             comments: "",
-            totalTypePercent: "",
+            totalTypePercent: 0,
             comments: "",
           }
         ],
-        percentOfUnit: "",
-        totalSumBattalion: "",
+        percentOfUnit: 0,
+        totalSumBattalion: 0,
         comments: "",
       },)
   }

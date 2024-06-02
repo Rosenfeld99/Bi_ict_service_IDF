@@ -7,18 +7,28 @@ export default function CardItemBattalion({ item }) {
     const customStyleBgColorsText = 'text-secoundary dark:text-dark_accent'
     const customStyleBgCommentsHeader = 'bg-accent_bg dark:bg-dark_accent_bg text-secoundary dark:text-dark_secoundary'
     const customStyleBgComments = 'bg-accent_bg dark:bg-dark_accent_bg text-secoundary dark:text-dark_secoundary'
+
+    const innerColorProgress = (item) =>{
+        if (((item.totalSumBattalion / item.percentOfUnit) * 100) > 80) {
+            return "progress-info"
+        }else if(((item.totalSumBattalion / item.percentOfUnit) * 100) < 50){
+            return "progress-error"
+        }else{
+            return "progress-warning"
+        }
+    }
     return (
         <div className="rounded-lg overflow-hidden flex flex-col shadow-md border">
-            <progress className="progress progress-accent w-full rounded-none" value={((item.percentOfUnit / item.totalSumBattalion) * 100)} max="100">90</progress>
+            <progress className={`progress w-full rounded-none ${innerColorProgress(item)}`} value={((item.totalSumBattalion / item.percentOfUnit) * 100)} max="100">90</progress>
             <div className="pt-2 mb-5 px-3 md:px-5 lg:px-8">
                 <div className=" flex items-center justify-between mb-4 gap-4">
                     <div className=" font-semibold text-center">{item.battalionName}</div>
                     <div>
                         <span className=''>
-                            {item.percentOfUnit + "%"} /
+                            {item.totalSumBattalion + "%"} / {" "}
                         </span>
                         <span className='font-semibold'>
-                            {item.totalSumBattalion + "%"}
+                            {item.percentOfUnit + "%"}
                         </span>
                     </div>
                 </div>

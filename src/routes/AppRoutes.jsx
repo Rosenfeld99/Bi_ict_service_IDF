@@ -11,7 +11,7 @@ import Register from '../pages/Register'
 import CreateBregade from '../pages/CreateBregade'
 import DashBattalion from '../pages/DashBattalion'
 import EditBregade from '../pages/EditBregade'
-import AddUser from '../pages/AddUser'
+import TestExcle from '../../test/TestExcle'
 
 const AppRoutes = () => {
     const { user } = useDataStore();
@@ -25,6 +25,8 @@ const AppRoutes = () => {
                 {/* routes protected */}
                 {user &&
                     <>
+                    {/* add testing for excle file (TODO:) --> craete starcting and display data the nesesry */}
+                        {/* <Route path="/" element={<TestExcle />} /> */}
                         <Route path="/" element={<Home />} />
                         <Route path="/dashboard/:id" element={<DashBattalion />} />
                         {user.access != "user" && <>

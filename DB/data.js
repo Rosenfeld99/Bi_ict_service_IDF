@@ -1,650 +1,6 @@
 import { generateID } from "../src/utils/func";
 
 export const dataDB = [
-  // {
-  //   brigadeName: "alpha 1",
-  //   brigade_id: generateID(),
-  //   battalion: [
-  //     {
-  //       battalionName: "eli_1",
-  //       battalion_id: generateID(),
-  //       means: [
-  //         {
-  //           meansName: "item 1",
-
-  //           nameType: "number",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 12,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "item 1",
-
-  //           nameType: "string",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 8,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "item 1",
-
-  //           nameType: "obg",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "mosheCC",
-
-  //           nameType: "item 2",
-  //           type_id: generateID(),
-  //           amount: "10",
-  //           properICT: "10",
-  //           properAmm: "10",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "gal",
-
-  //           nameType: "malnan",
-  //           type_id: generateID(),
-  //           amount: "4",
-  //           properICT: "4",
-  //           properAmm: "4",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //       ],
-  //       percentOfUnit: "50",
-  //       totalSumBattalion: "50",
-  //       comments: "no comments",
-  //     },
-  //     {
-  //       battalionName: "eli_2",
-  //       battalion_id: generateID(),
-  //       means: [
-  //         {
-  //           meansName: "eli",
-
-  //           nameType: "number",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 12,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "eli",
-
-  //           nameType: "string",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 8,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "eli",
-
-  //           nameType: "obg",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "mosheCC",
-
-  //           nameType: "yahav",
-  //           type_id: generateID(),
-  //           amount: "10",
-  //           properICT: "10",
-  //           properAmm: "10",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "gal",
-
-  //           nameType: "malnan",
-  //           type_id: generateID(),
-  //           amount: "4",
-  //           properICT: "4",
-  //           properAmm: "4",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //       ],
-  //       percentOfUnit: "10",
-  //       totalSumBattalion: "10",
-  //       comments: "no comments",
-  //     },
-  //     {
-  //       battalionName: "eli_3",
-  //       battalion_id: generateID(),
-  //       means: [
-  //         {
-  //           meansName: "avi 2",
-
-  //           nameType: "number",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 12,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "avi 2",
-
-  //           nameType: "string",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 8,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "avi 2",
-
-  //           nameType: "obg",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "mosheCC",
-
-  //           nameType: "yahav",
-  //           type_id: generateID(),
-  //           amount: "10",
-  //           properICT: "10",
-  //           properAmm: "10",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "gal",
-
-  //           nameType: "malnan",
-  //           type_id: generateID(),
-  //           amount: "4",
-  //           properICT: "4",
-  //           properAmm: "4",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //       ],
-  //       percentOfUnit: "40",
-  //       totalSumBattalion: "40",
-  //       comments: "no comments",
-  //     },
-  //   ],
-  //   lastUpdateTime: "14-04-2024",
-  //   lastUpdater: "momo",
-  //   totalSumQualification: "40",
-  //   totalViewQualification: [
-  //     {
-  //       meansName: "a",
-  //       procent: 24,
-  //     },
-  //     {
-  //       meansName: "b",
-  //       procent: 10,
-  //     },
-  //     {
-  //       meansName: "c",
-  //       procent: 4,
-  //     },
-  //     {
-  //       meansName: "d",
-  //       procent: 4,
-  //     },
-  //     {
-  //       meansName: "e",
-  //       procent: 4,
-  //     },
-  //   ],
-  //   workSpace: "alpha",
-  //   comments: "no comments",
-  // },
-  // {
-  //   brigadeName: "alpha",
-  //   brigade_id: generateID(),
-  //   battalion: [
-  //     {
-  //       battalionName: "moshe_1",
-  //       battalion_id: generateID(),
-  //       means: [
-  //         {
-  //           meansName: "nehoray",
-  //           type_id: generateID(),
-
-  //           nameType: "number",
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 12,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "nehoray",
-  //           type_id: generateID(),
-
-  //           nameType: "string",
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 8,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "nehoray",
-  //           type_id: generateID(),
-
-  //           nameType: "obg",
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "mosheCC",
-  //           type_id: generateID(),
-
-  //           nameType: "yahav",
-  //           amount: "10",
-  //           properICT: "10",
-  //           properAmm: "10",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "gal",
-  //           type_id: generateID(),
-
-  //           nameType: "malnan",
-  //           amount: "4",
-  //           properICT: "4",
-  //           properAmm: "4",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //       ],
-  //       percentOfUnit: "50",
-  //       totalSumBattalion: "50",
-  //       comments: "no comments",
-  //     },
-  //     {
-  //       battalionName: "moshe_2",
-  //       battalion_id: generateID(),
-  //       means: [
-  //         {
-  //           meansName: "nehoray",
-
-  //           nameType: "number",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 2,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "nehoray",
-
-  //           nameType: "string",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 8,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "nehoray",
-
-  //           nameType: "obg",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "mosheCC",
-
-  //           nameType: "yahav",
-  //           type_id: generateID(),
-  //           amount: "10",
-  //           properICT: "10",
-  //           properAmm: "10",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "gal",
-
-  //           nameType: "malnan",
-  //           type_id: generateID(),
-  //           amount: "4",
-  //           properICT: "4",
-  //           properAmm: "4",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //       ],
-  //       percentOfUnit: "10",
-  //       totalSumBattalion: "10",
-  //       comments: "no comments",
-  //     },
-  //     {
-  //       battalionName: "moshe_3",
-  //       battalion_id: generateID(),
-  //       means: [
-  //         {
-  //           meansName: "nehoray",
-
-  //           nameType: "number",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 2,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "nehoray",
-
-  //           nameType: "string",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 8,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "nehoray",
-
-  //           nameType: "obg",
-  //           type_id: generateID(),
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "24",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "mosheCC",
-
-  //           nameType: "yahav",
-  //           type_id: generateID(),
-  //           amount: "10",
-  //           properICT: "10",
-  //           properAmm: "10",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //         {
-  //           meansName: "gal",
-
-  //           nameType: "malnan",
-  //           type_id: generateID(),
-  //           amount: "4",
-  //           properICT: "4",
-  //           properAmm: "4",
-  //           procent: 4,
-  //           comments: "no comments",
-
-  //           totalTypePercent: "4",
-  //           comments: "no comments",
-  //         },
-  //       ],
-  //       percentOfUnit: "40",
-  //       totalSumBattalion: "40",
-  //       comments: "no comments",
-  //     },
-  //   ],
-  //   lastUpdateTime: "14-04-2024",
-  //   lastUpdater: "momo",
-  //   totalSumQualification: "40",
-  //   totalViewQualification: [
-  //     {
-  //       meansName: "a",
-  //       procent: 24,
-  //     },
-  //     {
-  //       meansName: "b",
-  //       procent: 10,
-  //     },
-  //     {
-  //       meansName: "c",
-  //       procent: 4,
-  //     },
-  //     {
-  //       meansName: "d",
-  //       procent: 4,
-  //     },
-  //     {
-  //       meansName: "e",
-  //       procent: 4,
-  //     },
-  //   ],
-  //   workSpace: "alpha",
-  //   comments: "no comments",
-  // },
-  // {
-  //   brigadeName: "bravo 1",
-  //   brigade_id: generateID(),
-  //   battalion: [
-  //     {
-  //       battalionName: "charlie_1",
-  //       battalion_id: generateID(),
-  //       means: [
-  //         {
-  //           meansName: "item 1",
-  //           type_id: generateID(),
-
-  //           nameType: "number",
-  //           amount: "3",
-  //           properICT: "3",
-  //           properAmm: "3",
-  //           procent: 15,
-  //           comments: "some comments",
-
-  //           totalTypePercent: "30",
-  //           comments: "some comments",
-  //         },
-  //         {
-  //           meansName: "item 2",
-  //           type_id: generateID(),
-
-  //           nameType: "string",
-  //           amount: "2",
-  //           properICT: "2",
-  //           properAmm: "2",
-  //           procent: 10,
-  //           comments: "some comments",
-
-  //           totalTypePercent: "20",
-  //           comments: "some comments",
-  //         },
-  //         {
-  //           meansName: "item 3",
-  //           type_id: generateID(),
-
-  //           nameType: "obg",
-  //           amount: "1",
-  //           properICT: "1",
-  //           properAmm: "1",
-  //           procent: 5,
-  //           comments: "some comments",
-
-  //           totalTypePercent: "10",
-  //           comments: "some comments",
-  //         },
-  //       ],
-  //       percentOfUnit: "30",
-  //       totalSumBattalion: "30",
-  //       comments: "some comments",
-  //     },
-  //     {
-  //       battalionName: "charlie_2",
-  //       battalion_id: generateID(),
-  //       means: [
-  //         {
-  //           meansName: "item 4",
-  //           type_id: generateID(),
-
-  //           nameType: "number",
-  //           amount: "4",
-  //           properICT: "4",
-  //           properAmm: "4",
-  //           procent: 20,
-  //           comments: "some comments",
-
-  //           totalTypePercent: "40",
-  //           comments: "some comments",
-  //         },
-  //         {
-  //           meansName: "item 5",
-  //           type_id: generateID(),
-
-  //           nameType: "string",
-  //           amount: "5",
-  //           properICT: "5",
-  //           properAmm: "5",
-  //           procent: 25,
-  //           comments: "some comments",
-
-  //           totalTypePercent: "50",
-  //           comments: "some comments",
-  //         },
-  //       ],
-  //       percentOfUnit: "70",
-  //       totalSumBattalion: "70",
-  //       comments: "some comments",
-  //     },
-  //   ],
-  //   lastUpdateTime: "15-04-2024",
-  //   lastUpdater: "mimi",
-  //   totalSumQualification: "60",
-  //   totalViewQualification: [
-  //     { meansName: "a", procent: 30 },
-  //     { meansName: "b", procent: 20 },
-  //     { meansName: "c", procent: 10 },
-  //   ],
-  //   workSpace: "bravo",
-  //   comments: "some comments",
-  // },
   {
     brigadeName: "תטיבת 460",
     brigade_id: generateID(),
@@ -664,7 +20,7 @@ export const dataDB = [
             procent: 12,
             comments: "new comments",
 
-            totalTypePercent: "12",
+            totalTypePercent: 1,
             comments: "new comments",
           },
           {
@@ -677,7 +33,7 @@ export const dataDB = [
             properAmm: "1",
             procent: 8,
             comments: "new comments",
-            totalTypePercent: "8",
+            totalTypePercent: 8,
           },
           {
             meansName: "כלי תקשוב",
@@ -689,7 +45,7 @@ export const dataDB = [
             properAmm: "1",
             procent: 4,
             comments: "new comments",
-            totalTypePercent: "4",
+            totalTypePercent: 4,
           },
           {
             meansName: "כלי פיקוד",
@@ -701,7 +57,7 @@ export const dataDB = [
             properAmm: "10",
             procent: 4,
             comments: "new comments",
-            totalTypePercent: "4",
+            totalTypePercent: 4,
           },
           {
             meansName: "ערכות שוב נידות",
@@ -713,7 +69,7 @@ export const dataDB = [
             properAmm: "",
             procent: 4,
             comments: "new comments",
-            totalTypePercent: "4",
+            totalTypePercent: 4,
           },
           {
             meansName: "סלולר צבאי",
@@ -725,7 +81,7 @@ export const dataDB = [
             properAmm: "",
             procent: 4,
             comments: "new comments",
-            totalTypePercent: "4",
+            totalTypePercent: 4,
           },
           {
             meansName: "אטל 2000",
@@ -737,7 +93,7 @@ export const dataDB = [
             properAmm: "",
             procent: 4,
             comments: "new comments",
-            totalTypePercent: "4",
+            totalTypePercent: 4,
           },
         ],
         percentOfUnit: "40",
@@ -756,7 +112,7 @@ export const dataDB = [
             properICT: "3",
             properAmm: "3",
             procent: 3.6,
-            totalTypePercent: "3.6",
+            totalTypePercent: 3.6,
             comments: "new comments",
           },
           {
@@ -767,7 +123,7 @@ export const dataDB = [
             properICT: "1",
             properAmm: "1",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "new comments",
           },
           {
@@ -778,7 +134,7 @@ export const dataDB = [
             properICT: "11",
             properAmm: "",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "new comments",
           },
           {
@@ -789,7 +145,7 @@ export const dataDB = [
             properICT: "12",
             properAmm: "",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "new comments",
           },
           {
@@ -800,7 +156,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 3.6,
-            totalTypePercent: "3.6",
+            totalTypePercent: 3.6,
             comments: "ציון מה-ASP",
           },
           {
@@ -811,7 +167,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "",
           },
         ],
@@ -831,7 +187,7 @@ export const dataDB = [
             properICT: "3",
             properAmm: "3",
             procent: 3.6,
-            totalTypePercent: "3.6",
+            totalTypePercent: 3.6,
             comments: "new comments",
           },
           {
@@ -842,7 +198,7 @@ export const dataDB = [
             properICT: "1",
             properAmm: "1",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "new comments",
           },
           {
@@ -853,7 +209,7 @@ export const dataDB = [
             properICT: "11",
             properAmm: "",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "new comments",
           },
           {
@@ -864,7 +220,7 @@ export const dataDB = [
             properICT: "12",
             properAmm: "",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "new comments",
           },
           {
@@ -875,7 +231,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 3.6,
-            totalTypePercent: "3.6",
+            totalTypePercent: 3.6,
             comments: "ציון מה-ASP",
           },
           {
@@ -886,7 +242,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "",
           },
         ],
@@ -906,7 +262,7 @@ export const dataDB = [
             properICT: "3",
             properAmm: "3",
             procent: 3.6,
-            totalTypePercent: "3.6",
+            totalTypePercent: 3.6,
             comments: "new comments",
           },
           {
@@ -917,7 +273,7 @@ export const dataDB = [
             properICT: "1",
             properAmm: "1",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "new comments",
           },
           {
@@ -928,7 +284,7 @@ export const dataDB = [
             properICT: "11",
             properAmm: "",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "new comments",
           },
           {
@@ -939,7 +295,7 @@ export const dataDB = [
             properICT: "12",
             properAmm: "",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "new comments",
           },
           {
@@ -950,7 +306,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 3.6,
-            totalTypePercent: "3.6",
+            totalTypePercent: 3.6,
             comments: "ציון מה-ASP",
           },
           {
@@ -961,7 +317,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 1.2,
-            totalTypePercent: "1.2",
+            totalTypePercent: 1.2,
             comments: "",
           },
         ],
@@ -981,7 +337,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 1.6,
-            totalTypePercent: "1.6",
+            totalTypePercent: 1.6,
             comments: "new comments",
           },
           {
@@ -992,7 +348,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 4.8,
-            totalTypePercent: "4.8",
+            totalTypePercent: 4.8,
             comments: "ציון מה-ASP",
           },
           {
@@ -1003,7 +359,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 1.6,
-            totalTypePercent: "1.6",
+            totalTypePercent: 1.6,
             comments: "",
           },
         ],
@@ -1023,7 +379,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 1.6,
-            totalTypePercent: "1.6",
+            totalTypePercent: 1.6,
             comments: "new comments",
           },
           {
@@ -1034,7 +390,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 4.8,
-            totalTypePercent: "4.8",
+            totalTypePercent: 4.8,
             comments: "ציון מה-ASP",
           },
           {
@@ -1045,7 +401,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 1.6,
-            totalTypePercent: "1.6",
+            totalTypePercent: 1.6,
             comments: "",
           },
         ],
@@ -1065,7 +421,7 @@ export const dataDB = [
             properICT: "1",
             properAmm: "1",
             procent: 3,
-            totalTypePercent: "3",
+            totalTypePercent: 3,
             comments: "new comments",
           },
           {
@@ -1076,7 +432,7 @@ export const dataDB = [
             properICT: "3",
             properAmm: "3",
             procent: 3,
-            totalTypePercent: "3",
+            totalTypePercent: 3,
             comments: "",
           },
           {
@@ -1087,7 +443,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 3,
-            totalTypePercent: "3",
+            totalTypePercent: 3,
             comments: "ציון מה - SAP",
           },
           {
@@ -1098,7 +454,7 @@ export const dataDB = [
             properICT: "",
             properAmm: "",
             procent: 1,
-            totalTypePercent: "1",
+            totalTypePercent: 1,
             comments: "",
           },
         ],
