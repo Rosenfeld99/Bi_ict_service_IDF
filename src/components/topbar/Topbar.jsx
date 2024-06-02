@@ -7,6 +7,7 @@ import ModalSider from '../modalSider/ModalSider'
 import SystemStract from '../../pages/SystemStract'
 import icons from '../../utils/icons/icons'
 import { ContextStore } from '../../context/ContextStore'
+import DownloadExcel from '../../../test/DownloadExcel'
 
 
 const Topbar = ({ title, showTheme, toggelExcle, ManageSystem }) => {
@@ -40,9 +41,10 @@ const Topbar = ({ title, showTheme, toggelExcle, ManageSystem }) => {
           }
 
           {/* excle icon download */}
-          {toggelExcle && <div className=" border-2 text-xl cursor-pointer border-secoundary rounded-full p-1 text-secoundary dark:text-dark_accent dark:border-dark_accent">
-            <FaRegFileExcel />
-          </div>}
+          {toggelExcle &&
+            <DownloadExcel iconToDownload={<div className=" border-2 text-xl cursor-pointer border-secoundary rounded-full p-1 text-secoundary dark:text-dark_accent dark:border-dark_accent">
+              <FaRegFileExcel />
+            </div>} />}
 
           {/* user info */}
           <div className=" flex items-center gap-2 cursor-pointer select-none">
