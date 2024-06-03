@@ -11,7 +11,7 @@ import Register from '../pages/Register'
 import CreateBregade from '../pages/CreateBregade'
 import DashBattalion from '../pages/DashBattalion'
 import EditBregade from '../pages/EditBregade'
-import TestExcle from '../../test/TestExcle'
+import EditUser from '../pages/EditUser'
 
 const AppRoutes = () => {
     const { user } = useDataStore();
@@ -31,6 +31,7 @@ const AppRoutes = () => {
                         <Route path="/dashboard/:id" element={<DashBattalion />} />
                         {user.access != "user" && <>
                             <Route path="/users" element={<Users />} />
+                            <Route path="/users/edit/:id" element={<EditUser />} />
                             {/* <Route path="/addUser" element={<AddUser />} /> */}
                             <Route path="/data" element={<Data />} />
                             <Route path="/data/create/bregade" element={<CreateBregade />} />

@@ -3,6 +3,7 @@ import Topbar from '../components/topbar/Topbar'
 import HeaderContent from '../utils/HeaderContent'
 import useDataStore from '../hooks/useDataStore'
 import icons from '../utils/icons/icons'
+import { Link } from 'react-router-dom'
 const Users = () => {
   const { usersList, setUsersList } = useDataStore()
   const [dataRender, setDataRender] = useState(usersList || []);
@@ -88,7 +89,12 @@ const Users = () => {
                 {/* permissions */}
                 <td>
                   <div className="flex items-center gap-3 font-semibold">
-                    {user?.access.toUpperCase()}
+                    {user?.role?.toUpperCase()}
+                    <select name="" id="">
+                      <option value="">עורך הכל</option>
+                      <option value="">מנהל הכל</option>
+                      <option value="">צופה </option>
+                    </select>
                   </div>
                 </td>
                 {/* role */}
@@ -122,10 +128,10 @@ const Users = () => {
                             <div className="flex items-center">
                               {<icons.Pen size={20} />}
                             </div>
-                            <div className="mx-3">
+                            <Link to={`/users/edit/${user?.userId}`} className="mx-3">
                               <div className="font-bold">עריכה</div>
                               <div className="text-sm opacity-50">עריכת הרשאת משתמש</div>
-                            </div>
+                            </Link>
                           </div>
                         </a>
                       </li>

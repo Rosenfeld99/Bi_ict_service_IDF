@@ -493,58 +493,51 @@ export const userDB = {
   WorkEmail: "s86234@army.idf.il",
   userId: generateID(),
   userName: "moshe",
-  access: "admin",
+  access: [{ brigadeName: "תטיבת 460", brigadeRole: "admin" }],
+  role: "admin",
 };
+
 export const usersListDB = [
   {
     FirstName: "moshe",
     LastName: "moshe",
     PicturURL:
       "https://play-lh.googleusercontent.com/S4wylkvt2jz16hnG9IG0pAZosbB82nWWy8P-rQkb54uH-SCVd5L2j7z7x1Vz5pZvIRc",
-    ProferredName: "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/צוות אלפא",
+    ProferredName:
+      "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר ודיגיטל/צוות אלפא",
     Title: "סמל",
     WorkEmail: "s86234@army.idf.il",
     userId: generateID(),
     userName: "moshe",
-    access: "admin",
+    access: [{ brigadeName: "תטיבת 460", brigadeRole: "admin" }],
+    role: "admin",
   },
   {
     FirstName: "eli",
-    LastName: "rozi",
+    LastName: "eli",
     PicturURL:
-      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
+      "https://play-lh.googleusercontent.com/S4wylkvt2jz16hnG9IG0pAZosbB82nWWy8P-rQkb54uH-SCVd5L2j7z7x1Vz5pZvIRc",
     ProferredName:
-      "אלי כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
+      "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר ודיגיטל/צוות אלפא",
     Title: "סמל",
     WorkEmail: "s86234@army.idf.il",
     userId: generateID(),
     userName: "eli",
-    access: "admin",
+    access: [{ brigadeName: "תטיבת 460", brigadeRole: "admin" }],
+    role: "admin",
   },
   {
-    FirstName: "nehoray",
-    LastName: "moshe",
+    FirstName: "adam",
+    LastName: "adam",
     PicturURL:
-      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
+      "https://play-lh.googleusercontent.com/S4wylkvt2jz16hnG9IG0pAZosbB82nWWy8P-rQkb54uH-SCVd5L2j7z7x1Vz5pZvIRc",
     ProferredName:
-      "נהוראי כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
+      "משה כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר ודיגיטל/צוות אלפא",
     Title: "סמל",
     WorkEmail: "s86234@army.idf.il",
     userId: generateID(),
-    userName: "nehoray",
-    access: "user",
-  },
-  {
-    FirstName: "nehoray",
-    LastName: "moshe",
-    PicturURL:
-      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
-    ProferredName:
-      "נהוראי כהן -פיקוד ההכשרות והאימונים/מקשא''פ/מדור לומ''ר וגיטל/צוות אלפא",
-    Title: "סמל",
-    WorkEmail: "s86234@army.idf.il",
-    userId: generateID(),
-    userName: "nehoray",
-    access: "user",
+    userName: "adam",
+    access: [{ brigadeName: "תטיבת 460", brigadeRole: "admin" }],
+    role: "admin",
   },
 ];

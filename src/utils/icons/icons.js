@@ -14,31 +14,32 @@ import { TbMilitaryRank, TbUsers } from "react-icons/tb";
 import { GrPowerReset } from "react-icons/gr";
 import { IoSettings } from "react-icons/io5";
 import { TbPercentage } from "react-icons/tb";
+import { AiOutlinePartition } from "react-icons/ai";
 
 const icons = {
-
-    Trash: CiTrash,
-    Users: TbUsers,
-    User: FaUser,
-    Data: GoDatabase,
-    Dashboard: LuLayoutDashboard,
-    Excel: FaRegFileExcel,
-    San: MdLightMode,
-    Moon: MdModeNight,
-    Pen: CiEdit,
-    Close: IoMdClose,
-    Search: CiSearch,
-    Card: FaIdCard,
-    Rank: TbMilitaryRank,
-    Numbers: GoNumber,
-    Building: FaBuilding,
-    Role: FaCriticalRole,
-    Gears: FaGears,
-    Reset: GrPowerReset,
-    Settings: IoSettings,
-   Percentage: TbPercentage,
-    Back: IoMdArrowRoundBack,
-    Security: MdOutlineSecurity,
+  Trash: CiTrash,
+  Users: TbUsers,
+  User: FaUser,
+  Data: GoDatabase,
+  Dashboard: LuLayoutDashboard,
+  Excel: FaRegFileExcel,
+  San: MdLightMode,
+  Moon: MdModeNight,
+  Pen: CiEdit,
+  Close: IoMdClose,
+  Search: CiSearch,
+  Card: FaIdCard,
+  Rank: TbMilitaryRank,
+  Numbers: GoNumber,
+  Building: FaBuilding,
+  Role: FaCriticalRole,
+  Gears: FaGears,
+  Reset: GrPowerReset,
+  Settings: IoSettings,
+  Percentage: TbPercentage,
+  Back: IoMdArrowRoundBack,
+  Security: MdOutlineSecurity,
+  Partition: AiOutlinePartition,
 };
 
 export default icons;
