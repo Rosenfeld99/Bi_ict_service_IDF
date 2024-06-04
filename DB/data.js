@@ -493,7 +493,7 @@ export const userDB = {
   WorkEmail: "s86234@army.idf.il",
   userId: generateID(),
   userName: "moshe",
-  access: [{ brigadeName: "תטיבת 460", brigadeRole: "admin" }],
+  access: [],
   role: "admin",
 };
 
@@ -509,7 +509,7 @@ export const usersListDB = [
     WorkEmail: "s86234@army.idf.il",
     userId: generateID(),
     userName: "moshe",
-    access: [{ brigadeName: "תטיבת 460", brigadeRole: "admin" }],
+    access: [],
     role: "admin",
   },
   {
@@ -523,7 +523,7 @@ export const usersListDB = [
     WorkEmail: "s86234@army.idf.il",
     userId: generateID(),
     userName: "eli",
-    access: [{ brigadeName: "תטיבת 460", brigadeRole: "admin" }],
+    access: [],
     role: "admin",
   },
   {
@@ -537,7 +537,7 @@ export const usersListDB = [
     WorkEmail: "s86234@army.idf.il",
     userId: generateID(),
     userName: "adam",
-    access: [{ brigadeName: "תטיבת 460", brigadeRole: "admin" }],
+    access: [],
     role: "admin",
   },
 ];
