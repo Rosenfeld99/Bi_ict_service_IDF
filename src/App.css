@@ -13,3 +13,28 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #ac73c1;
 }
+
+/* .animate__slideInLeft{
+  background-color: red;
+  transition: width 0.5s;
+} */
+
+.animate__slideInLeft {
+  animation-name: slideInLeft;
+  animation-duration: 1s;  /* Adjust animation duration (in seconds) */
+  animation-timing-function: ease-in-out;  /* Specify animation timing function (e.g., ease-in, ease-out, linear) */
+  animation-delay: 0s;  /* Set animation delay (in seconds) */
+  animation-fill-mode: both;  /* Control element's visibility before and after animation */
+}
+
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
