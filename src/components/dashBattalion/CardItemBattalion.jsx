@@ -1,6 +1,8 @@
 import React from 'react'
 import ProgressBar from '../../utils/ProgressBar'
 import ProgressPei from '../../utils/ProgressPei'
+import battLogo from "../../../public/battLogo.png"
+
 export default function CardItemBattalion({ item }) {
     // console.log(item);
     const customStyleBgColors = 'text-secoundary dark:text-dark_secoundary bg-accent_bg dark:bg-dark_accent'
@@ -32,7 +34,10 @@ export default function CardItemBattalion({ item }) {
             <progress className={`progress w-full rounded-none ${innerColorProgress(item, false)}`} value={((item.totalSumBattalion / item.percentOfUnit) * 100)} max="100">90</progress>
             <div className="pt-2 mb-5 px-3 md:px-5 lg:px-8">
                 <div className=" flex items-center justify-between mb-4 gap-4">
-                    <div className=" font-semibold text-center">{item.battalionName}</div>
+                    <div className=" flex items-center gap-2">
+                        <div className=" font-semibold text-center">{item.battalionName}</div>
+                        <img className='w-8' src={battLogo} alt="סמל גדוד" />
+                    </div>
                     <div>
                         <span className=''>
                             {item.totalSumBattalion + "%"} / {" "}
