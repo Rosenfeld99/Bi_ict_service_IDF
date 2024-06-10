@@ -2,6 +2,7 @@ import { CiEdit, CiSearch, CiTrash } from "react-icons/ci";
 import {
   FaBuilding,
   FaCriticalRole,
+  FaFileImage,
   FaRegFileExcel,
   FaUser,
 } from "react-icons/fa";
@@ -12,11 +13,12 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { MdLightMode, MdModeNight, MdOutlineSecurity } from "react-icons/md";
 import { TbMilitaryRank, TbUsers } from "react-icons/tb";
 import { GrPowerReset } from "react-icons/gr";
-import { IoSettings } from "react-icons/io5";
+import { IoCloudUploadOutline, IoSettings } from "react-icons/io5";
 import { TbPercentage } from "react-icons/tb";
-import { AiOutlinePartition } from "react-icons/ai";
+import { RiImageAddLine } from "react-icons/ri";
 
 const icons = {
+
   Trash: CiTrash,
   Users: TbUsers,
   User: FaUser,
@@ -39,7 +41,8 @@ const icons = {
   Percentage: TbPercentage,
   Back: IoMdArrowRoundBack,
   Security: MdOutlineSecurity,
-  Partition: AiOutlinePartition,
+  AddImage: RiImageAddLine,
+  CloudUpload: IoCloudUploadOutline,
 };
 
-export default icons;
+export default icons
