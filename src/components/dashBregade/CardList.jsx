@@ -14,7 +14,7 @@ const CardList = () => {
     setSumTotalPercentagesOfbrigade(totalPercent / data.length)
   }, [])
   return (
-    <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 w-full'>
+    <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6 gap-3 w-full'>
       {/* כשירות ברמת כל החטיבה */}
       {/* <div className=" bg-primary flex-1 items-center p-3 rounded-lg border flex flex-col justify-between">
         <div className=" flex flex-col items-center justify-between w-full">
