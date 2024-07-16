@@ -9,53 +9,45 @@ import { useNavigate } from 'react-router-dom'
 const CreateBregade = () => {
   const { data, getBregadeSingle, user, setData, apiMethods, setAwaitRoute, halndleLocalStorage } = useDataStore()
   const navigateion = useNavigate()
-  // console.log(data[0]);
-  const [formBattalion, setFormBattalion] = useState(
-    {
-      battalionName: "",
-      battalion_id: generateID(),
-      means: [
-        {
-          meansName: "",
-
-          nameType: "",
-          type_id: generateID(),
-          amount: "",
-          properICT: "",
-          properAmm: "",
-          procent: "",
-          comments: "",
-          totalTypePercent: 0,
-          comments: "",
-        },
-        {
-          meansName: "",
-
-          nameType: "",
-          type_id: generateID(),
-          amount: "",
-          properICT: "",
-          properAmm: "",
-          procent: "",
-          comments: "",
-          totalTypePercent: 0,
-          comments: "",
-        }
-      ],
-      percentOfUnit: 0,
-      totalSumBattalion: 0,
-      comments: "",
-    },
-  );
+  const [formBattalion, setFormBattalion] = useState({
+    battalionName: "",
+    imageURL: "",
+    battalion_id: generateID(),
+    means: [
+      {
+        meansName: "",
+        nameType: "",
+        type_id: generateID(),
+        amount: "",
+        properICT: "",
+        properAmm: "",
+        procent: "",
+        comments: "",
+        totalTypePercent: 0,
+        comments: "",
+      }, {
+        meansName: "",
+        nameType: "",
+        type_id: generateID(),
+        amount: "",
+        properICT: "",
+        properAmm: "",
+        procent: "",
+        comments: "",
+        totalTypePercent: 0,
+        comments: "",
+      }],
+    percentOfUnit: 0,
+    totalSumBattalion: 0,
+    comments: "",
+  },);
   const [currentBattailion, setCurrentBattailion] = useState(formBattalion)
   const [bregadeBattalion, setBregadeBattalion] = useState([])
-  // console.log(bregadeBattalion);
-
   const [formBregade, setFormBregade] = useState({
     brigadeName: "",
+    imageURL: "",
     brigade_id: generateID(),
-    battalion:
-      bregadeBattalion,
+    battalion: bregadeBattalion,
     lastUpdateTime: "14-04-2024",
     lastUpdater: "new battaleion",
     totalSumQualification: 0,
@@ -65,9 +57,7 @@ const CreateBregade = () => {
     workSpace: "alpha",
     comments: "no comments",
   })
-
   const [checkChanges, setCheckChanges] = useState(false)
-
 
 
   // find currnet battalion by click 
@@ -76,12 +66,11 @@ const CreateBregade = () => {
     setCurrentBattailion(res?.battalion?.find(item => item?.battalion_id == id))
   }
 
-
-  const handleInputBregadeNameChange = (inputVal) => {
+  const handleInputBregadeNameChange = (inputVal, imageURL) => {
     setAwaitRoute(true)
     const formattedDate = new Date().toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\./g, '-');
-    setFormBregade({ ...formBregade, brigadeName: inputVal, lastUpdateTime: formattedDate, lastUpdater: user?.userName })
-    console.log(formBregade.brigadeName);
+    setFormBregade({ ...formBregade, brigadeName: inputVal, imageURL: imageURL, lastUpdateTime: formattedDate, lastUpdater: user?.userName })
+    // console.log(formBregade.brigadeName);
     // handleClickSaveAndDone({}, true)
   }
 
@@ -106,13 +95,11 @@ const CreateBregade = () => {
                 createRealProcent = currMean?.procent * currMean?.properICT / currMean?.amount
               }
             }
-
             currMean.totalTypePercent = fixAndReturnNumber(currMean?.procent / currMean?.amount * currMean?.properICT);
             // console.log("currMean?.procent / currMean?.amount * currMean?.properICT ", currMean?.procent / currMean?.amount * currMean?.properICT);
           } else {
             currMean.totalTypePercent = fixAndReturnNumber(currMean?.procent);
           }
-
         }
       }
 
@@ -161,16 +148,12 @@ const CreateBregade = () => {
     // if !isCalc do calc and cut
   }
 
-
-
-  // console.log("data : ", data);
-
   const handleResetBregade = () => {
     setFormBregade({
       brigadeName: "",
+      imageURL: "",
       brigade_id: generateID(),
-      battalion:
-        bregadeBattalion,
+      battalion: bregadeBattalion,
       lastUpdateTime: "14-04-2024",
       lastUpdater: "new battaleion",
       totalSumQualification: 0,
@@ -184,52 +167,32 @@ const CreateBregade = () => {
     setFormBattalion(
       {
         battalionName: "",
+        imageURL: "",
         battalion_id: generateID(),
-        means: [
-          {
-            meansName: "",
-
-            nameType: "",
-            type_id: generateID(),
-            amount: "",
-            properICT: "",
-            properAmm: "",
-            procent: "",
-            comments: "",
-            totalTypePercent: 0,
-            comments: "",
-            // we need to add uniq id for mean element --> and add more in data file (data.js) 
-          },
-          {
-            meansName: "",
-            nameType: "",
-            type_id: generateID(),
-            amount: "",
-            properICT: "",
-            properAmm: "",
-            procent: "",
-            comments: "",
-            totalTypePercent: 0,
-            comments: "",
-          }
-        ],
+        means: [{
+          meansName: "",
+          nameType: "",
+          type_id: generateID(),
+          amount: "",
+          properICT: "",
+          properAmm: "",
+          procent: "",
+          comments: "",
+          totalTypePercent: 0,
+          comments: "",
+        },],
         percentOfUnit: 0,
         totalSumBattalion: 0,
         comments: "",
       },)
   }
 
-
-  // console.log(currentBattailion);
-
-
-  // console.log(formBattalion?.battalionName);
   return (
-    <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5'>
+    <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5 '>
       <Topbar ManageSystem={true} title={'הוספת חטיבה'} toggelExcle={false} showTheme={true} />
 
       {/* header content */}
-      <HeaderCreateData delBtn={'איפוס '} onClickBtnDel={handleResetBregade} isVlaidation={formBregade?.brigadeName == "" || formBregade?.battalion?.length == 0} btnAdd={'שמירה וסיום'} onClickBtnAdd={() => { handleClickSaveAndDone({}, true) }} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} />
+      <HeaderCreateData delBtn={'איפוס '} onClickBtnDel={handleResetBregade} isVlaidation={formBregade?.brigadeName == "" || formBregade?.battalion?.length == 0} btnAdd={'שמירה וסיום'} onClickBtnAdd={() => { handleClickSaveAndDone({}, true) }} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} imageUrl={formBregade?.imageURL} />
 
       <div className=" flex gap-5">
         {/* accordion */}
@@ -241,21 +204,15 @@ const CreateBregade = () => {
                 setCurrentBattailion(item)
                 setFormBattalion(item)
               }} className=" join-item bg-accent_bg dark:bg-dark_accent">
-                {/* {item?.battalion_id == currentBattailion?.battalion_id && <div className=" absolute left-10 top-5 text-lg text-secoundary ">
-                  <FaPen />
-                </div>} */}
-                {/* <input type="radio" name="my-accordion-4" className='outline-none' defaultChecked /> */}
                 <div className="collapse-title text-xl font-medium text-secoundary dark:text-dark_secoundary ">
                   <div className={`text-neutral dark:text-dark_neutral ${currentBattailion?.battalion_id == item?.battalion_id && "bg-accent dark:bg-dark_accent_bg px-3 rounded-xl py-2 w-fit"}`}>
                     {item?.battalionName}
                   </div>
                 </div>
-
               </div>))}
             {/* and */}
 
           </div>
-
         </div>}
         {/* vew item content */}
         <TableGrid handleClickSaveAndDone={handleClickSaveAndDone} setCheckChanges={setCheckChanges} setAwaitRoute={setAwaitRoute} formBregade={formBregade} setFormBregade={setFormBregade} setCurrentBattailion={setCurrentBattailion} bregadeBattalion={bregadeBattalion} currentBattailion={currentBattailion} formBattalion={formBattalion} setBregadeBattalion={setBregadeBattalion} setFormBattalion={setFormBattalion} />

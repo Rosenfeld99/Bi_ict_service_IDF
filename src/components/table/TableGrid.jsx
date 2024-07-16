@@ -4,6 +4,7 @@ import { FaTrash } from 'react-icons/fa';
 import useDataStore from '../../hooks/useDataStore';
 import Toast from '../../utils/tostify/Toast';
 import icons from '../../utils/icons/icons';
+import UploadImage from '../../utils/uploadImage/UploadImage';
 
 const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setCheckChanges, setAwaitRoute, formBattalion, setFormBattalion, bregadeBattalion, setBregadeBattalion, currentBattailion, setCurrentBattailion }) => {
   const custumStyleTitle = ' text-center'
@@ -15,6 +16,12 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [validateMeansList, setValidateMeansList] = useState(false);
   const [indicatorErrors, setIndicatorErrors] = useState({ index: null, batIndex: null, itemGrid: false });
+
+  // upload image
+  const [newImage, setNewImage] = useState();
+  useEffect(() => {
+    console.log(newImage);
+  }, [newImage])
 
   const handleAddBattalion = () => {
     console.log("Add battalion run!", formBattalion.means[0]?.meansName);
@@ -95,11 +102,16 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
       // TODO :  validation for meansName and procent the only yhis properties is requard
       setCheckChanges && setCheckChanges(true)
       setAwaitRoute && setAwaitRoute(true)
+      console.log(newImage);
+      // set the new bregade
       const filterdMeans = formBattalion?.means?.filter((item) => item?.meansName && item?.procent)
       let newBat = formBattalion
       newBat.means = filterdMeans
-      setFormBattalion({ ...newBat, battalion_id: generateID() })
-
+      newBat.imageURL = newImage
+      newBat.battalion_id = generateID()
+      setFormBattalion({ ...newBat })
+      setNewImage("")
+      console.log(newBat);
       const listBattalion = [...bregadeBattalion]
       listBattalion.push(formBattalion)
       setBregadeBattalion(listBattalion)
@@ -108,11 +120,11 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
       // halndleLocalStorage(JSON.stringify(formBregade))
       setFormBattalion({
         battalionName: "",
+        imageURL: "",
         battalion_id: generateID(),
         means: [
           {
             meansName: "",
-
             nameType: "",
             type_id: generateID(),
             amount: "",
@@ -126,7 +138,6 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
           },
           {
             meansName: "",
-
             nameType: "",
             type_id: generateID(),
             amount: "",
@@ -408,7 +419,6 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
           means: [
             {
               meansName: "",
-
               nameType: "",
               type_id: generateID(),
               amount: "",
@@ -418,10 +428,8 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
               comments: "",
               totalTypePercent: 0,
               comments: "",
-            },
-            {
+            }, {
               meansName: "",
-
               nameType: "",
               type_id: generateID(),
               amount: "",
@@ -455,15 +463,12 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
 
   const selectOfTypeMeans = (index) => {
     let currSlect = formBattalion?.means[index]
-
     let renderOption;
     for (let j = 0; j < systemStract.length; j++) {
       if (systemStract[j]?.meanName === currSlect?.meansName) {
         renderOption = systemStract[j]
       }
-
     }
-    // console.log(currSlect, index, renderOption);
     return (
       <React.Fragment>
 
@@ -560,7 +565,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
   }
 
   return (
-    <div className="flex flex-col gap-3 w-full">
+    <div className="flex flex-col gap-3 w-full ">
       {/* shows errors */}
       {/* Toast */}
       {showToast && (
@@ -573,11 +578,13 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
           type={toast.type}
         />
       )}
-      <div className="overflow-x-auto w-full bg-accent_bg dark:bg-dark_accent h-fit rounded-lg border-secoundary border-[1px] dark:border-primary">
+      <div className="overflow-x-auto w-full bg-accent_bg dark:bg-dark_accent h-fit rounded-lg border-secoundary border-[1px] dark:border-primary ">
         <div className="p-3 flex items-center justify-between">
-          <div className=" relative">
+          <div className=" relative flex  bg-accent dark:bg-dark_accent_bg">
             <p className={`${indicatorErrors.itemGrid == "battalionName" && formBattalion?.battalionName == "" && " bg-error loading loading-ring w-5 absolute left-12 top-2"}`} />
-            <input type='text' placeholder='הכנס שם גדוד..' value={formBattalion?.battalionName} onChange={(e) => handleInputsBregadeChange(e.target.value, "battalionName")} className=' outline-none placeholder:text-neutral font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-lg py-1 w-fit text-xl flex-row-reverse' />
+            <input type='text' placeholder='הכנס שם גדוד..' value={formBattalion?.battalionName} onChange={(e) => handleInputsBregadeChange(e.target.value, "battalionName")} className='outline-none placeholder:text-neutral font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-lg py-1 w-fit text-xl flex-row-reverse' />
+            {/* upload Image */}
+            <UploadImage sizeImage={"w-12"} newImage={formBattalion?.imageURL} setNewImage={setNewImage} position={"dropdown-left"} />
           </div>
           <div className=" top-0 left-0 tooltip tooltip-right" data-tip="אחוזים בתפוסה">
             <div className="flex justify-center items-center font-bold relative text-xl border-2 border-secoundary dark:bg-dark_accent_bg rounded-lg px-7 py-1">
@@ -588,9 +595,9 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
 
             <div className=" tooltip tooltip-right" data-tip="הגדרת אחוזים של גדוד">
               <div className="flex justify-center items-center font-semibold text-2xl absolute right-[-15px] px-2">{<icons.Percentage className='text-sm absolute top-0 right-[10px]' />}</div>
-              <input step={"any"} type='number' placeholder='0' value={formBattalion?.percentOfUnit}
+              <input step={"any"} type='number' placeholder='0' value={formBattalion?.percentOfUnit !== 0 && formBattalion?.percentOfUnit}
                 onChange={(e) => handleInputsBregadeChange(e.target.value, "percentOfUnit")}
-                className='outline-none bg-transparent rounded-lg  w-[9vh] placeholder:text-neutral font-bold
+                className='outline-none bg-transparent rounded-lg  w-[12vh] placeholder:text-neutral font-bold
                dark:text-dark_secoundary text-neutral px-3 py-1 text-xl'
               />
             </div>
@@ -666,3 +673,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
 }
 
 export default TableGrid
+
+
+
+

@@ -1,7 +1,7 @@
 import React from 'react'
 import ProgressBar from '../../utils/ProgressBar'
 import ProgressPei from '../../utils/ProgressPei'
-import battLogo from "../../../public/battLogo.png"
+// import battLogo from "../../../public/battLogo.png"
 
 export default function CardItemBattalion({ item }) {
     // console.log(item);
@@ -36,7 +36,7 @@ export default function CardItemBattalion({ item }) {
                 <div className=" flex items-center justify-between mb-4 gap-4">
                     <div className=" flex items-center gap-2">
                         <div className=" font-semibold text-center">{item.battalionName}</div>
-                        <img className='w-8' src={battLogo} alt="סמל גדוד" />
+                        <img className='w-8 rounded-lg shadow-sm' src={item.imageURL} alt="סמל גדוד" />
                     </div>
                     <div>
                         <span className=''>

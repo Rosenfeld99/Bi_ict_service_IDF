@@ -76,6 +76,60 @@ const useDataStore = () => {
         }
     }
 
+    // upload image
+    // const HandleGetImages = (URL, newUpload,) => {
+    //     // try {
+    //     //     const response = await fetch(
+    //     //         URL,
+    //     //         {
+    //     //             method: 'POST',
+    //     //             headers: {
+    //     //                 accept: 'application/json;',
+    //     //                 'Content-Type': 'application/json;'
+    //     //             },
+    //     //         })
+    //     //     const result = await response.json();
+    //     //     const arrayOfResImage = result.row;
+    //     //     if (newUpload) {
+    //     //         return arrayOfResImage[0]
+    //     //     } else {
+    //     //         return arrayOfResImage
+    //     //     }
+
+    //     // } catch (error) {
+    //     //     console.log('Error Get Image: ', error);
+    //     //     return { status: "failed", error }
+    //     // }
+    //     return "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+    // }
+
+    const HandleGetImages = (URL, newUpload,) => {
+        // try {
+        //     const response = await fetch(
+        //         URL,
+        //         {
+        //             method: 'POST',
+        //             headers: {
+        //                 accept: 'application/json;',
+        //                 'Content-Type': 'application/json;'
+        //             },
+        //         })
+        //     const result = await response.json();
+        //     const arrayOfResImage = result.row;
+        //     if (newUpload) {
+        //         return arrayOfResImage[0]
+        //     } else {
+        //         return arrayOfResImage
+        //     }
+
+        // } catch (error) {
+        //     console.log('Error Get Image: ', error);
+        //     return { status: "failed", error }
+        // }
+        return "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+    }
+
+
     return {
         user, setUser,
         usersList, setUsersList,
@@ -86,7 +140,8 @@ const useDataStore = () => {
         apiMethods,
         awaitRoute, setAwaitRoute,
         systemStract, setSystemStract,
-        halndleLocalStorage
+        halndleLocalStorage,
+        HandleGetImages,
     }
 }
 
