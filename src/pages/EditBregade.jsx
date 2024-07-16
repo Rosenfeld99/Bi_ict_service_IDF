@@ -13,51 +13,39 @@ const EditBregade = () => {
   const [params] = useSearchParams()
   const navigateion = useNavigate()
   const [checkChanges, setCheckChanges] = useState(false)
-  // console.log(params.get('q'));
-
-  // console.log(data[0]);
-  const [formBattalion, setFormBattalion] = useState(
-    {
-      battalionName: "",
-      battalion_id: generateID(),
-      means: [
-        {
-          meansName: "",
-
-          nameType: "",
-          type_id: generateID(),
-          amount: "",
-          properICT: "",
-          properAmm: "",
-          procent: "",
-          comments: "",
-          totalTypePercent: "",
-          comments: "",
-          // we need to add uniq id for mean element --> and add more in data file (data.js) 
-        },
-        {
-          meansName: "",
-
-          nameType: "",
-          type_id: generateID(),
-          amount: "",
-          properICT: "",
-          properAmm: "",
-          procent: "",
-          comments: "",
-          totalTypePercent: "",
-          comments: "",
-        }
-      ],
-      percentOfUnit: 0,
-      totalSumBattalion: 0,
+  const [formBattalion, setFormBattalion] = useState({
+    battalionName: "",
+    imageURL: "",
+    battalion_id: generateID(),
+    means: [{
+      meansName: "",
+      nameType: "",
+      type_id: generateID(),
+      amount: "",
+      properICT: "",
+      properAmm: "",
+      procent: "",
       comments: "",
-    },
-  )
+      totalTypePercent: 0,
+      comments: "",
+    }, {
+      meansName: "",
+      nameType: "",
+      type_id: generateID(),
+      amount: "",
+      properICT: "",
+      properAmm: "",
+      procent: "",
+      comments: "",
+      totalTypePercent: 0,
+      comments: "",
+    }],
+    percentOfUnit: 0,
+    totalSumBattalion: 0,
+    comments: "",
+  },);
   const [currentBattailion, setCurrentBattailion] = useState(formBattalion)
   const [bregadeBattalion, setBregadeBattalion] = useState([])
-  // console.log(currentBattailion);
-
   const [formBregade, setFormBregade] = useState()
 
 
@@ -65,12 +53,12 @@ const EditBregade = () => {
     if (params.get('q')) {
       // console.log(getBregadeSingle(params.get('q')));
       const singleBregade = getBregadeSingle(params.get('q'))
-      console.log(" singleBregade : ", singleBregade);
+      // console.log(" singleBregade : ", singleBregade);
       setFormBregade(singleBregade)
       setFormBattalion(singleBregade?.battalion && singleBregade?.battalion[0] || [])
       setBregadeBattalion(singleBregade?.battalion || [])
       setCurrentBattailion(singleBregade?.battalion && singleBregade?.battalion[0] || {})
-      console.log(" singleBregade : ", singleBregade);
+      // console.log(" singleBregade : ", singleBregade);
     }
   }, [params.get('q')])
 
@@ -81,43 +69,150 @@ const EditBregade = () => {
 
   // }
 
-  const handleInputBregadeNameChange = (inputVal) => {
+  const handleInputBregadeNameChange = (inputVal, imageURL) => {
     setCheckChanges(true)
     setAwaitRoute(true)
     const formattedDate = new Date().toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\./g, '-');
-    setFormBregade({ ...formBregade, brigadeName: inputVal, lastUpdateTime: formattedDate, lastUpdater: user?.userName })
+    setFormBregade({ ...formBregade, brigadeName: inputVal, imageURL: imageURL, lastUpdateTime: formattedDate, lastUpdater: user?.userName })
     // console.log(formBregade);
     // handleClickSaveAndDone({}, true)
   }
 
-  // console.log(formBregade);
+
+
+  // const handleClickSaveAndDone = (state, isCalc) => {
+
+  //   // handle cut data key for dashboard
+  //   if (isCalc && formBregade?.battalion?.length > 0) {
+  //     console.log("in case");
+
+  //     const newArrayMeans = [];
+  //     for (let i = 0; i < formBregade?.battalion?.length; i++) {
+  //       const element = formBregade?.battalion[i];
+  //       for (let j = 0; j < element?.means?.length; j++) {
+  //         let createRealProcent = element?.means[j]?.procent || 0;
+  //         if (element?.means[j]?.properAmm != "" && element?.means[j]?.amount != "") {
+  //           createRealProcent = element?.means[j]?.procent * element?.means[j]?.properAmm / element?.means[j]?.amount
+  //           newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent, amount: element?.means[j].amount });
+  //           // console.log("create obj : ", { meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent });
+  //         }
+  //         else {
+  //           if (element?.means[j]?.properICT != "" && element?.means[j]?.amount != "") {
+  //             createRealProcent = element?.means[j]?.procent * element?.means[j]?.properICT / element?.means[j]?.amount
+  //             newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent, amount: element?.means[j].amount });
+  //           }
+  //         }
+  //       }
+  //     }
+
+  //     // reduce the array means --> to make shure without duplicate
+  //     const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent, realProcent, amount }) => {
+  //       if (!acc[meansName]) {
+  //         acc[meansName] = { meansName, procent: 0, realProcent: 0, amount: 0 };
+  //       }
+  //       acc[meansName].procent += parseFloat(procent);
+  //       acc[meansName].realProcent += parseFloat(realProcent);
+  //       acc[meansName].amount += Number(amount);
+  //       return acc;
+  //     }, {}));
+
+  //     // Convert the procent values to fixed decimal places if needed
+  //     reducedData.forEach(item => {
+  //       item.procent = parseFloat(item.procent.toFixed(1));
+  //       item.realProcent = parseFloat(item.realProcent.toFixed(1));
+  //     });
+
+
+  //     // Sum up all the percentages of the unit means
+  //     let sumOfTotalPercent = 0;
+  //     for (let index = 0; index < reducedData.length; index++) {
+  //       const element = reducedData[index];
+  //       sumOfTotalPercent += element.realProcent;
+  //       // console.log(element);
+  //     }
+
+  //     // console.log(sumOfTotalPercent);
+
+  //     let element = formBregade?.battalion;
+  //     // console.log(element);
+  //     for (let j = 0; j < element.length; j++) {
+  //       let sumTotalSumBattalion = 0;
+  //       for (let i = 0; i < element[j]?.means.length; i++) {
+  //         let curr = element[j]?.means[i]
+  //         sumTotalSumBattalion += curr?.totalTypePercent
+  //       }
+  //       element[j].totalSumBattalion = fixAndReturnNumber(sumTotalSumBattalion > 0 ? Number(sumTotalSumBattalion)?.toFixed(1) : 0);
+  //     }
+
+  //     console.log("formBregade : ", formBregade);
+
+  //     let allData = [...data];
+  //     for (let i = 0; i < allData?.length; i++) {
+  //       if (allData[i]?.brigade_id === formBregade?.brigade_id) {
+  //         allData[i] = formBregade
+  //         allData[i].totalSumQualification = Number(sumOfTotalPercent)?.toFixed(1)
+  //         allData[i].totalViewQualification = reducedData
+  //         let updateBatt = allData[i].battalion
+  //         for (let j = 0; j < updateBatt?.length; j++) {
+  //           let sumTotalSumBattalion = 0;
+  //           // update totalSumBattalion-->
+  //           let element = updateBatt[j]?.means;
+  //           // console.log(element);
+  //           for (let t = 0; t < element.length; t++) {
+  //             // calc realprocent and update state
+  //             element[t].totalTypePercent = fixAndReturnNumber(element[t]?.procent) || 0;
+  //             if (element?.[t]?.properAmm != "" && element?.[t]?.amount != "") {
+  //               element[t].totalTypePercent = fixAndReturnNumber(element?.[t]?.procent * element?.[t]?.properAmm / element?.[t]?.amount)
+  //             }
+  //             else {
+  //               if (element?.[t]?.properICT != "" && element?.[t]?.amount != "") {
+  //                 element[t].totalTypePercent = fixAndReturnNumber(element?.[t]?.procent * element?.[t]?.properICT / element?.[t]?.amount)
+  //               }
+  //             }
+  //             sumTotalSumBattalion += element[t].totalTypePercent
+  //           }
+  //           updateBatt[j].totalSumBattalion = fixAndReturnNumber(sumTotalSumBattalion);
+
+  //         }
+  //         allData[i].battalion = updateBatt
+  //       }
+  //     }
+  //     setData(allData)
+  //     setAwaitRoute(false)
+  //     halndleLocalStorage(JSON.stringify(allData))
+  //     navigateion("/")
+  //   }
+  //   // if !isClac do clac and cut
+  // }
+
+  // ...................................................
 
   const handleClickSaveAndDone = (state, isCalc) => {
-
-    // handle cut data key for dashboard
+    // If calculation is needed and battalion data is available
     if (isCalc && formBregade?.battalion?.length > 0) {
-      console.log("in case");
-
       const newArrayMeans = [];
-      for (let i = 0; i < formBregade?.battalion?.length; i++) {
-        const element = formBregade?.battalion[i];
-        for (let j = 0; j < element?.means?.length; j++) {
-          let createRealProcent = element?.means[j]?.procent || 0;
-          if (element?.means[j]?.properAmm != "" && element?.means[j]?.amount != "") {
-            createRealProcent = element?.means[j]?.procent * element?.means[j]?.properAmm / element?.means[j]?.amount
-            newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent, amount: element?.means[j].amount });
-            // console.log("create obj : ", { meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent });
-          }
-          else {
-            if (element?.means[j]?.properICT != "" && element?.means[j]?.amount != "") {
-              createRealProcent = element?.means[j]?.procent * element?.means[j]?.properICT / element?.means[j]?.amount
-              newArrayMeans?.push({ meansName: element?.means[j]?.meansName, procent: element?.means[j]?.procent, realProcent: createRealProcent, amount: element?.means[j].amount });
-            }
-          }
-        }
-      }
 
-      // reduce the array means --> to make shure without duplicate
+      // Collecting data from formBregade battalions
+      formBregade.battalion.forEach((battalion) => {
+        battalion.means.forEach((mean) => {
+          let createRealProcent = mean.procent || 0;
+
+          if (mean.properAmm !== "" && mean.amount !== "") {
+            createRealProcent = (mean.procent * mean.properAmm) / mean.amount;
+          } else if (mean.properICT !== "" && mean.amount !== "") {
+            createRealProcent = (mean.procent * mean.properICT) / mean.amount;
+          }
+
+          newArrayMeans.push({
+            meansName: mean.meansName,
+            procent: mean.procent,
+            realProcent: createRealProcent,
+            amount: mean.amount,
+          });
+        });
+      });
+
+      // Reduce the array to eliminate duplicates and sum percentages and amounts
       const reducedData = Object.values(newArrayMeans.reduce((acc, { meansName, procent, realProcent, amount }) => {
         if (!acc[meansName]) {
           acc[meansName] = { meansName, procent: 0, realProcent: 0, amount: 0 };
@@ -134,71 +229,45 @@ const EditBregade = () => {
         item.realProcent = parseFloat(item.realProcent.toFixed(1));
       });
 
-
       // Sum up all the percentages of the unit means
-      let sumOfTotalPercent = 0;
-      for (let index = 0; index < reducedData.length; index++) {
-        const element = reducedData[index];
-        sumOfTotalPercent += element.realProcent;
-        // console.log(element);
-      }
+      const sumOfTotalPercent = reducedData.reduce((sum, element) => sum + element.realProcent, 0);
 
-      // console.log(sumOfTotalPercent);
-
-      let element = formBregade?.battalion;
-      // console.log(element);
-      for (let j = 0; j < element.length; j++) {
-        let sumTotalSumBattalion = 0;
-        for (let i = 0; i < element[j]?.means.length; i++) {
-          let curr = element[j]?.means[i]
-          sumTotalSumBattalion += curr?.totalTypePercent
-        }
-        element[j].totalSumBattalion = fixAndReturnNumber(sumTotalSumBattalion > 0 ? Number(sumTotalSumBattalion)?.toFixed(1) : 0);
-      }
-
-      console.log("formBregade : ", formBregade);
-
-      let allData = [...data];
-      for (let i = 0; i < allData?.length; i++) {
-        if (allData[i]?.brigade_id === formBregade?.brigade_id) {
-          // console.log(formBregade);
-          allData[i] = formBregade
-          allData[i].totalSumQualification = Number(sumOfTotalPercent)?.toFixed(1)
-          allData[i].totalViewQualification = reducedData
-          let updateBatt = allData[i].battalion
-          for (let j = 0; j < updateBatt?.length; j++) {
-            let sumTotalSumBattalion = 0;
-            // update totalSumBattalion-->
-            let element = updateBatt[j]?.means;
-            // console.log(element);
-            for (let t = 0; t < element.length; t++) {
-              // calc realprocent and update state
-              element[t].totalTypePercent = fixAndReturnNumber(element[t]?.procent) || 0;
-              if (element?.[t]?.properAmm != "" && element?.[t]?.amount != "") {
-                element[t].totalTypePercent = fixAndReturnNumber(element?.[t]?.procent * element?.[t]?.properAmm / element?.[t]?.amount)
-              }
-              else {
-                if (element?.[t]?.properICT != "" && element?.[t]?.amount != "") {
-                  element[t].totalTypePercent = fixAndReturnNumber(element?.[t]?.procent * element?.[t]?.properICT / element?.[t]?.amount)
-                }
-              }
-              sumTotalSumBattalion += element[t].totalTypePercent
-            }
-            updateBatt[j].totalSumBattalion = fixAndReturnNumber(sumTotalSumBattalion);
-
+      // Update totalSumBattalion for each battalion
+      formBregade.battalion.forEach(battalion => {
+        let sumTotalSumBattalion = battalion.means.reduce((sum, mean) => {
+          let totalTypePercent = mean.totalTypePercent || 0;
+          if (mean.properAmm !== "" && mean.amount !== "") {
+            totalTypePercent = (mean.procent * mean.properAmm) / mean.amount;
+          } else if (mean.properICT !== "" && mean.amount !== "") {
+            totalTypePercent = (mean.procent * mean.properICT) / mean.amount;
           }
-          allData[i].battalion = updateBatt
-        }
-      }
-      setData(allData)
-      setAwaitRoute(false)
-      halndleLocalStorage(JSON.stringify(allData))
-      // console.log("data : ", allData);
-    }
-    // if !isClac do clac and cut
-  }
+          mean.totalTypePercent = fixAndReturnNumber(totalTypePercent);
+          return sum + mean.totalTypePercent;
+        }, 0);
 
-  // console.log(currentBattailion);
+        battalion.totalSumBattalion = fixAndReturnNumber(sumTotalSumBattalion > 0 ? Number(sumTotalSumBattalion).toFixed(1) : 0);
+      });
+
+      // Updating the formBregade object
+      formBregade.totalViewQualification = reducedData;
+      formBregade.totalSumQualification = Number(sumOfTotalPercent).toFixed(1);
+
+      // Update data with the new formBregade
+      const allData = data.map(item =>
+        item.brigade_id === formBregade.brigade_id ? formBregade : item
+      );
+
+      setData(allData);
+      setAwaitRoute(false);
+      halndleLocalStorage(JSON.stringify(allData));
+      navigateion("/");
+    } else {
+      // Handle the case when isCalc is false
+      // ...
+    }
+  };
+  // ...................................................
+
 
   const handleDleteBregade = () => {
     if (confirm("למחוק את חטיבה?")) {
@@ -218,18 +287,15 @@ const EditBregade = () => {
         sum += element[j].procent
       }
     }
-    // console.log("IN case : ", sum);
     return sum
   }
 
-
-  // console.log(formBattalion);
   return (
     <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5'>
       <Topbar ManageSystem={true} title={'הוספת חטיבה'} toggelExcle={false} showTheme={true} />
       <div className="">{fixAndReturnNumber(calcAndGetSumAllBattalionOnBregate())}</div>
       {/* header content */}
-      <HeaderCreateData isVlaidation={!checkChanges} onClickBtnAdd={() => handleClickSaveAndDone({}, true)} onClickBtnDel={handleDleteBregade} delBtn={'מחיקת חטיבה'} btnAdd={'שמירה וסיום'} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} />
+      <HeaderCreateData isVlaidation={!checkChanges} onClickBtnAdd={() => handleClickSaveAndDone({}, true)} onClickBtnDel={handleDleteBregade} delBtn={'מחיקת חטיבה'} btnAdd={'שמירה וסיום'} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} imageUrl={formBregade?.imageURL} />
 
       <div className=" flex gap-5">
         {/* accordion */}
