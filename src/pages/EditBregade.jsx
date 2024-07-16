@@ -293,7 +293,8 @@ const EditBregade = () => {
   return (
     <div className='bg-primary dark:bg-dark_primary flex-1 rounded-r-3xl p-5'>
       <Topbar ManageSystem={true} title={'הוספת חטיבה'} toggelExcle={false} showTheme={true} />
-      <div className="">{fixAndReturnNumber(calcAndGetSumAllBattalionOnBregate())}</div>
+      {/* calculator all pecantage for all bregade */}
+      {/* <div className="">{fixAndReturnNumber(calcAndGetSumAllBattalionOnBregate())}</div> */}
       {/* header content */}
       <HeaderCreateData isVlaidation={!checkChanges} onClickBtnAdd={() => handleClickSaveAndDone({}, true)} onClickBtnDel={handleDleteBregade} delBtn={'מחיקת חטיבה'} btnAdd={'שמירה וסיום'} placeholderTitle={'הכנס שם חטיבה...'} handleSearch={handleInputBregadeNameChange} input={formBregade?.brigadeName} imageUrl={formBregade?.imageURL} />
 
