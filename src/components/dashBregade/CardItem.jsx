@@ -12,7 +12,7 @@ const CardItem = ({ item }) => {
             <div className="border p-3 rounded-lg flex flex-col gap-1 bg-primary">
                 <div className="flex items-center justify-between">
                     <div className=" font-semibold text-xl text-center px-1">{item?.brigadeName}</div>
-                    <img className='w-10' src={battLogo} alt="סמל חטיבה" />
+                    <img className='w-10 rounded-lg' src={item.imageURL} alt={`${item.brigadeName}חטיבה`} />
                 </div>
                 <div className=" flex items-center justify-center">
                     <ProgressPei perValue={fixAndReturnNumber(item?.totalSumQualification)} color={"text-[#48CFAE]"} size={"7vw"} widthPei={"0.5vw"} sizeOfText={'text-lg'} />

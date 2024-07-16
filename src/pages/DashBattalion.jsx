@@ -14,9 +14,14 @@ const DashBattalion = () => {
     return (
         <div className='bg-primary dark:bg-dark_primary dark:shadow-xl dark:shadow-[#fcfcfca8] flex-1 rounded-r-3xl p-5'>
             <Topbar ManageSystem={true} title={'דשבורד'} toggelExcle={true} showTheme={true} />
-            <div className=" text-xl text-secoundary font-semibold pt-16">כשירות פיקודית -  {item?.brigadeName}</div>
+            <div className=" text-xl text-secoundary font-semibold pt-16 flex">
+                <div className="mx-2">
+                    כשירות פיקודית -  {item?.brigadeName}
+                </div>
+                <img className='w-10 rounded-lg shadow-sm' src={item?.imageURL} alt={item?.brigadeName} />
+            </div>
             {/* Progress Pei */}
-            <div className=" flex bg-[#FCF7FD] p-4 rounded-lg gap-3 my-4 ">
+            <div className=" flex bg-[#FCF7FD] p-4 rounded-lg gap-3 my-4">
                 <CardListBattalion item={item} />
             </div>
         </div>)

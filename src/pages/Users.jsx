@@ -89,12 +89,9 @@ const Users = () => {
                 {/* permissions */}
                 <td>
                   <div className="flex items-center gap-3 font-semibold">
-                    {user?.role?.toUpperCase()}
-                    <select name="" id="">
-                      <option value="">עורך הכל</option>
-                      <option value="">מנהל הכל</option>
-                      <option value="">צופה </option>
-                    </select>
+                    {console.log(user)}
+                    {user?.role}
+                    {/* {user?.role?.toUpperCase()} */}
                   </div>
                 </td>
                 {/* role */}

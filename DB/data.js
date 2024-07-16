@@ -510,7 +510,7 @@ export const usersListDB = [
     userId: generateID(),
     userName: "moshe",
     access: [],
-    role: "admin",
+    role: "Admin",
   },
   {
     FirstName: "eli",
@@ -524,7 +524,7 @@ export const usersListDB = [
     userId: generateID(),
     userName: "eli",
     access: [],
-    role: "admin",
+    role: "User",
   },
   {
     FirstName: "adam",
@@ -538,6 +538,6 @@ export const usersListDB = [
     userId: generateID(),
     userName: "adam",
     access: [],
-    role: "admin",
+    role: "Manager",
   },
 ];

@@ -19,11 +19,9 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
 
   // upload image
   const [newImage, setNewImage] = useState();
-
   useEffect(() => {
     console.log(newImage);
   }, [newImage])
-
 
   const handleAddBattalion = () => {
     console.log("Add battalion run!", formBattalion.means[0]?.meansName);
@@ -104,7 +102,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
       // TODO :  validation for meansName and procent the only yhis properties is requard
       setCheckChanges && setCheckChanges(true)
       setAwaitRoute && setAwaitRoute(true)
-
+      console.log(newImage);
       // set the new bregade
       const filterdMeans = formBattalion?.means?.filter((item) => item?.meansName && item?.procent)
       let newBat = formBattalion
@@ -113,7 +111,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
       newBat.battalion_id = generateID()
       setFormBattalion({ ...newBat })
       setNewImage("")
-
+      console.log(newBat);
       const listBattalion = [...bregadeBattalion]
       listBattalion.push(formBattalion)
       setBregadeBattalion(listBattalion)
@@ -122,6 +120,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
       // halndleLocalStorage(JSON.stringify(formBregade))
       setFormBattalion({
         battalionName: "",
+        imageURL: "",
         battalion_id: generateID(),
         means: [
           {
@@ -566,7 +565,7 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
   }
 
   return (
-    <div className="flex flex-col gap-3 w-full">
+    <div className="flex flex-col gap-3 w-full ">
       {/* shows errors */}
       {/* Toast */}
       {showToast && (
@@ -579,13 +578,13 @@ const TableGrid = ({ handleClickSaveAndDone, setFormBregade, formBregade, setChe
           type={toast.type}
         />
       )}
-      <div className="overflow-x-auto w-full bg-accent_bg dark:bg-dark_accent h-fit rounded-lg border-secoundary border-[1px] dark:border-primary">
+      <div className="overflow-x-auto w-full bg-accent_bg dark:bg-dark_accent h-fit rounded-lg border-secoundary border-[1px] dark:border-primary ">
         <div className="p-3 flex items-center justify-between">
           <div className=" relative flex  bg-accent dark:bg-dark_accent_bg">
             <p className={`${indicatorErrors.itemGrid == "battalionName" && formBattalion?.battalionName == "" && " bg-error loading loading-ring w-5 absolute left-12 top-2"}`} />
             <input type='text' placeholder='הכנס שם גדוד..' value={formBattalion?.battalionName} onChange={(e) => handleInputsBregadeChange(e.target.value, "battalionName")} className='outline-none placeholder:text-neutral font-bold dark:text-dark_secoundary text-neutral bg-accent dark:bg-dark_accent_bg px-3 rounded-lg py-1 w-fit text-xl flex-row-reverse' />
             {/* upload Image */}
-            <UploadImage sizeImage={"w-12"} newImage={newImage} setNewImage={setNewImage} position={"dropdown-left"} />
+            <UploadImage sizeImage={"w-12"} newImage={formBattalion?.imageURL} setNewImage={setNewImage} position={"dropdown-left"} />
           </div>
           <div className=" top-0 left-0 tooltip tooltip-right" data-tip="אחוזים בתפוסה">
             <div className="flex justify-center items-center font-bold relative text-xl border-2 border-secoundary dark:bg-dark_accent_bg rounded-lg px-7 py-1">
