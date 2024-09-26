@@ -17,7 +17,7 @@ const AppRoutes = () => {
     const { user } = useDataStore();
 
     return (
-        <BrowserRouter >
+        <BrowserRouter>
             {/* navbar */}
             <Navbar />
             <Routes>
